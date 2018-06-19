@@ -6,6 +6,10 @@
 #include<string>
 using namespace std;
 
+string strArrayMonthShort[12] = {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
+
+string strArrayMonth[12] ={"january","february","march","april","may","june","july","august","september","october","november","december"};
+
 void strToLower(string &strIn){
     char* ctemp = (char*)strIn.c_str();
     while(*ctemp!=0){
@@ -25,6 +29,29 @@ int CountSubStringInString(string strString, string strSubString){
         strString = strString.substr(iPos+1);
     }
     return iCount;
+}
+
+int CountMonthStrings(string strLine){
+    int iCount = 0;
+    bool bCheckShort;
+    for(int i=0;i<12;i++){
+        bCheckShort = true;
+        if(strLine.find(strArrayMonth[i])>-1){
+            bCheckShort = false;
+            iCount++;
+        }
+        if(bCheckShort == true){
+            if(strLine.find(strArrayMonthShort[i])>-1){
+            iCount++;
+            }
+        }
+    }
+    return iCount;
+}
+
+int CountFourDigitSets(string strLine){
+    char* pcstrLine = (char*) strLine.c_str();
+    
 }
 
 int main() {
@@ -51,4 +78,3 @@ int main() {
     }
     return 0;
 }
-
