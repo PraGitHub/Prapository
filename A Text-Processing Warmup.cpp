@@ -17,7 +17,7 @@ void strToLower(string &strIn){
     }
 }
 
-int CountSubStringInString(string strString, strSubString){
+int CountSubStringInString(string strString, string strSubString){
     int iCount = 0;
     int iPos = -1;
     while((iPos = strString.find(strSubString))>-1){
@@ -34,7 +34,7 @@ int main() {
     for(int i=0;i<(2*iNumLines+1);i++){
         string strLine;
         int iCountOfa = 0;
-        int icountOfan = 0;
+        int iCountOfan = 0;
         int iCountOfthe = 0;
         int iCountOfDate = 0;
         getline(cin,strLine);
@@ -51,3 +51,4 @@ int main() {
     }
     return 0;
 }
+
