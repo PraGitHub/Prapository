@@ -139,7 +139,7 @@ void strToLower(string &strIn)
     while(*ctemp!=0)
     {
         //cout<<*ctemp<<endl;
-        if(*ctemp < 'a' && *ctemp!=' ')
+        if(*ctemp >= 'A' && *ctemp <= 'Z')
         {
             *ctemp = *ctemp - 'A' + 'a';
         }
