@@ -33,19 +33,19 @@ int CountSubStringInString(string strString, string strSubString){
 
 int CountMonthStrings(string strLine){
     int iCount = 0;
-    bool bCheckShort;
+    int iCountFull = 0;
+    int iCountShort = 0;
+    cout<<"CountMonthStrings :: strLine = "<<strLine.c_str()<<endl;
     for(int i=0;i<12;i++){
-        bCheckShort = true;
         if(strLine.find(strArrayMonth[i])>-1){
-            bCheckShort = false;
-            iCount++;
+            iCountFull++;
         }
-        if(bCheckShort == true){
-            if(strLine.find(strArrayMonthShort[i])>-1){
-            iCount++;
-            }
+
+        if(strLine.find(strArrayMonthShort[i])>-1){
+            iCountShort++;
         }
     }
+    iCount = iCountFull + iCount
     return iCount;
 }
 
@@ -53,10 +53,9 @@ int CountFourDigitSets(string strLine){
     char* pcstrLine = (char*) strLine.c_str();
     int iCount = 0;
     int iCountTemp = 0;
-    while(pcstrLine!=0){
-        bool bIsPreviousCount4 = false;
-        char cTemp = *pcstrLine++;
-        if(cTemp>='0'&&cTemp<='9'){
+    bool bIsPreviousCount4 = false;
+    while(*pcstrLine!=0){
+        if(*pcstrLine>='0' && *pcstrLine<='9'){
             iCountTemp++;
         }
         else{
@@ -64,12 +63,16 @@ int CountFourDigitSets(string strLine){
         }
         if(iCountTemp==4){
             bIsPreviousCount4 = true;
+            //cout<<"iCountTemp=4"<<endl;
         }
-        if(bIsPreviousCount4 == true){
+        if(bIsPreviousCount4 == true && iCountTemp!=4){
+            //cout<<"bIsPreviousCount4=true ; iCountTemp = "<<iCountTemp<<endl;
             if(iCountTemp==0){
                 iCount++;
             }
+            bIsPreviousCount4 = false;
         }
+        pcstrLine++;
     }
     return iCount;
 }
@@ -94,7 +97,8 @@ int main() {
         iCountOfan = CountSubStringInString(strLine,"an ");//need to improvise
         iCountOfthe = CountSubStringInString(strLine,"the ");//need to improvise
         
-        cout<<iCountOfa<<endl<<iCountOfan<<endl<<iCountOfthe<<endl<<iCountOfDate<<endl;
+        //cout<<iCountOfa<<endl<<iCountOfan<<endl<<iCountOfthe<<endl<<iCountOfDate<<endl;
+        cout<<CountFourDigitSets(strLine)<<";"<<CountMonthStrings(strLine)<<endl;
     }
     return 0;
 }
