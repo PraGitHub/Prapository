@@ -51,7 +51,27 @@ int CountMonthStrings(string strLine){
 
 int CountFourDigitSets(string strLine){
     char* pcstrLine = (char*) strLine.c_str();
-    
+    int iCount = 0;
+    int iCountTemp = 0;
+    while(pcstrLine!=0){
+        bool bIsPreviousCount4 = false;
+        char cTemp = *pcstrLine++;
+        if(cTemp>='0'&&cTemp<='9'){
+            iCountTemp++;
+        }
+        else{
+            iCountTemp = 0;
+        }
+        if(iCountTemp==4){
+            bIsPreviousCount4 = true;
+        }
+        if(bIsPreviousCount4 == true){
+            if(iCountTemp==0){
+                iCount++;
+            }
+        }
+    }
+    return iCount;
 }
 
 int main() {
