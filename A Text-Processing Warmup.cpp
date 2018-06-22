@@ -21,11 +21,23 @@ void strToLower(string &strIn){
     }
 }
 
+//This will also check the chaacter immediately before the substring.
+//If that character is not an alphabet then only it counts.
 int CountSubStringInString(string strString, string strSubString){
     int iCount = 0;
-    int iPos = -1;
-    while((iPos = strString.find(strSubString))>-1){
-        iCount++;
+    size_t iPos = -1;
+    while((iPos = strString.find(strSubString))!=strString.npos){
+        if(iPos == (size_t)0){
+            iCount++;
+        }
+        else{
+            string strTemp = strString.substr(iPos-1,1);
+            char* cTemp = (char*)strTemp.c_str();
+            //cout<<"CountSubStringInString :: "<<*cTemp<<endl;
+            if(*cTemp<'a'||*cTemp>'z'){
+                iCount++;
+            }
+        }
         strString = strString.substr(iPos+1);
     }
     return iCount;
@@ -126,7 +138,7 @@ int main() {
         int iCountOfthe = 0;
         int iCountOfDate = 0;
         getline(cin,strLine);
-        if(strLine==""){
+        if(strLine=="" || i==0){
             continue;
         }
         strToLower(strLine);
