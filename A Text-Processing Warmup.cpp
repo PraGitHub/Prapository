@@ -31,29 +31,25 @@ int CountSubStringInString(string strString, string strSubString){
     return iCount;
 }
 
+//There is no point in countng full month string occurances when counting short month string occurances.
 int CountMonthStrings(string strLine){
     int iCount = 0;
-    int iCountFull = 0;
-    int iCountShort = 0;
-    cout<<"CountMonthStrings :: strLine = "<<strLine.c_str()<<endl;
     for(int i=0;i<12;i++){
-        if(strLine.find(strArrayMonth[i])>-1){
-            iCountFull++;
-        }
-
-        if(strLine.find(strArrayMonthShort[i])>-1){
-            iCountShort++;
+        string strTempLine = strLine;
+        size_t iPos = -1;
+        while((iPos = strTempLine.find(strArrayMonthShort[i]))!=strTempLine.npos){
+            iCount++;
+            strTempLine = strTempLine.substr(iPos+1);
         }
     }
-    iCount = iCountFull + iCount;
     return iCount;
 }
 
-int CountFourDigitSets(string strLine){
+int CountNDigitSets(string strLine,int iN){
     char* pcstrLine = (char*) strLine.c_str();
     int iCount = 0;
     int iCountTemp = 0;
-    bool bIsPreviousCount4 = false;
+    bool bIsPreviousCountN = false;
     while(*pcstrLine!=0){
         if(*pcstrLine>='0' && *pcstrLine<='9'){
             iCountTemp++;
@@ -61,20 +57,62 @@ int CountFourDigitSets(string strLine){
         else{
             iCountTemp = 0;
         }
-        if(iCountTemp==4){
-            bIsPreviousCount4 = true;
+        if(iCountTemp==iN){
+            bIsPreviousCountN = true;
             //cout<<"iCountTemp=4"<<endl;
         }
-        if(bIsPreviousCount4 == true && iCountTemp!=4){
+        if(bIsPreviousCountN == true && iCountTemp!=iN){
             //cout<<"bIsPreviousCount4=true ; iCountTemp = "<<iCountTemp<<endl;
             if(iCountTemp==0){
                 iCount++;
             }
-            bIsPreviousCount4 = false;
+            bIsPreviousCountN = false;
         }
         pcstrLine++;
     }
     return iCount;
+}
+
+int DecideCountOfDate(int iCount4Digit, int iCount2Digit, int iCountMonth){
+    if(iCount4Digit == 0 || iCount2Digit == 0 || iCountMonth == 0){
+        return 0;
+    }
+    /*
+    if(iCount4Digit == iCount2Digit){
+        if(iCountMonth>=iCount2Digit){
+            return iCount2Digit;
+        }
+        else{
+            return iCountMonth;
+        }
+    }
+    else{
+        int iLesserBetween4And2;
+        if(iCount4Digit<=iCount2Digit){
+            iLesserBetween4And2 = iCount4Digit;
+        }
+        else{
+            iLesserBetween4And2 = iCount2Digit;
+        }
+        if(iLesserBetween4And2<=iCountMonth){
+            return iLesserBetween4And2;
+        }
+        else{
+            retrun iCountMonth;
+        }
+    }
+    */
+    //Above commented logic is same as below (least of 3)
+    if(iCount4Digit<=iCount2Digit && iCount4Digit<=iCountMonth){
+        return iCount4Digit;
+    }
+    else if(iCount2Digit<=iCountMonth){
+        return iCount2Digit;
+    }
+    else{
+        return iCountMonth;
+    }
+    return 0;//To satisfy the compiler
 }
 
 int main() {
@@ -97,8 +135,14 @@ int main() {
         iCountOfan = CountSubStringInString(strLine,"an ");//need to improvise
         iCountOfthe = CountSubStringInString(strLine,"the ");//need to improvise
         
-        //cout<<iCountOfa<<endl<<iCountOfan<<endl<<iCountOfthe<<endl<<iCountOfDate<<endl;
-        cout<<CountFourDigitSets(strLine)<<";"<<CountMonthStrings(strLine)<<endl;
+       
+        int iCount4Digit = CountNDigitSets(strLine,4);
+        int iCount2Digit = CountNDigitSets(strLine,2);
+        int iCountMonth = CountMonthStrings(strLine);
+        
+       // cout<<"iCount2Digit = "<<iCount2Digit<<";"<<"iCount4Digit = "<<iCount4Digit<<";"<<"iCountMonth = "<<iCountMonth<<endl;
+        iCountOfDate = DecideCountOfDate(iCount4Digit,iCount2Digit,iCountMonth);
+         cout<<iCountOfa<<endl<<iCountOfan<<endl<<iCountOfthe<<endl<<iCountOfDate<<endl;
     }
     return 0;
 }
