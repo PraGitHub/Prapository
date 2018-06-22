@@ -45,7 +45,7 @@ int CountMonthStrings(string strLine){
             iCountShort++;
         }
     }
-    iCount = iCountFull + iCount
+    iCount = iCountFull + iCount;
     return iCount;
 }
 
