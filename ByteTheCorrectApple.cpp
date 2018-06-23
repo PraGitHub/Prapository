@@ -53,6 +53,20 @@ string strArrayCompany[]={
     "online",
     "corporat",
     "buil",
+    "design",
+    "feature",
+    "consumer",
+    "purchase",
+    "digital",
+    "camera",
+    "video",
+    "portable",
+    "leader",
+    " version",
+    "brand",
+    "memory",
+    "processor",
+    "processing",
     "EOA"//End of attributes
 };
 
@@ -102,6 +116,8 @@ string strArrayFruit[]={
     "carbo",
     "nutri",
     "vitamin",
+    "consumer",
+    "purchase",
     "EOA"//End of attributes
 };
 
