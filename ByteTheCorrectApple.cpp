@@ -36,6 +36,19 @@ string strArrayCompany[]={
     "hardware",
     "engineer",
     "compet",
+    "os x",
+    "operating",
+    "ios",
+    "program",
+    "language",
+    "architecture",
+    "graphic",
+    "rival",
+    "release",
+    "htc",
+    "developer",
+    "radio",
+    "service",
     "EOA"//End of attributes
 };
 
@@ -102,7 +115,7 @@ string Decide(int iScoreCompany, int iScoreFruit){
     if(iScoreFruit>iScoreCompany){
         return "fruit";
     }
-    return "computer-company";
+    return "fruit";
 }
 
 int main() {
