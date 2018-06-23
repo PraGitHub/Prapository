@@ -10,7 +10,6 @@ using namespace std;
 string strArrayCompany[]={
     "mac",
     "macintosh",
-    "illion",
     "$",
     "business",
     "samsung",
@@ -49,6 +48,8 @@ string strArrayCompany[]={
     "developer",
     "radio",
     "service",
+    "future",
+    "model",
     "EOA"//End of attributes
 };
 
@@ -94,6 +95,10 @@ string strArrayFruit[]={
     "logy",
     "davidson",
     "adam",
+    "protein",
+    "carbo",
+    "nutri",
+    "vitamin",
     "EOA"//End of attributes
 };
 
