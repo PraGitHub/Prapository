@@ -75,18 +75,40 @@ string strArrayFruit[]={
     "bacteria",
     "pest",
     "fertili",
+    "character",
+    "fung",
+    "graft",
+    "scien",
+    "genus",
+    "gene",
+    "autumn",
+    "winter",
+    "summer",
+    "organic",
+    "leave",
+    "leaf",
+    "green",
+    "yellow",
+    "pale",
+    "malus",
+    "logy",
+    "davidson",
+    "adam",
     "EOA"//End of attributes
 };
 
 int FindScore(string strLine,string* strArray){
-    int iScore = 0;;
+    int iScore = 0;
     for(int i=0;true;i++){
         //cout<<strArray[i]<<" ";
+        string strLineTemp = strLine;
         if(strArray[i]=="EOA"){
             break;
         }
-        if(strLine.find(strArray[i])!=strLine.npos){
+        size_t iPos = -1;
+        while((iPos = strLineTemp.find(strArray[i]))!=strLineTemp.npos){
             iScore++;
+            strLineTemp = strLineTemp.substr(iPos+1);
             //cout<<strArray[i]<<" ";
         }
     }
@@ -116,6 +138,7 @@ string Decide(int iScoreCompany, int iScoreFruit){
         return "fruit";
     }
     return "fruit";
+    //return "computer-company";
 }
 
 int main() {
