@@ -1,3 +1,4 @@
+#include <cmath>
 #include <cstdio>
 #include <vector>
 #include <iostream>
@@ -16,6 +17,25 @@ string strArrayCompany[]={
     "nokia",
     "apple i",
     "company",
+    "phone",
+    "mobile",
+    "comput",
+    "ui",
+    "itune",
+    "xerox",
+    "steve",
+    "jobs",
+    "ceo",
+    "director",
+    "notebook",
+    "iphone",
+    "ipad",
+    "system",
+    "microsoft",
+    "software",
+    "hardware",
+    "engineer",
+    "compet",
     "EOA"//End of attributes
 };
 
@@ -28,6 +48,20 @@ string strArrayFruit[]={
     "grow",
     "juice",
     "variet",
+    "ica",
+    "ae",
+    "aceae",
+    "ton",
+    "cultivat",
+    "climat",
+    "seed",
+    " rain",
+    "season",
+    "plant",
+    "flower",
+    "bacteria",
+    "pest",
+    "fertili",
     "EOA"//End of attributes
 };
 
