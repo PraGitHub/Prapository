@@ -50,6 +50,9 @@ string strArrayCompany[]={
     "service",
     "future",
     "model",
+    "online",
+    "corporat",
+    "buil",
     "EOA"//End of attributes
 };
 
