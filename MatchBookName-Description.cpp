@@ -23,7 +23,7 @@ int main() {
     cin>>iN;
     string strArrayBookNames[iN];
     string strArrayBookDes[iN];
-    for(int i=0;i<=2*iN;i++){
+    for(int i=0;i<=2*iN+1;i++){
         string strLine;
         getline(cin,strLine);
         if(i==0 || i==iN+1){
