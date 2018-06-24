@@ -17,6 +17,29 @@ void strToLower(string &strIn){
     }
 }
 
+int FindTheBookForDescription(string strDescription,string* strArrayBookNames,int iN){
+    int iValue = 0;
+    int iTempValue = 0;
+    int iOutput = -1;
+    for(int i=0;i<iN;i++){
+        iTempValue = 0;
+        string strBookName = strArrayBookNames[i];
+        size_t iPos = -1;
+        while((iPos = strBookName.find(" "))!=strBookName.npos){
+            string strToFind = strBookName.substr(0,iPos);
+            if(strDescription.find(strToFind)!=strDescription.npos){
+                iTempValue++;
+            }
+            strBookName = strBookName.substr(iPos+1);
+        }
+        if(iTempValue>iValue){
+            iValue = iTempValue;
+            iOutput = i+1;
+        }
+    }
+    return iOutput;
+}
+
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
     int iN;
@@ -34,12 +57,10 @@ int main() {
             strArrayBookNames[i-1]=strLine;
         }
         if(i>iN+1){
-            strArrayBookDes[i-2-iN]=strLine;
+            int iOutput = -1;
+            iOutput = FindTheBookForDescription(strLine,strArrayBookNames,iN);
+            cout<<iOutput<<endl;
         }
     }
-    for(int i=0;i<iN;i++){
-        cout<<"Name="<<strArrayBookNames[i]<<";"<<"Des="<<strArrayBookDes[i]<<endl;
-    }
-    
     return 0;
 }
