@@ -8,6 +8,8 @@ using namespace std;
 
 string strArrayPreposition[]={
     "in",
+    "so",
+    //"ing",
     "at",
     "there",
     "the",
@@ -18,6 +20,10 @@ string strArrayPreposition[]={
 
 bool IsPreposition(string strIn){
     int i=0;
+    //cout<<strIn<<endl;
+    if(strIn.find("ing")!=strIn.npos){
+            return true;
+        }
     while(true){
         if(strArrayPreposition[i]=="EOA"){
             break;
