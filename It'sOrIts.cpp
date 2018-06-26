@@ -13,11 +13,23 @@ string DecideTheIts(string strLine, size_t* iPosQuestionMark){
     if(iPos == 0){
         return "It's";
     }
-    string strBehind = strLine.substr(iPos-1,1);
-    if(strBehind == "."||strBehind=="?"||strBehind=="!"){
+    string strBehind1 = strLine.substr(iPos-1,1);
+    string strBehind2 = strLine.substr(iPos-2,2);
+
+    if(strBehind1=="."||
+       strBehind1=="?"||
+       strBehind1=="!"|| 
+       strBehind2==". "||
+       strBehind2=="? "||
+       strBehind2=="! "){
         return "It's";
     }
-    return "Its";
+    if(strBehind1==","||
+    strBehind2==", "){
+        return "it's";
+    }
+    
+    return "its";
 }
 
 
