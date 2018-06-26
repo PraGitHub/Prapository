@@ -6,6 +6,30 @@
 #include<string>
 using namespace std;
 
+string strArrayPreposition[]={
+    "in",
+    "at",
+    "there",
+    "the",
+    "not",
+    "never",
+    "EOA"
+};//This can be extended further
+
+bool IsPreposition(string strIn){
+    int i=0;
+    while(true){
+        if(strArrayPreposition[i]=="EOA"){
+            break;
+        }
+        if(strIn==strArrayPreposition[i]){
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
 string DecideTheIts(string strLine, size_t* iPosQuestionMark){
     size_t iPos = -1;
     iPos = strLine.find("???");
@@ -24,10 +48,18 @@ string DecideTheIts(string strLine, size_t* iPosQuestionMark){
        strBehind2=="! "){
         return "It's";
     }
+    
     if(strBehind1==","||
     strBehind2==", "){
         return "it's";
     }
+    
+    string strTemp = strLine.substr(iPos+4);
+    strTemp = strTemp.substr(0,strTemp.find(" "));
+    if(IsPreposition(strTemp)==true){
+        return "it's";
+    }
+    
     
     return "its";
 }
