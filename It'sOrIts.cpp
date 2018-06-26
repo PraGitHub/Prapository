@@ -6,9 +6,10 @@
 #include<string>
 using namespace std;
 
-string DecideTheIts(string strLine){
+string DecideTheIts(string strLine, size_t* iPosQuestionMark){
     size_t iPos = -1;
     iPos = strLine.find("???");
+    *iPosQuestionMark = iPos;
     if(iPos == 0){
         return "It's";
     }
@@ -30,9 +31,11 @@ int main() {
         if(i==0){
             continue;
         }
-        string strOutput = "";
-        strOutput = DecideTheIts(strLine);
-        cout<<strOutput<<endl;
+        string strIts = "";
+        size_t iPos = -1;
+        strIts = DecideTheIts(strLine,&iPos);
+        strLine.replace(iPos,3,strIts);
+        cout<<strLine<<endl;
     }
     return 0;
 }
