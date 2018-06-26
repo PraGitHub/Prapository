@@ -21,7 +21,9 @@ string strArrayPreposition[]={
 bool IsPreposition(string strIn){
     int i=0;
     //cout<<strIn<<endl;
-    if(strIn.find("ing")!=strIn.npos){
+    if(strIn.find("ing")!=strIn.npos||
+       strIn.find("ly")!=strIn.npos
+      ){
             return true;
         }
     while(true){
@@ -39,6 +41,7 @@ bool IsPreposition(string strIn){
 string DecideTheIts(string strLine, size_t* iPosQuestionMark){
     size_t iPos = -1;
     iPos = strLine.find("???");
+    //cout<<iPos;
     *iPosQuestionMark = iPos;
     if(iPos == 0){
         return "It's";
@@ -84,6 +87,7 @@ int main() {
         string strIts = "";
         size_t iPos = -1;
         strIts = DecideTheIts(strLine,&iPos);
+        //cout<<" "<<strIts<<endl;
         strLine.replace(iPos,3,strIts);
         cout<<strLine<<endl;
     }
