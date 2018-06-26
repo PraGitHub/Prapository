@@ -12,9 +12,18 @@ string strArrayPreposition[]={
     //"ing",
     "at",
     "there",
+    "a",
+    "an",
     "the",
     "not",
+    "to",
+    "too",
     "never",
+    "with",
+    "for",
+    "above",
+    "from",
+    "another",
     "EOA"
 };//This can be extended further
 
@@ -30,6 +39,7 @@ bool IsPreposition(string strIn){
         if(strArrayPreposition[i]=="EOA"){
             break;
         }
+        //if(strIn.find(strArrayPreposition[i])!=strIn.npos){
         if(strIn==strArrayPreposition[i]){
             return true;
         }
@@ -46,25 +56,19 @@ string DecideTheIts(string strLine, size_t* iPosQuestionMark){
     if(iPos == 0){
         return "It's";
     }
-    string strBehind1 = strLine.substr(iPos-1,1);
-    string strBehind2 = strLine.substr(iPos-2,2);
 
-    if(strBehind1=="."||
-       strBehind1=="?"||
-       strBehind1=="!"|| 
-       strBehind2==". "||
-       strBehind2=="? "||
-       strBehind2=="! "){
-        return "It's";
-    }
-    
-    if(strBehind1==","||
-    strBehind2==", "){
-        return "it's";
-    }
-    
     string strTemp = strLine.substr(iPos+4);
-    strTemp = strTemp.substr(0,strTemp.find(" "));
+    //cout<<strTemp<<";";
+    size_t iTempPos = -1; 
+    if((iTempPos = strTemp.find(" "))!=strTemp.npos){
+        strTemp = strTemp.substr(0,iTempPos);
+        //cout<<strTemp<<";";
+    }
+    
+    else{
+        strTemp = strTemp.substr(0,strTemp.length()-1);
+    }
+    //cout<<strTemp<<";";
     if(IsPreposition(strTemp)==true){
         return "it's";
     }
