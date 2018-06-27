@@ -11,7 +11,7 @@ void nextMove(int player, vector <string> board){
     for(int i=iX;i<8;i++){
         for(int j=iY;j<8;j++){
             if(i+1<8 && j+1<8){
-                if(board[i][j]==0&&(board[i+1][j]==1||board[i][j+1]==1)){
+                if(board[i][j]==1){
                     iXMain = i;
                     iYMain = j+1;
                     if(j==7){
