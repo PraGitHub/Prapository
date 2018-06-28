@@ -25,7 +25,7 @@ int calculate_bid(int player, int pos,int* first_moves, int* second_moves) {
     }
     
     if(iUpperHand == player){
-        return 8;
+        return 12;
     }
-    return 12;
+    return 8;
 }
