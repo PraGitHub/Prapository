@@ -8,12 +8,62 @@
 using namespace std;
 
 string strArrayComputer[]={
-    
+    "computer",
+    "device",
+    "CPU",
+    "control",
+    "keyboard",
+    "system",
+    "sensor",
+    "develop",
+    "engineer",
+    "ball",
+    "laser",
+    "3d",
+    "optical",
+    "gesture",
+    "hardware",
+    "microsoft",
+    "software",
+    "click",
+    "scroll",
+    "apple",
+    "analog",
+    "digital",
+    "select",
+    "wire",
+    "bluetooth",
+    "ibm",
+    "dos",
+    "button",
+    "desktop",
+    "laptop",
+    "usb",
+    "cordless",
+    "windows",
+    "mac",
+    "linux",
+    "unix",
     "EOA"//End of attributes
 };
 
 string strArrayAnimal[]={
-   
+    "rodent",
+    "animal",
+    "mammal",
+    "mice",
+    "family",
+    "mus",
+    "male",
+    "female",
+    "reproduc",
+    "logy",
+    "genus",
+    "species",
+    "food",
+    "white",
+    "diet",
+    "cat",
     "EOA"//End of attributes
 };
 
@@ -80,7 +130,7 @@ int main() {
         //cout<<" ; Length After Lower = "<<strLine.length();
         iScoreComputer = FindScore(strLine,strArrayComputer);
         iScoreAnimal = FindScore(strLine,strArrayAnimal);
-        strResult = Decide(iScoreCompany,iScoreAnimal);
+        strResult = Decide(iScoreComputer,iScoreAnimal);
         //cout<<"C:"<<iScoreCompany<<";F:" <<iScoreFruit<<endl;
         cout<<strResult<<endl;
     }
