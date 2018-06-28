@@ -44,6 +44,8 @@ string strArrayComputer[]={
     "mac",
     "linux",
     "unix",
+    "input",
+    "output",
     "EOA"//End of attributes
 };
 
@@ -64,6 +66,23 @@ string strArrayAnimal[]={
     "white",
     "diet",
     "cat",
+    "natur",
+    "environment",
+    "genome",
+    "dna",
+    "rna",
+    "bacteria",
+    "virus",
+    "plague",
+    "disease",
+    "synsrome",
+    "precaut",
+    "health",
+    "dog",
+    "fox",
+    "bird",
+    "prey",
+    "snake",
     "EOA"//End of attributes
 };
 
@@ -108,7 +127,7 @@ string Decide(int iScoreCompany, int iScoreFruit){
         return "animal";
     }
     return "animal";
-    //return "computer-company";
+    //return "computer-mouse";
 }
 
 int main() {
