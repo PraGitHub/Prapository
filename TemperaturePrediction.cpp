@@ -34,6 +34,11 @@ string IntToString(int iData){
     return strData;
 }
 
+string DoubleToString(double dData){
+    string strData = to_string(dData);
+    return strData;
+}
+
 /*
 dM is the slope of straight
 dC is i intercept
@@ -152,7 +157,9 @@ int main() {
     FindEquation(dArrayTempMinRef,dArrayTempMin,iMinArrayLen,dMinM,dMinC);
     //cout<<dMaxC<<" "<<dMaxM<<";"<<dMinC<<" "<<dMinM<<endl;
     //cout<<strMissingMax<<endl<<strMissingMin;
+    cout<<fixed<<setprecision(1);
     MissingNode* tempnode = head;
+    
     while(tempnode){
         double dPrediction = 0;
         if(tempnode->bIsMax){
@@ -164,7 +171,7 @@ int main() {
             dPrediction = dMinM*tempnode->iX + dMinC;
         }
         //cout<<temphead->iPosition<<";"<<temphead->iX<<endl;
-        cout<<dPrediction<<endl;
+        cout<<fixed<<dPrediction<<setprecision(1)<<endl;
         //;"<<tempnode->iX<<endl;
         tempnode = tempnode->next;
     }
