@@ -5,6 +5,23 @@
 #include <algorithm>
 using namespace std;
 
+/*
+typedef struct MissingNode{
+    int iPosition;
+    int iX;
+    bool bIsMax;
+    struct MissingNode* next;
+} MISSING_NODE;
+*/
+
+class MissingNode{
+    public:
+    int iPosition;
+    int iX;
+    bool bIsMax;
+    MissingNode* next;
+};
+
 
 double StringToDouble(string strData){
     size_t iSize;
@@ -73,8 +90,11 @@ int main() {
     double dMinM;
     int iMaxArrayLen = 0;
     int iMinArrayLen = 0;
-    string strMissingMax = "";
-    string strMissingMin = "";
+    int iMissingCount = 0;
+    //MISSING_NODE* head = NULL;
+    //MISSING_NODE* current = NULL;
+    MissingNode* head = NULL;
+    MissingNode* current = NULL;
     for(int i=0;i<=iN;i++){
         string strYear;
         string strMonth;
@@ -82,30 +102,64 @@ int main() {
         string strTempMin;
         bool bSkipMax = false;
         bool bSkipMin = false;
+       
         cin>>strYear;
         cin>>strMonth;
         cin>>strTempMax;
         cin>>strTempMin;
+        //cout<<strTempMax<<";"<<strTempMin<<endl;
         if(i==0){
             continue;
         }
-        if(strTempMax.find("Missing")!=strTempMax.npos){
+        if(strTempMax.find("Missing_")!=strTempMax.npos){
+            /*
             if(strMissingMax == ""){
                 strMissingMax = strMissingMax + strTempMax + IntToString(i); 
             }
             else{
                strMissingMax = ","+strMissingMax + strTempMax + IntToString(i);   
             }
+            */
+            MissingNode* temp = new MissingNode();
+            temp->bIsMax = true;
+            temp->iPosition = iMissingCount+1;
+            temp->iX = i;
+            temp->next = NULL;
+            if(iMissingCount == 0){
+                head = temp;
+                current = head;
+            }
+            else{
+                current->next = temp;
+                current = temp;
+            }
             bSkipMax = true;
+            iMissingCount++;
         }
-        if(strTempMin.find("Missing")!=strTempMin.npos){
+        if(strTempMin.find("Missing_")!=strTempMin.npos){
+            /*
             if(strMissingMin == ""){
                 strMissingMin = strMissingMin + strTempMin + IntToString(i); 
             }
             else{
                 strMissingMin = ","+strMissingMin + strTempMin + IntToString(i); 
             }
+            */
+            MissingNode* temp = new MissingNode();
+            temp->bIsMax = false;
+            temp->iPosition = iMissingCount+1;
+            temp->iX = i;
+            temp->next = NULL;
+            if(iMissingCount == 0){
+                head = temp;
+                current = temp;
+            }
+            else{
+                current->next = temp;
+                current = temp;
+            }
             bSkipMin = true;
+            iMissingCount++;
         }
         if(bSkipMax == false){
             dArrayTempMax[iMaxArrayLen] = StringToDouble(strTempMax);
@@ -120,6 +174,22 @@ int main() {
     }
     FindEquation(dArrayTempMaxRef,dArrayTempMax,iMaxArrayLen,dMaxM,dMaxC);
     FindEquation(dArrayTempMinRef,dArrayTempMin,iMinArrayLen,dMinM,dMinC);
-    cout<<dMaxC<<" "<<dMaxM<<";"<<dMinC<<" "<<dMinM;
+    //cout<<dMaxC<<" "<<dMaxM<<";"<<dMinC<<" "<<dMinM;
+    //cout<<strMissingMax<<endl<<strMissingMin;
+    MissingNode* tempnode = head;
+    while(tempnode){
+        double dPrediction = 0;
+        if(tempnode->bIsMax){
+            //cout<<"Max;";
+            dPrediction = dMaxM*tempnode->iX + dMaxC;
+        }
+        else{
+            //cout<<"Min
+            dPrediction = dMinM*tempnode->iX + dMinC;
+        }
+        //cout<<temphead->iPosition<<";"<<temphead->iX<<endl;
+        cout<<dPrediction<<endl;
+        tempnode = tempnode->next;
+    }
     return 0;
 }
