@@ -6,15 +6,6 @@
 #include<iomanip>
 using namespace std;
 
-/*
-typedef struct MissingNode{
-    int iPosition;
-    int iX;
-    bool bIsMax;
-    struct MissingNode* next;
-} MISSING_NODE;
-*/
-
 class MissingNode{
     public:
     int iPosition;
@@ -92,10 +83,10 @@ int main() {
     int iMaxArrayLen = 0;
     int iMinArrayLen = 0;
     int iMissingCount = 0;
-    //MISSING_NODE* head = NULL;
-    //MISSING_NODE* current = NULL;
+
     MissingNode* head = NULL;
     MissingNode* current = NULL;
+    
     for(int i=0;i<=iN;i++){
         string strYear;
         string strMonth;
@@ -113,14 +104,6 @@ int main() {
             continue;
         }
         if(strTempMax.find("Missing_")!=strTempMax.npos){
-            /*
-            if(strMissingMax == ""){
-                strMissingMax = strMissingMax + strTempMax + IntToString(i); 
-            }
-            else{
-               strMissingMax = ","+strMissingMax + strTempMax + IntToString(i);   
-            }
-            */
             MissingNode* temp = new MissingNode();
             temp->bIsMax = true;
             temp->iPosition = iMissingCount+1;
@@ -138,14 +121,6 @@ int main() {
             iMissingCount++;
         }
         if(strTempMin.find("Missing_")!=strTempMin.npos){
-            /*
-            if(strMissingMin == ""){
-                strMissingMin = strMissingMin + strTempMin + IntToString(i); 
-            }
-            else{
-                strMissingMin = ","+strMissingMin + strTempMin + IntToString(i); 
-            }
-            */
             MissingNode* temp = new MissingNode();
             temp->bIsMax = false;
             temp->iPosition = iMissingCount+1;
