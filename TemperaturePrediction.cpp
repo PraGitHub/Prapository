@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include<iomanip>
 using namespace std;
 
 /*
@@ -174,7 +175,7 @@ int main() {
     }
     FindEquation(dArrayTempMaxRef,dArrayTempMax,iMaxArrayLen,dMaxM,dMaxC);
     FindEquation(dArrayTempMinRef,dArrayTempMin,iMinArrayLen,dMinM,dMinC);
-    //cout<<dMaxC<<" "<<dMaxM<<";"<<dMinC<<" "<<dMinM;
+    //cout<<dMaxC<<" "<<dMaxM<<";"<<dMinC<<" "<<dMinM<<endl;
     //cout<<strMissingMax<<endl<<strMissingMin;
     MissingNode* tempnode = head;
     while(tempnode){
@@ -184,11 +185,12 @@ int main() {
             dPrediction = dMaxM*tempnode->iX + dMaxC;
         }
         else{
-            //cout<<"Min
+            //cout<<"Min;";
             dPrediction = dMinM*tempnode->iX + dMinC;
         }
         //cout<<temphead->iPosition<<";"<<temphead->iX<<endl;
         cout<<dPrediction<<endl;
+        //;"<<tempnode->iX<<endl;
         tempnode = tempnode->next;
     }
     return 0;
