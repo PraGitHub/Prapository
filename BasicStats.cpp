@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include<iomanip>
 using namespace std;
 
 
@@ -16,6 +17,24 @@ int FindCount(double* dArraySet,double dElement ,int iN){
     return iCount;
 }
 
+void Swap(double &a, double &b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+
+void SortSet(double* dArraySet, int iN){
+    int iSize = sizeof(dArraySet)/sizeof(dArraySet[0]);
+    sort(dArraySet,dArraySet+iSize);
+    for(int i=0;i<iN-1;i++){
+        for(int j=i+1;j<iN;j++){
+            if(dArraySet[i]>dArraySet[j]){
+                Swap(dArraySet[i],dArraySet[j]);
+            }
+        }
+    }
+}
+
 double FindSD(double* dArraySet,double dMean,int iN){
     double dSumOfSquare = 0;
     double dSD = 0;
@@ -24,6 +43,18 @@ double FindSD(double* dArraySet,double dMean,int iN){
     }
     dSD = sqrt(dSumOfSquare);
     return dSD;
+}
+
+double FindMedian(double* dArraySet, int iN){
+    if(iN%2 == 1){
+        return dArraySet[iN/2];
+    }
+    return ((dArraySet[iN/2-1]+dArraySet[iN/2])/(2.0));
+    
+}
+
+void PrintWithPrecision(double dData,int iPrecision){
+    cout<</*setprecision(iPrecision)<<*/dData<<endl;
 }
 
 int main() {
@@ -44,16 +75,6 @@ int main() {
         dArraySet[i] = dTemp;
         dSum += dTemp;
         
-        if(iN%2 == 1 && i==iN/2){
-            dMedian += dTemp;
-        }
-        
-        if(iN%2 == 0){
-            if(i==iN/2 || i==iN/2-1){
-                dMedian += dTemp;
-            }
-        }
-        
         if(i==0){
             dMode = dTemp;
         }
@@ -72,10 +93,16 @@ int main() {
             }
         }
     }
-    if(iN%2==0){
-        dMedian = dMedian/2.0;
-    }
     dMean = dSum/(1.0*iN);
+    
     dSD = FindSD(dArraySet,dMean,iN);
+    
+    SortSet(dArraySet,iN);
+    dMedian = FindMedian(dArraySet,iN);
+    
+    PrintWithPrecision(dMean,1);
+    PrintWithPrecision(dMedian,1);
+    PrintWithPrecision(dMode,1);
+    
     return 0;
 }
