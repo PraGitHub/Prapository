@@ -24,8 +24,8 @@ void Swap(double &a, double &b){
 }
 
 void SortSet(double* dArraySet, int iN){
-    int iSize = sizeof(dArraySet)/sizeof(dArraySet[0]);
-    sort(dArraySet,dArraySet+iSize);
+    /*int iSize = sizeof(dArraySet)/sizeof(dArraySet[0]);
+    sort(dArraySet,dArraySet+iSize);*/
     for(int i=0;i<iN-1;i++){
         for(int j=i+1;j<iN;j++){
             if(dArraySet[i]>dArraySet[j]){
@@ -41,7 +41,7 @@ double FindSD(double* dArraySet,double dMean,int iN){
     for(int i=0;i<iN;i++){
         dSumOfSquare += (dArraySet[i]-dMean)*(dArraySet[i]-dMean);
     }
-    dSD = sqrt(dSumOfSquare);
+    dSD = sqrt(dSumOfSquare/(1.0*iN));
     return dSD;
 }
 
@@ -103,6 +103,7 @@ int main() {
     PrintWithPrecision(dMean,1);
     PrintWithPrecision(dMedian,1);
     PrintWithPrecision(dMode,1);
+    PrintWithPrecision(dSD,1);
     
     return 0;
 }
