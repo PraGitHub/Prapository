@@ -4,9 +4,10 @@ using namespace std;
 string strAToZ = "abcdefghijklmnopqrstuvwxyz";
 char* cArrayaToz = (char*)strAToZ.c_str();
 
-int CountSubString(string strString, string strSubString){
+int CountSubString(string strString, int iSubString){
     int iCount = 0;
     size_t iPos = -1;
+    string strSubString = strAToZ.substr(iSubString,1);
     while((iPos = strString.find(strSubString))!=strString.npos){
         iCount++;
         strString = strString.substr(iPos+1);
@@ -42,11 +43,11 @@ int makeAnagram(string a, string b) {
     strToLower(a);
     strToLower(b);
     int iCountA;
-    int icountB;
+    int iCountB;
     int iResult = 0;
     for(int i=0;i<26;i++){
-        iCountA = CountSubString(a,cArrayaToz[i]);
-        iCountB = CountSubString(b,cArrayaToz[i]);
+        iCountA = CountSubString(a,i);
+        iCountB = CountSubString(b,i);
         
         iResult += GetDifference(iCountA,iCountB);
         
