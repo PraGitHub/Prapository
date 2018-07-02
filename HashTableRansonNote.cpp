@@ -1,13 +1,31 @@
-/*
-For the problem - https://www.hackerrank.com/challenges/ctci-ransom-note/problem
+#include <bits/stdc++.h>
 
-Create a Double list of all magazine strings
+using namespace std;
 
-Read every ransom string and if found in list delete the node
-*/
-
-class MagazineString{
-  string strData;
-  MagazineString* next;
-  MagazineString* prev;
-};
+int main(){
+    int iNumWordsInMagazine;
+    int iNumWordsInRansomNote;
+    cin>>iNumWordsInMagazine>>iNumWordsInRansomNote;
+    string strArrayMagazine[iNumWordsInMagazine];
+    for(int i=0;i<iNumWordsInMagazine;i++){
+        cin>>strArrayMagazine[i];
+    }
+    for(int i=0;i<iNumWordsInRansomNote;i++){
+        string strTemp;
+        cin>>strTemp;
+        bool bIsThere = false;
+        for(int j=0;j<iNumWordsInMagazine;j++){
+            if(strTemp == strArrayMagazine[j]){
+                strArrayMagazine[j] = "";
+                bIsThere = true;
+                continue;
+            }
+        }
+        if(bIsThere == false){
+            cout<<"No";
+            return 0;
+        }
+    }
+    cout<<"Yes";
+    return 0;
+}
