@@ -99,5 +99,18 @@ int main() {
             nCurrent->next = nTemp;
         }
     }
+    int iQ;
+    cin>>iQ;
+    for(int i=0;i<iQ;i++){
+        string strID;
+        cin>>strID;
+        double* dSet = new double(iM);
+        for(int j=0;j<iM;j++){
+            string strData;
+            strData = strData.substr(2);
+            dSet[j] = StringToDouble(strData);
+        }
+        
+    }
     return 0;
 }
