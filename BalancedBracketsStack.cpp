@@ -43,6 +43,9 @@ bool CheckIfBalanced(string strIn){
             continue;
         }
         if(cTemp == '}'){
+            if(iStackLen == 0){
+                return false;
+            }
             if(IsPair(cTemp,cStack[iStackLen-1])){
                 iStackLen--;
                 continue;
@@ -50,6 +53,9 @@ bool CheckIfBalanced(string strIn){
             return false;
         }
         if(cTemp == ')'){
+             if(iStackLen == 0){
+                return false;
+            }
            if(IsPair(cTemp,cStack[iStackLen-1])){
                 iStackLen--;
                 continue;
@@ -57,6 +63,9 @@ bool CheckIfBalanced(string strIn){
             return false;
         } 
         if(cTemp == ']'){
+             if(iStackLen == 0){
+                return false;
+            }
            if(IsPair(cTemp,cStack[iStackLen-1])){
                 iStackLen--;
                 continue;
