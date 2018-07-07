@@ -24,7 +24,7 @@ double StringToDouble(string strData){
 }
 
 
-double FindCorrelation(double* dSetX, double* dSetY, int iLen){
+double FindCorrelation(double* dSetX, double* dSetY, int iLen, bool bIgnoreEqualData){
     double dSumX = 0;
     double dSumY = 0;
     double dSumXY = 0;
@@ -33,16 +33,26 @@ double FindCorrelation(double* dSetX, double* dSetY, int iLen){
     double dNumerator = 0;
     double dDenominator = 0;
     double dCorrelation = 0;
+    int iEqualDataCount = 0;
     
     for(int i=0;i<iLen;i++){
         double x = dSetX[i];
         double y = dSetY[i];
+        //cout<<"x:"<<x<<"y:"<<y;
+        if(bIgnoreEqualData){
+            if(x == y){
+                iEqualDataCount++;
+                continue;
+            }
+        }
         dSumX += x;
         dSumY += y;
         dSumXY += x*y;
         dSumXSquare += x*x;
         dSumYSquare += y*y;
     }
+    //cout<<endl;
+    iLen = iLen - iEqualDataCount;
     dNumerator = (iLen * dSumXY) - (dSumX * dSumY);
     dDenominator = sqrt((iLen*dSumXSquare - dSumX*dSumX)*(iLen*dSumYSquare - dSumY*dSumY));
     
@@ -60,7 +70,7 @@ double FindEffectiveCorrelation(PositiveList* head, double* dSet, int iLen){
     double dCorrelationSum = 0;
     while(temp){
         iN++;
-        dCorrelationSum += FindCorrelation(temp->dSet,dSet,iLen);
+        dCorrelationSum += FindCorrelation(temp->dSet,dSet,iLen,true);
         temp = temp->next;
     }
     //cout<<iN<<endl;
@@ -76,7 +86,7 @@ double FindEffectiveCorrelation(NegativeList* head, double* dSet, int iLen){
     double dCorrelationSum = 0;
     while(temp){
         iN++;
-        dCorrelationSum  += FindCorrelation(temp->dSet,dSet,iLen);
+        dCorrelationSum  += FindCorrelation(temp->dSet,dSet,iLen,true);
         temp = temp->next;
     }
     //cout<<iN<<endl;
@@ -101,7 +111,10 @@ int main() {
         string strType;
         cin>>strID>>strType;
         //cout<<strType<<" ";
-        double dSet[iM];
+        //double dSet[iM];
+        //cout<<&dSet<<endl;
+        double* dSet = new double[iM];
+        //cout<<dSet<<endl;
         for(int j=0;j<iM;j++){
             string strData;
             cin>>strData;
@@ -141,7 +154,10 @@ int main() {
     for(int i=0;i<iQ;i++){
         string strID;
         cin>>strID;
-        double dSet[iM];
+        //double dSet[iM];
+        //cout<<"Query-"<<&dSet<<endl;
+        double* dSet = new double[iM];
+        //cout<<"Query-"<<dSet<<endl;
         for(int j=0;j<iM;j++){
             string strData;
             cin>>strData;
