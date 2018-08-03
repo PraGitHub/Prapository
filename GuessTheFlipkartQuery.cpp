@@ -10,7 +10,6 @@ using namespace std;
 string strArrayOfQueries[] = {
     "axe deo",
     "best-seller books",
-    "best seller books",
     "calvin klein",
     "camcorder",
     "camera",
@@ -22,7 +21,6 @@ string strArrayOfQueries[] = {
     "dslr canon",
     "mathematics",
     "nike-deodrant",
-    "nike deodrant",
     "physics",
     "sony cybershot",
     "spoken english",
@@ -61,13 +59,20 @@ string GetTheBestMatch(string strLine){
         if(strQuery == "EOA"){
             break;
         }
+        replace(strQuery.begin(),strQuery.end(),'-',' ');
         int iCountSpaces = 0;
         int iCountOfThisQuery = 0;
         size_t iPos = -1;
         while((iPos = strQuery.find(" "))!=strQuery.npos){
             iCountSpaces++;
             string strQuerySubString = strQuery.substr(0,iPos);
-            iCountOfThisQuery += IsThere(strLine,strQuerySubString);
+            if(strQuerySubString.length()==1){
+                iCountOfThisQuery += IsThere(strLine,strQuerySubString+" ");
+                iCountOfThisQuery += IsThere(strLine," "+strQuerySubString);
+            }
+            else{
+                iCountOfThisQuery += IsThere(strLine,strQuerySubString);
+            }
             strQuery = strQuery.substr(iPos+1);
         }
         iCountOfThisQuery += IsThere(strLine,strQuery);
@@ -81,6 +86,9 @@ string GetTheBestMatch(string strLine){
             iCount = iCountOfThisQuery;
             strBestQuery = strQueryCopy;
         }
+    }
+    if(iCount == 0){
+        strBestQuery = "spoken english";
     }
     return strBestQuery;
 }
