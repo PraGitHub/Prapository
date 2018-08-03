@@ -10,6 +10,7 @@ using namespace std;
 string strArrayOfQueries[] = {
     "axe deo",
     "best-seller books",
+    "best seller books",
     "calvin klein",
     "camcorder",
     "camera",
@@ -21,6 +22,7 @@ string strArrayOfQueries[] = {
     "dslr canon",
     "mathematics",
     "nike-deodrant",
+    "nike deodrant",
     "physics",
     "sony cybershot",
     "spoken english",
@@ -42,7 +44,7 @@ string GetTheBestMatch(string strLine){
         if(strQuery == "EOA"){
             break;
         }
-        //need to add th4e logic here
+        
     }
 }
 
