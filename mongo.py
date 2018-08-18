@@ -72,8 +72,8 @@ This will allow us to store any json/dict with keys containing "." or "$" charac
 
 """
 
-dictInsertRetVal = CollectionObj.insert(dictToInsert,check_keys = False)
+InsertRetVal = CollectionObj.insert(dictToInsert,check_keys = False)
 
-print('dictInsertRetVal = ',dictInsertRetVal)
+print('InsertRetVal = ',InsertRetVal)
 
 
