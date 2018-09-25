@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoggerTestExe", "LoggerTestExe\LoggerTestExe.vcxproj", "{072D37B6-5000-42E9-8DC9-BBFE086426CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{360770B9-96DF-4489-B864-10E0DE549383} = {360770B9-96DF-4489-B864-10E0DE549383}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logger", "C:\Users\prashanh\Documents\Visual Studio 2013\Projects\Logger-vcproj\Logger.vcxproj", "{360770B9-96DF-4489-B864-10E0DE549383}"
 EndProject
