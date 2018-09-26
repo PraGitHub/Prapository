@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoggerTestExe", "LoggerTest
 		{360770B9-96DF-4489-B864-10E0DE549383} = {360770B9-96DF-4489-B864-10E0DE549383}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logger", "C:\Users\prashanh\Documents\Visual Studio 2013\Projects\Logger-vcproj\Logger.vcxproj", "{360770B9-96DF-4489-B864-10E0DE549383}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logger", "Logger\Logger.vcxproj", "{360770B9-96DF-4489-B864-10E0DE549383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
