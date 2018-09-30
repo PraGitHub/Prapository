@@ -21,6 +21,21 @@ public:
 CriticalSectionTest :: CriticalSectionTest()
 {
 	InitializeCriticalSection(&m_csTemp);
+	return;
+	while (true)
+	{
+		unsigned long ulAddress = (unsigned long)(m_csTemp.DebugInfo);
+		if (ulAddress > NULL)// because it will be 0x0000....0 or 0xffff....f
+		{
+			break;
+		}
+		else
+		{
+			cout << "CriticalSectionTest :: CriticalSectionTest :: DebugInfo is NULL" << endl;
+		}
+		Sleep(1000);
+	}
+	
 	m_iVar = -1;
 }
 
@@ -31,12 +46,15 @@ CriticalSectionTest::~CriticalSectionTest()
 
 bool CriticalSectionTest::IsValidCriticalSection()
 {
+	return true;
 	bool bRetVal = true;
-	if (m_csTemp.DebugInfo == NULL)
+	unsigned long ulAddress = (unsigned long)m_csTemp.DebugInfo;
+	if (ulAddress <= NULL)// because it will be 0x0000....0 or 0xffff....f
 	{
 		cout << "CriticalSectionTest :: Write :: Critical Section Debug Info is NULL" << endl;
 		bRetVal = false;
 	}
+	//cout << "CriticalSectionTest :: Write :: Critical Section Debug Info Type = " << m_csTemp.DebugInfo->Type << endl;
 	return bRetVal;
 }
 
