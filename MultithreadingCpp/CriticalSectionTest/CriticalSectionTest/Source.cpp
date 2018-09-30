@@ -89,7 +89,7 @@ void Write(CriticalSectionTest* pCriticalSectionTest,int iNumThreads)
 	for (int i = 0; i < iNumThreads; i++)
 	{
 		pCriticalSectionTest->Write();
-		//Sleep(1);
+		Sleep(1);
 	}
 	return;
 }
@@ -107,16 +107,16 @@ int main(int iArg, char** ARGS)
 	if (iNumThreads > (int)MAX_THREADS)
 	{
 		cout << "Number of threads must be less than " << (int)MAX_THREADS << endl;
+		return 0;
 	}
 	CriticalSectionTest* pCriticalSectionTest = new CriticalSectionTest();
 
 	thread thrWrite(Write, pCriticalSectionTest, iNumThreads);
-	thread thrArrayRead[MAX_THREADS];
 	for (int i = 0; i < iNumThreads; i++)
 	{
-		thrArrayRead[i] = thread(Read, pCriticalSectionTest, i);
+		pCriticalSectionTest->Read(i);
+		Sleep(1);
 	}
-
 	system("pause");
 	return 0;
 }
