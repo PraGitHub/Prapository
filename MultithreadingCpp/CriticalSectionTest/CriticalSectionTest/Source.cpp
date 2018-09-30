@@ -10,6 +10,7 @@ class CriticalSectionTest
 private:
 	CRITICAL_SECTION m_csTemp;
 	int m_iVar;
+	bool IsValidCriticalSection();
 public:
 	CriticalSectionTest();
 	~CriticalSectionTest();
@@ -28,8 +29,23 @@ CriticalSectionTest::~CriticalSectionTest()
 	DeleteCriticalSection(&m_csTemp);
 }
 
+bool CriticalSectionTest::IsValidCriticalSection()
+{
+	bool bRetVal = true;
+	if (m_csTemp.DebugInfo == NULL)
+	{
+		cout << "CriticalSectionTest :: Write :: Critical Section Debug Info is NULL" << endl;
+		bRetVal = false;
+	}
+	return bRetVal;
+}
+
 void CriticalSectionTest::Write()
 {
+	if (IsValidCriticalSection() == false)
+	{
+		return;
+	}
 	EnterCriticalSection(&m_csTemp);
 	cout << "CriticalSectionTest :: Write :: iVar = " << m_iVar << endl;
 	LeaveCriticalSection(&m_csTemp);
@@ -37,6 +53,10 @@ void CriticalSectionTest::Write()
 
 void CriticalSectionTest::Read(int iVal)
 {
+	if (IsValidCriticalSection() == false)
+	{
+		return;
+	}
 	EnterCriticalSection(&m_csTemp);
 	m_iVar = iVal;
 	LeaveCriticalSection(&m_csTemp);
