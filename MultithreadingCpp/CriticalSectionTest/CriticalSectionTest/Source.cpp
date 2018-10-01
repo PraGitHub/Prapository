@@ -45,6 +45,7 @@ CriticalSectionTest::~CriticalSectionTest()
 
 bool CriticalSectionTest::IsValidCriticalSection()
 {
+	return true;
 	bool bRetVal = true;
 	if (m_csTemp.DebugInfo == nullptr)// because it will be 0x0000....0 or 0xffff....f
 	{
@@ -62,6 +63,7 @@ void CriticalSectionTest::Write()
 		return;
 	}
 	EnterCriticalSection(&m_csTemp);
+	//TryEnterCriticalSection(&m_csTemp);
 	cout << "CriticalSectionTest :: Write :: iVar = " << m_iVar << endl;
 	LeaveCriticalSection(&m_csTemp);
 }
@@ -73,6 +75,7 @@ void CriticalSectionTest::Read(int iVal)
 		return;
 	}
 	EnterCriticalSection(&m_csTemp);
+	//TryEnterCriticalSection(&m_csTemp);
 	m_iVar = iVal;
 	LeaveCriticalSection(&m_csTemp);
 }
