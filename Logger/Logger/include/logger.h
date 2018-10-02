@@ -49,3 +49,14 @@ public:
 	bool IsLogFileValid();
 	bool Log(int iMessageType,const char* pcstrMessage, ...);
 };
+
+//Need to create a thread that will be continously monitoring the log file size
+//Log file size must be configurable
+//Registry key would be better
+//Let the application using this logger pass a parameter with constructor
+//By default let the file size be 5MB
+//And at any time let us keep 10 log files - 1 current and 9 backup logs
+//Let the size and number of backup files be configurable - Constructor
+
+//A function which does the above work has to be written
+//and has to be spawned as a thread while executing the constructor
