@@ -2,6 +2,7 @@
 #include<map>
 #include<cstdarg>
 #include<ctime>
+#include<thread>
 #include<Windows.h>
 using namespace std;
 
@@ -10,7 +11,9 @@ using namespace std;
 #define DEFAULT_NAME "Logs"
 #define DISABLE_LOG_FILE "DisableLog"
 #define MAX_MESSAGE_LENGTH 1024
-#define MAX_TIME_DIFF_BETWEEN_TWO_FLUSHES 60000 //in milliseconds
+#define LOGGING_INTERVAL 60000 //in milliseconds
+#define MAX_NUM_FILES 10
+#define MAX_FILE_SIZE 5 // in MB
 
 enum MessageType{
 	eInfo = 0,
@@ -25,29 +28,43 @@ map <int, string> mapMessageType = {
 };
 
 class DLLEXPORT Logger{
+	FILE* m_fpFile;
+
 	string m_strModuleName;
 	string m_strLogFileName;
 	string m_strLogFilePath;
 	string m_strLogFolder;
-	FILE* m_fpFile;
+	string m_strBuffer;
+
+	CRITICAL_SECTION m_csAccessBuffer;
+	CRITICAL_SECTION m_csAccessBufferCS;
+
+	thread m_threadWriteLog;
+
 	long double m_ldPreviousFlushTime;
-	void Set(string strModule);
+
+	void Init(string strModule);
 	void OpenFile();
 	void CloseFile();
-	void Flush();
+	void WriteLogThread();
+
 	string GetMessageType(int iMessageType);
+
 	time_t GetTime();
 public:
 	Logger();
 	Logger(string strModule);
 	~Logger();
+
+	void Log(int iMessageType, const char* pcstrMessage, ...);
+
+	bool IsLogFileValid();
+
 	string GetFileName();
 	string GetFullPath();
 	string GetFolderPath();
 	string GetModuleName();
 	string GetTimeStamp();
-	bool IsLogFileValid();
-	bool Log(int iMessageType,const char* pcstrMessage, ...);
 };
 
 //Need to create a thread that will be continously monitoring the log file size

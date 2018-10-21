@@ -2,7 +2,7 @@
 
 Logger::Logger()
 {
-	Set(DEFAULT_NAME);
+	Init(DEFAULT_NAME);
 	OpenFile();
 }
 
@@ -12,17 +12,22 @@ Logger::Logger(string strModuleName)
 	{
 		strModuleName = DEFAULT_NAME;
 	}
-	Set(strModuleName);
+	Init(strModuleName);
 	OpenFile();
 }
 
 Logger::~Logger()
 {
 	CloseFile();
+	EnterCriticalSection(&m_csAccessBufferCS);
+	DeleteCriticalSection(&m_csAccessBuffer);
+	LeaveCriticalSection(&m_csAccessBufferCS);
+	DeleteCriticalSection(&m_csAccessBufferCS);
 }
 
-void Logger::Set(string strModuleName)
+void Logger::Init(string strModuleName)
 {
+	m_strBuffer = "";
 	m_strModuleName = strModuleName;
 	m_strLogFileName = m_strLogFileName + ".log";
 	CHAR pcstrModulePath[MAX_PATH];
@@ -32,11 +37,9 @@ void Logger::Set(string strModuleName)
 	m_strLogFolder = strLogFolder;
 	m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
 	m_ldPreviousFlushTime = GetTime();
-
-}
-
-void Logger::OpenFile()
-{
+	InitializeCriticalSection(&m_csAccessBuffer);
+	InitializeCriticalSection(&m_csAccessBufferCS);
+	m_threadWriteLog = std::thread(&(Logger::WriteLogThread));
 	m_fpFile = fopen(m_strLogFilePath.c_str(), "a");
 }
 
@@ -90,20 +93,6 @@ string Logger::GetMessageType(int iMessageType)
 	return strMessageType;
 }
 
-void Logger::Flush()
-{
-	long double ldCurrentTime = GetTime();
-	long double ldTimeDiff = ldCurrentTime - m_ldPreviousFlushTime;
-	if (ldTimeDiff >= (long double)MAX_TIME_DIFF_BETWEEN_TWO_FLUSHES)
-	{
-		if (m_fpFile)
-		{
-			fflush(m_fpFile);
-			m_ldPreviousFlushTime = ldCurrentTime;
-		}
-	}
-}
-
 bool Logger::IsLogFileValid()
 {
 	bool bReturnValue = false;
@@ -114,9 +103,8 @@ bool Logger::IsLogFileValid()
 	return bReturnValue;
 }
 
-bool Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
+void Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 {
-	bool bReturnValue = false;
 	char pcstrBuffer[MAX_MESSAGE_LENGTH];
 	va_list arglist;
 	va_start(arglist, pcstrFormattedMessage);
@@ -125,11 +113,29 @@ bool Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 	string strMessage(pcstrBuffer);
 	string strTimeStamp = GetTimeStamp();
 	string strMessageType = GetMessageType(iMessageType);
-	if (m_fpFile)
+	//"%s\t%s\t%s\r\n", strTimeStamp.c_str(), strMessageType.c_str(), strMessage.c_str()
+	EnterCriticalSection(&m_csAccessBuffer);
+	m_strBuffer = m_strBuffer + strTimeStamp + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
+	LeaveCriticalSection(&m_csAccessBuffer);
+}
+
+void Logger::WriteLogThread()
+{
+	while (true) 
 	{
-		fprintf(m_fpFile, "%s\t%s\t%s\r\n", strTimeStamp.c_str(), strMessageType.c_str(), strMessage.c_str());
-		Flush();
-		bReturnValue = true;
+		EnterCriticalSection(&m_csAccessBufferCS);
+		EnterCriticalSection(&m_csAccessBuffer);
+		if (!m_strBuffer.empty())
+		{
+			if (m_fpFile) 
+			{
+				fprintf(m_fpFile, "%s", m_strBuffer.c_str());
+				m_strBuffer.clear();
+				m_strBuffer = "";
+			}
+		}
+		LeaveCriticalSection(&m_csAccessBuffer);
+		LeaveCriticalSection(&m_csAccessBufferCS);
+		Sleep((DWORD)LOGGING_INTERVAL);
 	}
-	return bReturnValue;
 }
