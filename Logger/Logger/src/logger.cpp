@@ -1,5 +1,16 @@
 #include"logger.h"
 
+string Logger::m_strBuffer;
+string Logger::m_strLogFileName;
+string Logger::m_strLogFilePath;
+string Logger::m_strLogFolder;
+string Logger::m_strModuleName;
+CRITICAL_SECTION Logger::m_csAccessBuffer;
+CRITICAL_SECTION Logger::m_csAccessBufferCS;
+thread Logger::m_threadWriteLog;
+long double Logger::m_ldPreviousFlushTime;
+FILE* Logger::m_fpFile = NULL;
+
 Logger::Logger()
 {
 	Init(DEFAULT_NAME);
@@ -19,17 +30,17 @@ Logger::Logger(string strModuleName)
 Logger::~Logger()
 {
 	CloseFile();
-	EnterCriticalSection(&m_csAccessBufferCS);
-	DeleteCriticalSection(&m_csAccessBuffer);
-	LeaveCriticalSection(&m_csAccessBufferCS);
-	DeleteCriticalSection(&m_csAccessBufferCS);
+	EnterCriticalSection(&Logger::m_csAccessBufferCS);
+	DeleteCriticalSection(&Logger::m_csAccessBuffer);
+	LeaveCriticalSection(&Logger::m_csAccessBufferCS);
+	DeleteCriticalSection(&Logger::m_csAccessBufferCS);
 }
 
 void Logger::Init(string strModuleName)
 {
 	m_strBuffer = "";
 	m_strModuleName = strModuleName;
-	m_strLogFileName = m_strLogFileName + ".log";
+	m_strLogFileName = m_strModuleName + ".log";
 	CHAR pcstrModulePath[MAX_PATH];
 	GetModuleFileName(NULL, pcstrModulePath, (DWORD)MAX_PATH);
 	string strLogFolder(pcstrModulePath);
@@ -37,9 +48,11 @@ void Logger::Init(string strModuleName)
 	m_strLogFolder = strLogFolder;
 	m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
 	m_ldPreviousFlushTime = GetTime();
-	InitializeCriticalSection(&m_csAccessBuffer);
-	InitializeCriticalSection(&m_csAccessBufferCS);
-	m_threadWriteLog = std::thread(&(Logger::WriteLogThread));
+	m_threadWriteLog = thread(&Logger::WriteLogThread);
+}
+
+void Logger::OpenFile()
+{
 	m_fpFile = fopen(m_strLogFilePath.c_str(), "a");
 }
 
@@ -114,17 +127,17 @@ void Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 	string strTimeStamp = GetTimeStamp();
 	string strMessageType = GetMessageType(iMessageType);
 	//"%s\t%s\t%s\r\n", strTimeStamp.c_str(), strMessageType.c_str(), strMessage.c_str()
-	EnterCriticalSection(&m_csAccessBuffer);
+	EnterCriticalSection(&Logger::m_csAccessBuffer);
 	m_strBuffer = m_strBuffer + strTimeStamp + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
-	LeaveCriticalSection(&m_csAccessBuffer);
+	LeaveCriticalSection(&Logger::m_csAccessBuffer);
 }
 
 void Logger::WriteLogThread()
 {
 	while (true) 
 	{
-		EnterCriticalSection(&m_csAccessBufferCS);
-		EnterCriticalSection(&m_csAccessBuffer);
+		EnterCriticalSection(&Logger::m_csAccessBufferCS);
+		EnterCriticalSection(&Logger::m_csAccessBuffer);
 		if (!m_strBuffer.empty())
 		{
 			if (m_fpFile) 
@@ -134,8 +147,8 @@ void Logger::WriteLogThread()
 				m_strBuffer = "";
 			}
 		}
-		LeaveCriticalSection(&m_csAccessBuffer);
-		LeaveCriticalSection(&m_csAccessBufferCS);
+		LeaveCriticalSection(&Logger::m_csAccessBuffer);
+		LeaveCriticalSection(&Logger::m_csAccessBufferCS);
 		Sleep((DWORD)LOGGING_INTERVAL);
 	}
 }

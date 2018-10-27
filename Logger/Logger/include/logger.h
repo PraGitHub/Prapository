@@ -28,43 +28,43 @@ map <int, string> mapMessageType = {
 };
 
 class DLLEXPORT Logger{
-	FILE* m_fpFile;
+	static FILE* m_fpFile;
 
-	string m_strModuleName;
-	string m_strLogFileName;
-	string m_strLogFilePath;
-	string m_strLogFolder;
-	string m_strBuffer;
+	static string m_strModuleName;
+	static string m_strLogFileName;
+	static string m_strLogFilePath;
+	static string m_strLogFolder;
+	static string m_strBuffer;
 
-	CRITICAL_SECTION m_csAccessBuffer;
-	CRITICAL_SECTION m_csAccessBufferCS;
+	static CRITICAL_SECTION m_csAccessBuffer;
+	static CRITICAL_SECTION m_csAccessBufferCS;
 
-	thread m_threadWriteLog;
+	static thread m_threadWriteLog;
 
-	long double m_ldPreviousFlushTime;
+	static long double m_ldPreviousFlushTime;
 
-	void Init(string strModule);
-	void OpenFile();
-	void CloseFile();
-	void WriteLogThread();
+	static void Init(string strModule);
+	static void OpenFile();
+	static void CloseFile();
+	static void WriteLogThread();
 
-	string GetMessageType(int iMessageType);
+	static string GetMessageType(int iMessageType);
 
-	time_t GetTime();
+	static time_t GetTime();
 public:
 	Logger();
 	Logger(string strModule);
 	~Logger();
 
-	void Log(int iMessageType, const char* pcstrMessage, ...);
+	static void Log(int iMessageType, const char* pcstrMessage, ...);
 
-	bool IsLogFileValid();
+	static bool IsLogFileValid();
 
-	string GetFileName();
-	string GetFullPath();
-	string GetFolderPath();
-	string GetModuleName();
-	string GetTimeStamp();
+	static string GetFileName();
+	static string GetFullPath();
+	static string GetFolderPath();
+	static string GetModuleName();
+	static string GetTimeStamp();
 };
 
 //Need to create a thread that will be continously monitoring the log file size
