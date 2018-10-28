@@ -1,4 +1,5 @@
 #pragma once
 #include"logger.h"
 
-void SubRoutine();
+thread SubRoutineThread;
+void SubRoutine(int, char**);

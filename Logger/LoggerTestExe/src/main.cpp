@@ -2,18 +2,21 @@
 
 void SubRoutine(int iArg,char** ppcstrArgs)
 {
-	Logger* pLogger = new Logger("LoggerTextExe.SubRoutine");
+	Logger* pLogger = new Logger("LoggerTest.SubRoutine");
 	for (int i = 0; i < iArg; i++)
 	{
-		Logger::Log(eInfo, "Arg %d : %s", i, ppcstrArgs[i]);
+		pLogger->Log(eInfo, "Arg %d : %s", i, ppcstrArgs[i]);
 	}
 	return;
 }
 
 int main(int iArg, char** ARGS)
 {
+	Logger* pLogger = new Logger("LoggerTest.Main");
+	SubRoutineThread = thread(&SubRoutine, iArg, ARGS);
+
 	system("pause");
-	Logger::Logger("LoggerTest");
+
 	if (iArg == 1)
 	{
 		cout << "This is a test application to Logger Library (Logger.dll)" << endl;
@@ -23,8 +26,9 @@ int main(int iArg, char** ARGS)
 	
 	for (int i = 0; i < iArg; i++)
 	{
-		Logger::Log(eInfo, "Arg %d : %s", i, ARGS[i]);
+		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
-	SubRoutine(iArg, ARGS);
+
+
 	return 0;
 }

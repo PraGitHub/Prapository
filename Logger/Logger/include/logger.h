@@ -1,10 +1,15 @@
+#pragma once
+
 #include<iostream>
 #include<map>
 #include<cstdarg>
 #include<ctime>
 #include<thread>
 #include<Windows.h>
+#include"CriticalSectionManager.h"
 using namespace std;
+
+typedef map<string, string> mapstrstr;
 
 #define DLLEXPORT __declspec(dllexport)
 #define STDCALL __stdcall
@@ -27,26 +32,25 @@ map <int, string> mapMessageType = {
 	{ eCritical, "CRITICAL"}
 };
 
+
 class DLLEXPORT Logger{
-	static FILE* m_fpFile;
+	string m_strModuleName;
+	string m_strLogFileName;
+	string m_strLogFilePath;
+	string m_strLogFolder;
 
-	static string m_strModuleName;
-	static string m_strLogFileName;
-	static string m_strLogFilePath;
-	static string m_strLogFolder;
-	static string m_strBuffer;
+	static mapstrstr m_mapModuleBuffer;
+	static mapstrstr m_mapModuleFile;
 
-	static CRITICAL_SECTION m_csAccessBuffer;
-	static CRITICAL_SECTION m_csAccessBufferCS;
+	static CriticalSectionManager m_csmgrAccessBuffer;
+	static CriticalSectionManager m_csmgrAccessBufferCS;
 
-	static thread m_threadWriteLog;
+	thread m_threadWriteLog;
 
 	static long double m_ldPreviousFlushTime;
 
-	static void Init(string strModule);
-	static void OpenFile();
-	static void CloseFile();
-	static void WriteLogThread();
+	void Init(string strModule);
+	void WriteLogThread();
 
 	static string GetMessageType(int iMessageType);
 
@@ -56,15 +60,13 @@ public:
 	Logger(string strModule);
 	~Logger();
 
-	static void Log(int iMessageType, const char* pcstrMessage, ...);
+	void Log(int iMessageType, const char* pcstrMessage, ...);
 
-	static bool IsLogFileValid();
-
-	static string GetFileName();
-	static string GetFullPath();
-	static string GetFolderPath();
-	static string GetModuleName();
-	static string GetTimeStamp();
+	string GetFileName();
+	string GetFullPath();
+	string GetFolderPath();
+	string GetModuleName();
+	string GetTimeStamp();
 };
 
 //Need to create a thread that will be continously monitoring the log file size

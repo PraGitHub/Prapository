@@ -92,9 +92,11 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\CriticalSectionManager.h" />
     <ClInclude Include="include\logger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CriticalSectionManager.cpp" />
     <ClCompile Include="src\logger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
