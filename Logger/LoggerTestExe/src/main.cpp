@@ -12,10 +12,9 @@ void SubRoutine(int iArg,char** ppcstrArgs)
 
 int main(int iArg, char** ARGS)
 {
+	system("pause");
 	Logger* pLogger = new Logger("LoggerTest.Main");
 	SubRoutineThread = thread(&SubRoutine, iArg, ARGS);
-
-	system("pause");
 
 	if (iArg == 1)
 	{
@@ -28,7 +27,5 @@ int main(int iArg, char** ARGS)
 	{
 		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
-
-
-	return 0;
+	while (true);
 }

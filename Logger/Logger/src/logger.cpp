@@ -1,14 +1,16 @@
 #include"logger.h"
 
 CriticalSectionManager Logger::m_csmgrAccessBuffer;
-CriticalSectionManager Logger::m_csmgrAccessBufferCS;
 long double Logger::m_ldPreviousFlushTime;
 mapstrstr Logger::m_mapModuleBuffer;
-mapstrstr Logger::m_mapModuleFile;
+mapstrFile Logger::m_mapModuleFile;
+thread Logger::m_threadWriteLog;
+bool Logger::m_bIsFirstInstance = true;
 
 Logger::Logger()
 {
 	Init(DEFAULT_NAME);
+	OpenFile();
 }
 
 Logger::Logger(string strModuleName)
@@ -18,11 +20,14 @@ Logger::Logger(string strModuleName)
 		strModuleName = DEFAULT_NAME;
 	}
 	Init(strModuleName);
+	OpenFile();
 }
 
 Logger::~Logger()
 {
-
+	Logger::RemoveFileFromMap(m_strModuleName);
+	Logger::WriteToFile(m_strModuleName);
+	CloseFile();
 }
 
 void Logger::Init(string strModuleName)
@@ -36,12 +41,14 @@ void Logger::Init(string strModuleName)
 	m_strLogFolder = strLogFolder;
 	m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
 	m_ldPreviousFlushTime = GetTime();
-	Logger::m_csmgrAccessBufferCS.Lock();
 	Logger::m_csmgrAccessBuffer.Lock();
-	Logger::m_mapModuleBuffer.insert(m_strModuleName, (string)"");
-	Logger::m_mapModuleFile.insert(m_strModuleName, m_strLogFilePath);
+	Logger::m_mapModuleBuffer.insert(mapstrstr::value_type(strModuleName, (string)""));
 	Logger::m_csmgrAccessBuffer.Unlock();
-	Logger::m_csmgrAccessBufferCS.Unlock();
+	if (Logger::m_bIsFirstInstance)
+	{
+		m_threadWriteLog = thread(&Logger::WriteLogThread);
+		Logger::m_bIsFirstInstance = false;
+	}
 }
 
 string Logger::GetFileName()
@@ -68,6 +75,25 @@ time_t Logger::GetTime()
 {
 	long double ldTime = time(NULL);
 	return ldTime;
+}
+
+void Logger::OpenFile()
+{
+	m_fpLogFile = fopen(m_strLogFilePath.c_str(), "a");
+	if (m_fpLogFile)
+	{
+		Logger::m_csmgrAccessBuffer.Lock();
+		Logger::m_mapModuleFile.insert(mapstrFile::value_type(m_strModuleName,m_fpLogFile));
+		Logger::m_csmgrAccessBuffer.Unlock();
+	}
+}
+
+void Logger::CloseFile()
+{
+	if (m_fpLogFile)
+	{
+		fclose(m_fpLogFile);
+	}
 }
 
 string Logger::GetTimeStamp()
@@ -106,27 +132,44 @@ void Logger::WriteLogThread()
 {
 	while (true) 
 	{
-		m_csmgrAccessBufferCS.Lock();
-		m_csmgrAccessBuffer.Lock();
-		for (mapstrstr::iterator iterModuleBuffer = Logger::m_mapModuleBuffer.begin(); iterModuleBuffer != Logger::m_mapModuleBuffer.end(); ++iterModuleBuffer)
-		{
-			string strModuleName = iterModuleBuffer->first;
-			string strBuffer = iterModuleBuffer->second;
-			string strFilePath = m_mapModuleFile[strModuleName];
-			if (!Logger::m_mapModuleBuffer[m_strModuleName].empty())
-			{
-				FILE* fpFile = fopen(strFilePath.c_str(), "a");
-				if (fpFile)
-				{
-					fprintf(fpFile, "%s", Logger::m_mapModuleBuffer[m_strModuleName].c_str());
-					Logger::m_mapModuleBuffer[m_strModuleName].clear();
-					Logger::m_mapModuleBuffer[m_strModuleName] = "";
-					fclose(fpFile);
-				}
-			}
-		}
-		m_csmgrAccessBuffer.Unlock();
-		m_csmgrAccessBufferCS.Unlock();
+		Logger::WriteToFile("");
 		Sleep((DWORD)LOGGING_INTERVAL);
 	}
+}
+
+void Logger::WriteToFile(string strInputModuleName)
+{
+	m_csmgrAccessBuffer.Lock();
+	for (mapstrstr::iterator iterModuleBuffer = Logger::m_mapModuleBuffer.begin(); iterModuleBuffer != Logger::m_mapModuleBuffer.end(); ++iterModuleBuffer)
+	{
+		string strModuleName = iterModuleBuffer->first;
+		if ((!(strInputModuleName == "")) && (strModuleName == strInputModuleName))
+		{
+			continue;
+		}
+		string strBuffer = iterModuleBuffer->second;
+		if (strBuffer.empty())
+		{
+			continue;
+		}
+		FILE* fpLogFile = m_mapModuleFile[strModuleName];
+		fprintf(fpLogFile, "%s", strBuffer.c_str());
+		m_mapModuleBuffer[strModuleName].clear();
+		m_mapModuleBuffer[strModuleName] = "";
+	}
+	m_csmgrAccessBuffer.Unlock();
+}
+
+void Logger::RemoveFileFromMap(string strModuleName)
+{
+	m_csmgrAccessBuffer.Lock();
+	for (mapstrFile::iterator iterModuleFile = m_mapModuleFile.begin(); iterModuleFile != m_mapModuleFile.end(); ++iterModuleFile)
+	{
+		if (strModuleName == iterModuleFile->first)
+		{
+			m_mapModuleFile.erase(iterModuleFile);
+			break;
+		}
+	}
+	m_csmgrAccessBuffer.Unlock();
 }

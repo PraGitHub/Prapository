@@ -10,13 +10,14 @@
 using namespace std;
 
 typedef map<string, string> mapstrstr;
+typedef map<string, FILE*> mapstrFile;
 
 #define DLLEXPORT __declspec(dllexport)
 #define STDCALL __stdcall
 #define DEFAULT_NAME "Logs"
 #define DISABLE_LOG_FILE "DisableLog"
 #define MAX_MESSAGE_LENGTH 1024
-#define LOGGING_INTERVAL 60000 //in milliseconds
+#define LOGGING_INTERVAL 600 //in milliseconds
 #define MAX_NUM_FILES 10
 #define MAX_FILE_SIZE 5 // in MB
 
@@ -34,27 +35,32 @@ map <int, string> mapMessageType = {
 
 
 class DLLEXPORT Logger{
+	FILE* m_fpLogFile;
 	string m_strModuleName;
 	string m_strLogFileName;
 	string m_strLogFilePath;
 	string m_strLogFolder;
 
 	static mapstrstr m_mapModuleBuffer;
-	static mapstrstr m_mapModuleFile;
+	static mapstrFile m_mapModuleFile;
 
 	static CriticalSectionManager m_csmgrAccessBuffer;
-	static CriticalSectionManager m_csmgrAccessBufferCS;
 
-	thread m_threadWriteLog;
+	static thread m_threadWriteLog;
 
 	static long double m_ldPreviousFlushTime;
 
+	static bool m_bIsFirstInstance;
+
 	void Init(string strModule);
-	void WriteLogThread();
+	void OpenFile();
+	void CloseFile();
 
 	static string GetMessageType(int iMessageType);
-
 	static time_t GetTime();
+	static void WriteToFile(string strModuleName);
+	static void WriteLogThread();
+	static void RemoveFileFromMap(string strModuleName);
 public:
 	Logger();
 	Logger(string strModule);
