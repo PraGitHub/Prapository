@@ -17,7 +17,7 @@ typedef map<string, FILE*> mapstrFile;
 #define DEFAULT_NAME "Logs"
 #define DISABLE_LOG_FILE "DisableLog"
 #define MAX_MESSAGE_LENGTH 1024
-#define LOGGING_INTERVAL 600 //in milliseconds
+#define LOGGING_INTERVAL 6000 //in milliseconds
 #define MAX_NUM_FILES 10
 #define MAX_FILE_SIZE 5 // in MB
 

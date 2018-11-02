@@ -27,5 +27,5 @@ int main(int iArg, char** ARGS)
 	{
 		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
-	while (true);
+	SubRoutineThread.join();
 }
