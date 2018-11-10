@@ -43,12 +43,12 @@ void Logger::Init(string strModuleName)
 	m_ldPreviousFlushTime = GetTime();
 	Logger::m_csmgrAccessBuffer.Lock();
 	Logger::m_mapModuleBuffer.insert(mapstrstr::value_type(strModuleName, (string)""));
-	Logger::m_csmgrAccessBuffer.Unlock();
 	if (Logger::m_bIsFirstInstance)
 	{
 		m_threadWriteLog = thread(&Logger::WriteLogThread);
 		Logger::m_bIsFirstInstance = false;
 	}
+	Logger::m_csmgrAccessBuffer.Unlock();
 }
 
 string Logger::GetFileName()

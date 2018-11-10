@@ -1,20 +1,24 @@
 #include"main.h"
 
-void SubRoutine(int iArg,char** ppcstrArgs)
+void SubRoutine(int iArg,char** ppcstrArgs, CRITICAL_SECTION *pcsMainSubRoutine)
 {
+	EnterCriticalSection(pcsMainSubRoutine);
 	Logger* pLogger = new Logger("LoggerTest.SubRoutine");
 	for (int i = 0; i < iArg; i++)
 	{
 		pLogger->Log(eInfo, "Arg %d : %s", i, ppcstrArgs[i]);
 	}
+	LeaveCriticalSection(pcsMainSubRoutine);
 	return;
 }
 
 int main(int iArg, char** ARGS)
 {
 	system("pause");
+	CRITICAL_SECTION csMainSubRoutine;
+	InitializeCriticalSection(&csMainSubRoutine);
+	thread SubRoutineThread = thread(&SubRoutine, iArg, ARGS, &csMainSubRoutine);
 	Logger* pLogger = new Logger("LoggerTest.Main");
-	SubRoutineThread = thread(&SubRoutine, iArg, ARGS);
 
 	if (iArg == 1)
 	{
@@ -27,5 +31,8 @@ int main(int iArg, char** ARGS)
 	{
 		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
-	SubRoutineThread.join();
+	
+	EnterCriticalSection(&csMainSubRoutine);
+	LeaveCriticalSection(&csMainSubRoutine);
+	DeleteCriticalSection(&csMainSubRoutine);
 }
