@@ -9,3 +9,10 @@ https://stackoverflow.com/questions/15049903/how-to-use-custom-packages-in-golan
 https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
 
 https://golang.org/cmd/go/#hdr-Description_of_package_lists
+
+Building dlls :
+	http://blog.ralch.com/tutorial/golang-sharing-libraries/
+	https://www.darkcoding.net/software/building-shared-libraries-in-go-part-1/
+	
+Loading and using dlls in Go Code :
+	https://github.com/golang/go/wiki/WindowsDLLs
