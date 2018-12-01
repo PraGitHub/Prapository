@@ -1,4 +1,5 @@
 package ComplexNumber
+
 import(
 	"math"
 )
@@ -34,3 +35,4 @@ func PolarAngleDegree(compNum complex128) float64{
 func Create(realNum, imgNum float64) complex128 {
 	return complex(realNum, imgNum)
 }
+
