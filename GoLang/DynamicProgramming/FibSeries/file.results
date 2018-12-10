@@ -185,3 +185,24 @@ SimpleRecursive :  4807526976
 2018-12-10 09:56:49.9835721 +0530 IST m=+34.370512201
 
 E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>
+
+
+for n = 60 :
+Thats a very big difference
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+60
+Called SimpleNonRecursive
+2018-12-10 14:29:07.7485725 +0530 IST m=+12.239704801
+SimpleNonRecursive :  956722026041
+2018-12-10 14:29:07.749576 +0530 IST m=+12.240708301
+Called MemoRecursive
+2018-12-10 14:29:07.7505774 +0530 IST m=+12.241709801
+MemoRecursive :  956722026041
+2018-12-10 14:29:07.7505774 +0530 IST m=+12.241709801
+Called SimpleRecursive
+2018-12-10 14:29:07.7515797 +0530 IST m=+12.242712101
+SimpleRecursive :  956722026041
+2018-12-10 15:52:47.9634124 +0530 IST m=+5032.466076001
