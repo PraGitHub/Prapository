@@ -19,6 +19,7 @@ func memoinit(flag, n int) {
 }
 
 func SimpleRecursive(n int) int {
+	//fmt.Println("SimpleRecursive :: n = ",n)
 	if n == 1 {
 		return 0
 	}
