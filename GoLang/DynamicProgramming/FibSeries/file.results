@@ -1,0 +1,187 @@
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+51
+Called SimpleNonRecursive
+2018-12-10 09:49:24.6467478 +0530 IST m=+0.821416501
+SimpleNonRecursive :  12586269025
+2018-12-10 09:49:24.6477607 +0530 IST m=+0.822429401
+Called MemoRecursive
+2018-12-10 09:49:24.6477607 +0530 IST m=+0.822429401
+MemoRecursive :  12586269025
+2018-12-10 09:49:24.6477607 +0530 IST m=+0.822429401
+Called SimpleRecursive
+2018-12-10 09:49:24.6487282 +0530 IST m=+0.823396901
+SimpleRecursive :  12586269025
+2018-12-10 09:50:40.5801733 +0530 IST m=+76.755321901
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+52
+Called SimpleNonRecursive
+2018-12-10 09:50:53.5856018 +0530 IST m=+1.594373601
+SimpleNonRecursive :  20365011074
+2018-12-10 09:50:53.5866068 +0530 IST m=+1.595378701
+Called MemoRecursive
+2018-12-10 09:50:53.5876126 +0530 IST m=+1.596384501
+MemoRecursive :  20365011074
+2018-12-10 09:50:53.5876126 +0530 IST m=+1.596384501
+Called SimpleRecursive
+2018-12-10 09:50:53.5876126 +0530 IST m=+1.596384501
+SimpleRecursive :  20365011074
+2018-12-10 09:52:53.7178137 +0530 IST m=+121.727344901
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+10
+Called SimpleNonRecursive
+2018-12-10 09:53:04.1668371 +0530 IST m=+0.004009901
+SimpleNonRecursive :  34
+2018-12-10 09:53:04.1668371 +0530 IST m=+0.004009901
+Called MemoRecursive
+2018-12-10 09:53:04.1668371 +0530 IST m=+0.004009901
+MemoRecursive :  34
+2018-12-10 09:53:04.1668371 +0530 IST m=+0.004009901
+Called SimpleRecursive
+2018-12-10 09:53:04.1678394 +0530 IST m=+0.005012101
+SimpleRecursive :  34
+2018-12-10 09:53:04.1678394 +0530 IST m=+0.005012101
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+20
+Called SimpleNonRecursive
+2018-12-10 09:53:07.7027865 +0530 IST m=+0.874250401
+SimpleNonRecursive :  4181
+2018-12-10 09:53:07.7038318 +0530 IST m=+0.875295701
+Called MemoRecursive
+2018-12-10 09:53:07.7038318 +0530 IST m=+0.875295701
+MemoRecursive :  4181
+2018-12-10 09:53:07.7038318 +0530 IST m=+0.875295701
+Called SimpleRecursive
+2018-12-10 09:53:07.7038318 +0530 IST m=+0.875295701
+SimpleRecursive :  4181
+2018-12-10 09:53:07.7038318 +0530 IST m=+0.875295701
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+30
+Called SimpleNonRecursive
+2018-12-10 09:53:10.8088025 +0530 IST m=+1.165021801
+SimpleNonRecursive :  514229
+2018-12-10 09:53:10.8088025 +0530 IST m=+1.165021801
+Called MemoRecursive
+2018-12-10 09:53:10.8088025 +0530 IST m=+1.165021801
+MemoRecursive :  514229
+2018-12-10 09:53:10.8098063 +0530 IST m=+1.166025701
+Called SimpleRecursive
+2018-12-10 09:53:10.8098063 +0530 IST m=+1.166025701
+SimpleRecursive :  514229
+2018-12-10 09:53:10.8118092 +0530 IST m=+1.168028601
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+40
+Called SimpleNonRecursive
+2018-12-10 09:53:16.2931982 +0530 IST m=+1.251865701
+SimpleNonRecursive :  63245986
+2018-12-10 09:53:16.2962473 +0530 IST m=+1.254914801
+Called MemoRecursive
+2018-12-10 09:53:16.2982127 +0530 IST m=+1.256880301
+MemoRecursive :  63245986
+2018-12-10 09:53:16.316304 +0530 IST m=+1.274971701
+Called SimpleRecursive
+2018-12-10 09:53:16.316304 +0530 IST m=+1.274971701
+SimpleRecursive :  63245986
+2018-12-10 09:53:16.7042881 +0530 IST m=+1.662958201
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+50
+Called SimpleNonRecursive
+2018-12-10 09:53:20.3540768 +0530 IST m=+1.435958001
+SimpleNonRecursive :  7778742049
+2018-12-10 09:53:20.3581305 +0530 IST m=+1.440011701
+Called MemoRecursive
+2018-12-10 09:53:20.3581305 +0530 IST m=+1.440011701
+MemoRecursive :  7778742049
+2018-12-10 09:53:20.3781402 +0530 IST m=+1.460021501
+Called SimpleRecursive
+2018-12-10 09:53:20.3781402 +0530 IST m=+1.460021501
+SimpleRecursive :  7778742049
+2018-12-10 09:54:05.0793466 +0530 IST m=+46.161510501
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+25
+Called SimpleNonRecursive
+2018-12-10 09:54:10.5349797 +0530 IST m=+2.529041501
+SimpleNonRecursive :  46368
+2018-12-10 09:54:10.5359828 +0530 IST m=+2.530044601
+Called MemoRecursive
+2018-12-10 09:54:10.5359828 +0530 IST m=+2.530044601
+MemoRecursive :  46368
+2018-12-10 09:54:10.5359828 +0530 IST m=+2.530044601
+Called SimpleRecursive
+2018-12-10 09:54:10.5359828 +0530 IST m=+2.530044601
+SimpleRecursive :  46368
+2018-12-10 09:54:10.5369546 +0530 IST m=+2.531016401
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+46
+Called SimpleNonRecursive
+2018-12-10 09:55:45.3317745 +0530 IST m=+4.631928901
+SimpleNonRecursive :  1134903170
+2018-12-10 09:55:45.3327772 +0530 IST m=+4.632931601
+Called MemoRecursive
+2018-12-10 09:55:45.3327772 +0530 IST m=+4.632931601
+MemoRecursive :  1134903170
+2018-12-10 09:55:45.3327772 +0530 IST m=+4.632931601
+Called SimpleRecursive
+2018-12-10 09:55:45.3327772 +0530 IST m=+4.632931601
+SimpleRecursive :  1134903170
+2018-12-10 09:55:52.697309 +0530 IST m=+11.997509901
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+47
+Called SimpleNonRecursive
+2018-12-10 09:55:58.3215871 +0530 IST m=+3.636361901
+SimpleNonRecursive :  1836311903
+2018-12-10 09:55:58.3245951 +0530 IST m=+3.639369901
+Called MemoRecursive
+2018-12-10 09:55:58.3245951 +0530 IST m=+3.639369901
+MemoRecursive :  1836311903
+2018-12-10 09:55:58.3446499 +0530 IST m=+3.659424801
+Called SimpleRecursive
+2018-12-10 09:55:58.3446499 +0530 IST m=+3.659424801
+SimpleRecursive :  1836311903
+2018-12-10 09:56:09.8170742 +0530 IST m=+15.131921701
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>FibSeries.exe
+FibSeries App Started...
+Enter n value =
+49
+Called SimpleNonRecursive
+2018-12-10 09:56:18.620395 +0530 IST m=+3.007136801
+SimpleNonRecursive :  4807526976
+2018-12-10 09:56:18.6213976 +0530 IST m=+3.008139501
+Called MemoRecursive
+2018-12-10 09:56:18.6213976 +0530 IST m=+3.008139501
+MemoRecursive :  4807526976
+2018-12-10 09:56:18.6213976 +0530 IST m=+3.008139501
+Called SimpleRecursive
+2018-12-10 09:56:18.6213976 +0530 IST m=+3.008139501
+SimpleRecursive :  4807526976
+2018-12-10 09:56:49.9835721 +0530 IST m=+34.370512201
+
+E:\MyLearnings\Prapository\GoLang\DynamicProgramming\FibSeries\bin>
