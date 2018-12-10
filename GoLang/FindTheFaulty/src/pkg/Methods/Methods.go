@@ -56,7 +56,8 @@ func Method334(slice10 []int)(int){
 	fmt.Println("Method334 : ")
 
 	var sum int = 0
-
+	sum = 3 + method3(slice10[0:3]) +  method3(slice10[3:6]) + method4(slice10[6:10])
+/*
 	sum = method3(slice10[0:3])
 	if sum > 0 {
 		return sum + 1
@@ -73,13 +74,16 @@ func Method334(slice10 []int)(int){
 	}
 
 	return 0
+*/
+	return sum
 }
 
 func Method343(slice10 []int)(int){
 	fmt.Println("Method343 : ")
 	
 	var sum int = 0
-
+	sum = 3 + method3(slice10[0:3]) + method4(slice10[3:7]) + method3(slice10[7:10])
+/*
 	sum = method3(slice10[0:3])
 	if sum > 0 {
 		return sum + 1
@@ -96,13 +100,16 @@ func Method343(slice10 []int)(int){
 	}
 
 	return 0
+*/
+	return sum
 }
 
 func Method55(slice10 []int)(int){
 	fmt.Println("Method55 : ")
-	
-	var sum int = 0
 
+	var sum int = 0
+	sum = 2 + method5(slice10[0:5]) + method5(slice10[5:10])
+/*
 	sum = method5(slice10[0:5])
 	if sum > 0{
 		return sum + 1
@@ -114,4 +121,6 @@ func Method55(slice10 []int)(int){
 	}
 
 	return 0
+*/
+	return sum
 }

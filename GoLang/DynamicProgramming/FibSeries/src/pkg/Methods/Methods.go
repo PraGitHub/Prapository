@@ -1,5 +1,7 @@
 package Methods
 
+//import("fmt")
+
 var sliceRec []int
 var sliceNonRec []int
 
@@ -7,6 +9,7 @@ func memoinit(flag, n int) {
 	if flag == 1 {
 		sliceRec = nil
 		sliceRec = make([]int, n+1)
+		//fmt.Println("memoinit :: sliceRec = ",sliceRec)
 	}
 
 	if flag == 2 {
@@ -22,7 +25,7 @@ func SimpleRecursive(n int) int {
 	if n == 2 || n == 3 {
 		return 1
 	}
-	return ((SimpleRecursive(n - 1)) + SimpleNonRecursive(n-2))
+	return ((SimpleRecursive(n - 1)) + SimpleRecursive(n-2))
 }
 
 func MemoRecursive(n int, bFirstTime bool) (fibn int) {
@@ -35,6 +38,7 @@ func MemoRecursive(n int, bFirstTime bool) (fibn int) {
 	if n == 2 || n == 3 {
 		return 1
 	}
+	//fmt.Println("MemoRecursive :: sliceRec = ",sliceRec)
 	if sliceRec[n] != 0 {
 		return sliceRec[n]
 	}
@@ -51,7 +55,7 @@ func SimpleNonRecursive(n int) (fibn int) {
 	}
 	prev := 1
 	temp := fibn
-	fibn = 2
+	fibn = 1
 	for i := 4; i <= n; i++ {
 		temp = fibn
 		fibn = fibn + prev
