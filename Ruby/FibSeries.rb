@@ -25,11 +25,12 @@ def NonRecursive(n)
     curr = 1
     prev = 1
     i = 4
-    while i <= n
+
+    while i <= n do
         fib = curr + prev
         prev = curr
         curr = fib
-        i++
+        i = i + 1
     end
 
     return fib
@@ -40,13 +41,14 @@ def MemoRecursive(n,is_first_time)
         memo = Array.new(n,-1)
         memo[0] = 0
         memo[1] = memo[2] = 1
+        puts("memo = ",memo)
     end
 
     if memo[n-1] != -1
         return memo[n-1]
     end
 
-    memo[n-1] = MemoRecursive(n-1,false) + MemoRecursive(n-2,false)
+    memo[n-1] = MemoRecursive(n-2,false) + MemoRecursive(n-3,false)
 
     return memo[n-1]
 end
