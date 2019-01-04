@@ -1,31 +1,31 @@
 package main
 
-import(
+import (
 	"fmt"
 	"pkg/Methods"
 )
 
-func main(){
+func main() {
 	fmt.Println("Sorting app started")
 
 	n := 0
 	x := 0
 	var arr []int = nil
-	
+
 	fmt.Println("Enter n = ")
-	fmt.Scanf("%d",&n)
+	fmt.Scanf("%d", &n)
 	fmt.Println("Enter numbers : ")
 
-	for i:=0 ; i <= n ; i++{
-		fmt.Scanf("%d",&x)
+	for i := 0; i <= n; i++ {
+		fmt.Scanf("%d", &x)
 		if i == 0 {
-			continue;
+			continue
 		}
-		arr = append(arr,x)
+		arr = append(arr, x)
 	}
 
-	fmt.Println("Given array = ",arr)
+	fmt.Println("Given array = ", arr)
 
-	Methods.MergeSort();
-	Methods.QuickSort();
+	arr = Methods.MergeSort(arr)
+	arr = Methods.QuickSort(arr)
 }
