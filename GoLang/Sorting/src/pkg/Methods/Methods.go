@@ -50,4 +50,5 @@ func MergeSort(arr []int) []int {
 
 func QuickSort(arr []int) []int {
 	fmt.Println("QuickSort")
+	return arr
 }
