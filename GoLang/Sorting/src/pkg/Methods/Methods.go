@@ -1,5 +1,7 @@
 package Methods
 
+import "fmt"
+
 func merge(left, right []int) []int {
 	i := 0
 	j := 0
@@ -46,8 +48,6 @@ func MergeSort(arr []int) []int {
 	return arr_sorted
 }
 
-/*
-func QuickSort(arr []int)([]int){
+func QuickSort(arr []int) []int {
 	fmt.Println("QuickSort")
 }
-*/

@@ -26,7 +26,11 @@ func main() {
 
 	fmt.Println("Given array = ", arr)
 
+	fmt.Println("Calling Merge sort")
 	arr = Methods.MergeSort(arr)
 	fmt.Println("sorted arr = ", arr)
-	//arr = Methods.QuickSort(arr)
+
+	fmt.Println("Calling Quick sort")
+	arr = Methods.QuickSort(arr)
+	fmt.Println("sorted arr = ", arr)
 }
