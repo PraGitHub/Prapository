@@ -30,9 +30,9 @@ func main(){
 	equillibrium_index := -1
 
 	for i:=0;i<n-1;i++{
-		fmt.Println("left_sum = ",left_sum,";right_sum = ",right_sum)
 		left_sum = left_sum + arr[i]
 		right_sum = sum - left_sum - arr[i+1]
+		fmt.Println("left_sum = ",left_sum,";right_sum = ",right_sum)
 		if left_sum == right_sum{
 			equillibrium_index = i + 1
 			break
