@@ -28,15 +28,15 @@ func divide_n_by_max_power_of_k(n,k int)(int){
 
 func main()(){
 	var n int
-	i := 7
+	i := 15
 	count := 6
-	arr := [...]int{1,2,3,4,5,6}
+	arr := [...]int{1,2,3,4,5,6,8,9,10,12}
 
 	fmt.Println("Enter n : ")
 	fmt.Scanf("%d",&n)
 	fmt.Println("given n = ",n)
 
-	if n <= 6{
+	if n <= 10{
 		fmt.Println("Output : ",arr[n-1])
 		return
 	}
