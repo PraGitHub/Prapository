@@ -69,29 +69,25 @@ func dynamic_method(n int)(int){
 	}
 	arr := make([]int,n)
 	arr[0] = 1
-	index_ugly := 1
 	index_2 := 0
 	index_3 := 0
 	index_5 := 0
-	last_2 := 2
-	last_3 := 3
-	last_5 := 5
+	//fmt.Println("dynamic_method :: arr = ",arr)
+	//fmt.Println("dynamic_method :: index_2 = ",index_2,"index_3 = ",index_3,"index_5 = ",index_5)
 	for i:=1;i<n;i++{
-		last_2 = last_2*arr[index_2]
-		last_3 = last_3*arr[index_3]
-		last_5 = last_5*arr[index_5]
-		ugly_num := min(last_2,last_3,last_5)
-		arr[index_ugly] = ugly_num
-		index_ugly = index_ugly + 1
-		if ugly_num == last_2{
+		ugly_num := min(2*arr[index_2],3*arr[index_3],5*arr[index_5])
+		arr[i] = ugly_num
+		if ugly_num == 2*arr[index_2]{
 			index_2 = index_2 + 1	
 		}
-		if ugly_num == last_3{
+		if ugly_num == 3*arr[index_3]{
 			index_3 = index_3 + 1	
 		}
-		if ugly_num == last_5{
+		if ugly_num == 5*arr[index_5]{
 			index_5 = index_5 + 1	
 		}
+		//fmt.Println("dynamic_method :: arr = ",arr)
+		//fmt.Println("dynamic_method :: index_2 = ",index_2,"index_3 = ",index_3,"index_5 = ",index_5)
 	}
 	return arr[n-1]
 }
