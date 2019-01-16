@@ -2,6 +2,7 @@ package main
 
 import(
 	"fmt"
+	"time"
 )
 
 func is_ugly(n int)(bool){
@@ -10,10 +11,10 @@ func is_ugly(n int)(bool){
 	num = divide_n_by_max_power_of_k(num,3)
 	num = divide_n_by_max_power_of_k(num,5)
 	if num == 1{
-		fmt.Println(n," is ugly")
+		//fmt.Println(n," is ugly")
 		return true
 	}
-	fmt.Println(n," is not ugly")
+	//fmt.Println(n," is not ugly")
 	return false
 }
 
@@ -99,7 +100,8 @@ func main()(){
 	fmt.Scanf("%d",&n)
 	fmt.Println("given n = ",n)
 
-	fmt.Println("Output by naive_method = ",naive_method(n))
-	
-	fmt.Println("Output by dynamic_method = ",dynamic_method(n))
+	fmt.Println(time.Now(),"Calling naive_method")
+	fmt.Println(time.Now(),"Output by naive_method = ",naive_method(n))
+	fmt.Println(time.Now(),"Calling dynamic_method")
+	fmt.Println(time.Now(),"Output by dynamic_method = ",dynamic_method(n))
 }

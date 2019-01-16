@@ -1,0 +1,60 @@
+20
+given n =  20
+2019-01-16 09:43:22.0670568 +0530 IST m=+0.487671801 Calling naive_method
+2019-01-16 09:43:22.0680602 +0530 IST m=+0.488675201 Output by naive_method =  36
+2019-01-16 09:43:22.0680602 +0530 IST m=+0.488675201 Calling dynamic_method
+2019-01-16 09:43:22.0680602 +0530 IST m=+0.488675201 Output by dynamic_method =  36
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+100
+given n =  100
+2019-01-16 09:43:32.6666959 +0530 IST m=+0.567777401 Calling naive_method
+2019-01-16 09:43:32.6697043 +0530 IST m=+0.570785801 Output by naive_method =  1536
+2019-01-16 09:43:32.6697043 +0530 IST m=+0.570785801 Calling dynamic_method
+2019-01-16 09:43:32.6707074 +0530 IST m=+0.571788901 Output by dynamic_method =  1536
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+200
+given n =  200
+2019-01-16 09:43:52.8355899 +0530 IST m=+1.280985501 Calling naive_method
+2019-01-16 09:43:52.8365933 +0530 IST m=+1.281988901 Output by naive_method =  16200
+2019-01-16 09:43:52.837598 +0530 IST m=+1.282993601 Calling dynamic_method
+2019-01-16 09:43:52.837598 +0530 IST m=+1.282993601 Output by dynamic_method =  16200
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+150
+given n =  150
+2019-01-16 09:44:11.7004217 +0530 IST m=+1.903848601 Calling naive_method
+2019-01-16 09:44:11.701424 +0530 IST m=+1.904850801 Output by naive_method =  5832
+2019-01-16 09:44:11.701424 +0530 IST m=+1.904850801 Calling dynamic_method
+2019-01-16 09:44:11.701424 +0530 IST m=+1.904850801 Output by dynamic_method =  5832
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+500
+given n =  500
+2019-01-16 09:44:31.6215113 +0530 IST m=+0.489341601 Calling naive_method
+2019-01-16 09:44:31.6225128 +0530 IST m=+0.490343101 Output by naive_method =  937500
+2019-01-16 09:44:31.7112531 +0530 IST m=+0.579082801 Calling dynamic_method
+2019-01-16 09:44:31.7117541 +0530 IST m=+0.579583801 Output by dynamic_method =  937500
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+1000
+given n =  1000
+2019-01-16 09:44:57.1961963 +0530 IST m=+1.869565901 Calling naive_method
+2019-01-16 09:44:57.1971962 +0530 IST m=+1.870565801 Output by naive_method =  51200000
+2019-01-16 09:45:00.6655775 +0530 IST m=+5.338923801 Calling dynamic_method
+2019-01-16 09:45:00.6665774 +0530 IST m=+5.339923701 Output by dynamic_method =  51200000
+
+E:\MyLearnings\Prapository\GoLang\Problems\UglyNumber>go run main.go
+Enter n :
+1200
+given n =  1200
+2019-01-16 09:45:22.4193819 +0530 IST m=+0.696609101 Calling naive_method
+2019-01-16 09:45:22.4203845 +0530 IST m=+0.697611701 Output by naive_method =  174960000
+2019-01-16 09:45:34.7915597 +0530 IST m=+13.068703801 Calling dynamic_method
+2019-01-16 09:45:34.7915597 +0530 IST m=+13.068703801 Output by dynamic_method =  174960000
