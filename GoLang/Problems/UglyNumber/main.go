@@ -10,10 +10,10 @@ func is_ugly(n int)(bool){
 	num = divide_n_by_max_power_of_k(num,3)
 	num = divide_n_by_max_power_of_k(num,5)
 	if num == 1{
-		//fmt.Println(n," is ugly")
+		fmt.Println(n," is ugly")
 		return true
 	}
-	//fmt.Println(n," is not ugly")
+	fmt.Println(n," is not ugly")
 	return false
 }
 
@@ -26,19 +26,14 @@ func divide_n_by_max_power_of_k(n,k int)(int){
 	return n
 }
 
-func main()(){
-	var n int
+func naive_method(n int)(int){
 	i := 15
-	count := 6
+	count := 10
 	arr := [...]int{1,2,3,4,5,6,8,9,10,12}
 
-	fmt.Println("Enter n : ")
-	fmt.Scanf("%d",&n)
-	fmt.Println("given n = ",n)
-
 	if n <= 10{
-		fmt.Println("Output : ",arr[n-1])
-		return
+		//fmt.Println("Output : ",arr[n-1])
+		return arr[n-1]
 	}
 
 	for true{
@@ -50,9 +45,20 @@ func main()(){
 			count = count + 1
 		}
 		if count == n{
-			fmt.Println("Output : ",i)
-			return
+			//fmt.Println("Output : ",i)
+			break
 		}
 		i = i + 1
 	}
+	return i
+}
+
+func main()(){
+	var n int
+
+	fmt.Println("Enter n : ")
+	fmt.Scanf("%d",&n)
+	fmt.Println("given n = ",n)
+
+	fmt.Println("Output by naive_method = ",naive_method(n))
 }
