@@ -53,6 +53,30 @@ func naive_method(n int)(int){
 	return i
 }
 
+func min(a,b,c int)(int){
+	if a<=b && a<=c{
+		return a
+	}
+	if b<=c{
+		return b
+	}
+	return c
+}
+
+func dynamic_method(n int)(int){
+	arr := make([]int,n)
+	arr[0] = 1
+	index_2 := 0
+	index_3 := 3
+	index_5 := 0
+	last_2 := 2
+	last_3 := 3
+	last_5 := 5
+	for i:=0;i<n;i++{
+		
+	}
+}
+
 func main()(){
 	var n int
 
