@@ -95,13 +95,17 @@ func dynamic_method(n int)(int){
 
 func main()(){
 	var n int
+	var output int
 
 	fmt.Println("Enter n : ")
 	fmt.Scanf("%d",&n)
 	fmt.Println("given n = ",n)
 
-	fmt.Println(time.Now(),"Calling naive_method")
-	fmt.Println(time.Now(),"Output by naive_method = ",naive_method(n))
 	fmt.Println(time.Now(),"Calling dynamic_method")
-	fmt.Println(time.Now(),"Output by dynamic_method = ",dynamic_method(n))
+	output = dynamic_method(n)
+	fmt.Println(time.Now(),"Output by dynamic_method = ",output)
+
+	fmt.Println(time.Now(),"Calling naive_method")
+	output = naive_method(n)
+	fmt.Println(time.Now(),"Output by naive_method = ",output)
 }
