@@ -1,0 +1,34 @@
+﻿  main.cpp
+d:\prapository\c_cpp\logger\logger\include\logger.h(38): warning C4251: 'Logger::m_strModuleName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\prapository\c_cpp\logger\logger\include\logger.h(39): warning C4251: 'Logger::m_strThreadId': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\prapository\c_cpp\logger\logger\include\logger.h(41): warning C4251: 'Logger::m_strLogFileName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\prapository\c_cpp\logger\logger\include\logger.h(42): warning C4251: 'Logger::m_strLogFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\prapository\c_cpp\logger\logger\include\logger.h(43): warning C4251: 'Logger::m_strLogFolder': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\prapository\c_cpp\logger\logger\include\logger.h(47): warning C4251: 'Logger::m_mapModuleBuffer': class 'std::map<std::string,std::string,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Logger'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::string
+          ]
+  d:\prapository\c_cpp\logger\logger\include\logger.h(13): note: see declaration of 'std::map<std::string,std::string,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::string
+          ]
+d:\prapository\c_cpp\logger\logger\include\logger.h(49): warning C4251: 'Logger::m_csmgrAccessBuffer': class 'CriticalSectionManager' needs to have dll-interface to be used by clients of class 'Logger'
+  d:\prapository\c_cpp\logger\logger\include\criticalsectionmanager.h(7): note: see declaration of 'CriticalSectionManager'
+d:\prapository\c_cpp\logger\logger\include\logger.h(50): warning C4251: 'Logger::m_csmAccessFile': class 'CriticalSectionManager' needs to have dll-interface to be used by clients of class 'Logger'
+  d:\prapository\c_cpp\logger\logger\include\criticalsectionmanager.h(7): note: see declaration of 'CriticalSectionManager'
+d:\prapository\c_cpp\logger\logger\include\logger.h(52): warning C4251: 'Logger::m_threadWriteLog': class 'std::thread' needs to have dll-interface to be used by clients of class 'Logger'
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\include\thread(29): note: see declaration of 'std::thread'
+     Creating library D:\Prapository\C_Cpp\Logger\x64\Release\LoggerTestExe.lib and object D:\Prapository\C_Cpp\Logger\x64\Release\LoggerTestExe.exp
+  Generating code
+  All 287 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  LoggerTestExe.vcxproj -> D:\Prapository\C_Cpp\Logger\x64\Release\LoggerTestExe.exe
