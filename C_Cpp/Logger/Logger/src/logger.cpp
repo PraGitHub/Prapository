@@ -3,7 +3,10 @@
 CriticalSectionManager Logger::m_csmgrAccessBuffer;
 long double Logger::m_ldPreviousFlushTime;
 mapstrstr Logger::m_mapModuleBuffer;
-mapstrFile Logger::m_mapModuleFile;
+FILE* Logger::m_fpLogFile = NULL;
+string Logger::m_strLogFileName;
+string Logger::m_strLogFilePath;
+string Logger::m_strLogFolder;
 thread Logger::m_threadWriteLog;
 bool Logger::m_bIsFirstInstance = true;
 
@@ -26,20 +29,30 @@ Logger::Logger(string strModuleName)
 Logger::~Logger()
 {
 	Logger::WriteToFile(m_strModuleName);
-	Logger::RemoveFileFromMap(m_strModuleName);
 	CloseFile();
+	OpenFile();
 }
 
 void Logger::Init(string strModuleName)
 {
 	m_strModuleName = strModuleName;
-	m_strLogFileName = m_strModuleName + ".log";
-	CHAR pcstrModulePath[MAX_PATH];
-	GetModuleFileName(NULL, pcstrModulePath, (DWORD)MAX_PATH);
-	string strLogFolder(pcstrModulePath);
-	strLogFolder = strLogFolder.substr(0, strLogFolder.rfind("\\"));
-	m_strLogFolder = strLogFolder;
-	m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
+	thread::id tidThisThread = this_thread::get_id();
+	ostringstream oss;
+	oss << tidThisThread;
+	m_strThreadId = oss.str();
+	if (m_strLogFileName.empty())
+	{
+		CHAR pcstrModulePath[MAX_PATH];
+		GetModuleFileName(NULL, pcstrModulePath, (DWORD)MAX_PATH);
+		string strLogFolder(pcstrModulePath);
+		size_t iPos = strLogFolder.rfind("\\");
+		m_strLogFileName = strLogFolder.substr(iPos + 1);
+		m_strLogFileName = m_strLogFileName.substr(0, m_strLogFileName.find(".exe"));
+		m_strLogFileName = m_strLogFileName + ".log";
+		strLogFolder = strLogFolder.substr(0, iPos);
+		m_strLogFolder = strLogFolder;
+		m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
+	}
 	m_ldPreviousFlushTime = GetTime();
 	Logger::m_csmgrAccessBuffer.Lock();
 	Logger::m_mapModuleBuffer.insert(mapstrstr::value_type(strModuleName, (string)""));
@@ -79,21 +92,22 @@ time_t Logger::GetTime()
 
 void Logger::OpenFile()
 {
-	m_fpLogFile = fopen(m_strLogFilePath.c_str(), "a");
-	if (m_fpLogFile)
+	m_csmgrAccessBuffer.Lock();
+	if (m_fpLogFile == NULL)
 	{
-		Logger::m_csmgrAccessBuffer.Lock();
-		Logger::m_mapModuleFile.insert(mapstrFile::value_type(m_strModuleName,m_fpLogFile));
-		Logger::m_csmgrAccessBuffer.Unlock();
+		m_fpLogFile = fopen(m_strLogFilePath.c_str(), "a");
 	}
+	m_csmgrAccessBuffer.Unlock();
 }
 
 void Logger::CloseFile()
 {
+	m_csmgrAccessBuffer.Lock();
 	if (m_fpLogFile)
 	{
 		fclose(m_fpLogFile);
 	}
+	m_csmgrAccessBuffer.Unlock();
 }
 
 string Logger::GetTimeStamp()
@@ -122,14 +136,10 @@ void Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 	string strMessage(pcstrBuffer);
 	string strTimeStamp = GetTimeStamp();
 	string strMessageType = GetMessageType(iMessageType);
-	string strThreadId;
-	thread::id tidThisThread = this_thread::get_id();
-	ostringstream oss;
-	oss << tidThisThread;
-	strThreadId = oss.str();
+	
 	//"%s\t%s\t%s\r\n", strTimeStamp.c_str(), strMessageType.c_str(), strMessage.c_str()
 	m_csmgrAccessBuffer.Lock();
-	Logger::m_mapModuleBuffer[m_strModuleName] = Logger::m_mapModuleBuffer[m_strModuleName] + strTimeStamp + "\t" + strThreadId + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
+	Logger::m_mapModuleBuffer[m_strModuleName] = Logger::m_mapModuleBuffer[m_strModuleName] + strTimeStamp + "\t" + m_strModuleName + "\t" + m_strThreadId + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
 	m_csmgrAccessBuffer.Unlock();
 }
 
@@ -144,15 +154,13 @@ void Logger::WriteLogThread()
 
 void Logger::WriteToFile(string strModuleName, string strBuffer)
 {
-	FILE* fpLogFile = NULL;
 	if (strBuffer.empty())
 	{
 		return;
 	}
-	fpLogFile = m_mapModuleFile[strModuleName];
-	if (fpLogFile)
+	if (m_fpLogFile)
 	{
-		fprintf(fpLogFile, "%s", strBuffer.c_str());
+		fprintf(m_fpLogFile, "%s", strBuffer.c_str());
 		m_mapModuleBuffer[strModuleName].clear();
 		m_mapModuleBuffer[strModuleName] = "";
 	}
@@ -174,20 +182,6 @@ void Logger::WriteToFile(string strModuleName)
 			strModuleName = iterModuleBuffer->first;
 			strBuffer = iterModuleBuffer->second;
 			WriteToFile(strModuleName, strBuffer);
-		}
-	}
-	m_csmgrAccessBuffer.Unlock();
-}
-
-void Logger::RemoveFileFromMap(string strModuleName)
-{
-	m_csmgrAccessBuffer.Lock();
-	for (mapstrFile::iterator iterModuleFile = m_mapModuleFile.begin(); iterModuleFile != m_mapModuleFile.end(); ++iterModuleFile)
-	{
-		if (strModuleName == iterModuleFile->first)
-		{
-			m_mapModuleFile.erase(iterModuleFile);
-			break;
 		}
 	}
 	m_csmgrAccessBuffer.Unlock();

@@ -11,7 +11,6 @@
 using namespace std;
 
 typedef map<string, string> mapstrstr;
-typedef map<string, FILE*> mapstrFile;
 
 #define DLLEXPORT __declspec(dllexport)
 #define STDCALL __stdcall
@@ -36,14 +35,16 @@ map <int, string> mapMessageType = {
 
 
 class DLLEXPORT Logger{
-	FILE* m_fpLogFile;
 	string m_strModuleName;
-	string m_strLogFileName;
-	string m_strLogFilePath;
-	string m_strLogFolder;
+	string m_strThreadId;
+
+	static string m_strLogFileName;
+	static string m_strLogFilePath;
+	static string m_strLogFolder;
+
+	static FILE* m_fpLogFile;
 
 	static mapstrstr m_mapModuleBuffer;
-	static mapstrFile m_mapModuleFile;
 
 	static CriticalSectionManager m_csmgrAccessBuffer;
 
@@ -62,7 +63,6 @@ class DLLEXPORT Logger{
 	static void WriteToFile(string strModuleName, string strBuffer);
 	static void WriteToFile(string strModuleName);
 	static void WriteLogThread();
-	static void RemoveFileFromMap(string strModuleName);
 public:
 	Logger();
 	Logger(string strModule);
