@@ -13,7 +13,7 @@ void SubRoutine(int iArg,char** ppcstrArgs,string strModuleName)
 
 int main(int iArg, char** ARGS)
 {
-	system("pause");
+	//system("pause");
 	thread SubRoutineThread = thread(&SubRoutine, iArg, ARGS,"LoggerTest.SubRoutine");
 	thread SubRoutineThread_1 = thread(&SubRoutine, iArg, ARGS, "");
 	Logger* pLogger = new Logger("LoggerTest.Main");
@@ -30,5 +30,5 @@ int main(int iArg, char** ARGS)
 		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
 	delete pLogger;
-	system("pause");
+	//system("pause");
 }

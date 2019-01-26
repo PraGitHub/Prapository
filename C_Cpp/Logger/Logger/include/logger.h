@@ -47,6 +47,7 @@ class DLLEXPORT Logger{
 	static mapstrstr m_mapModuleBuffer;
 
 	static CriticalSectionManager m_csmgrAccessBuffer;
+	static CriticalSectionManager m_csmAccessFile;
 
 	static thread m_threadWriteLog;
 

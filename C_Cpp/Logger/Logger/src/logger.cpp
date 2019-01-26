@@ -1,6 +1,7 @@
 #include"logger.h"
 
 CriticalSectionManager Logger::m_csmgrAccessBuffer;
+CriticalSectionManager Logger::m_csmAccessFile;
 long double Logger::m_ldPreviousFlushTime;
 mapstrstr Logger::m_mapModuleBuffer;
 FILE* Logger::m_fpLogFile = NULL;
@@ -92,22 +93,23 @@ time_t Logger::GetTime()
 
 void Logger::OpenFile()
 {
-	m_csmgrAccessBuffer.Lock();
+	m_csmAccessFile.Lock();
 	if (m_fpLogFile == NULL)
 	{
 		m_fpLogFile = fopen(m_strLogFilePath.c_str(), "a");
 	}
-	m_csmgrAccessBuffer.Unlock();
+	m_csmAccessFile.Unlock();
 }
 
 void Logger::CloseFile()
 {
-	m_csmgrAccessBuffer.Lock();
+	m_csmAccessFile.Lock();
 	if (m_fpLogFile)
 	{
 		fclose(m_fpLogFile);
+		m_fpLogFile = NULL;
 	}
-	m_csmgrAccessBuffer.Unlock();
+	m_csmAccessFile.Unlock();
 }
 
 string Logger::GetTimeStamp()
@@ -158,12 +160,14 @@ void Logger::WriteToFile(string strModuleName, string strBuffer)
 	{
 		return;
 	}
+	m_csmAccessFile.Lock();
 	if (m_fpLogFile)
 	{
 		fprintf(m_fpLogFile, "%s", strBuffer.c_str());
 		m_mapModuleBuffer[strModuleName].clear();
 		m_mapModuleBuffer[strModuleName] = "";
 	}
+	m_csmAccessFile.Unlock();
 }
 
 void Logger::WriteToFile(string strModuleName)
