@@ -6,6 +6,7 @@
 #include<ctime>
 #include<thread>
 #include<Windows.h>
+#include<sstream>
 #include"CriticalSectionManager.h"
 using namespace std;
 
@@ -14,7 +15,7 @@ typedef map<string, FILE*> mapstrFile;
 
 #define DLLEXPORT __declspec(dllexport)
 #define STDCALL __stdcall
-#define DEFAULT_NAME "Logs"
+#define DEFAULT_NAME "Unspecified Module"
 #define DISABLE_LOG_FILE "DisableLog"
 #define MAX_MESSAGE_LENGTH 1024
 #define LOGGING_INTERVAL 6000 //in milliseconds
@@ -58,6 +59,7 @@ class DLLEXPORT Logger{
 
 	static string GetMessageType(int iMessageType);
 	static time_t GetTime();
+	static void WriteToFile(string strModuleName, string strBuffer);
 	static void WriteToFile(string strModuleName);
 	static void WriteLogThread();
 	static void RemoveFileFromMap(string strModuleName);
