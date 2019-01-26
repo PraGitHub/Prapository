@@ -7,4 +7,8 @@ It provides a 'Logger' class whose instance can be created by providing 'module'
 
 "logger.h" has a macro => LOGGING_INTERVAL which determines the logging interval
 Logging interval is the time interval between two successive write operations (fprintf)
-The log file will be reopened when the object of logger is destroyed if the process is still on
+The log file will be reopened when the object of logger is destroyed if the process is still on.
+
+LoggerTest.exe is a sample app which uses this library. It shows how to use this library.
+
+Debug build has a problem as of 26 Jan 2019. Need to fix it. 
