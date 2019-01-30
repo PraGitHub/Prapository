@@ -61,8 +61,8 @@ class DLLEXPORT Logger{
 
 	static string GetMessageType(int iMessageType);
 	static time_t GetTime();
-	static void WriteToFile(string strModuleName, string strBuffer);
-	static void WriteToFile(string strModuleName);
+	static void WriteToFile(string strModuleName, string strBuffer, bool bFlush = false);
+	static void WriteToFile(string strModuleName, bool bFlush = false);
 	static void WriteLogThread();
 public:
 	Logger();
