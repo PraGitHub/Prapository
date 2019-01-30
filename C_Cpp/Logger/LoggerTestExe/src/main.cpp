@@ -5,7 +5,12 @@ void SubRoutine(int iArg,char** ppcstrArgs,string strModuleName)
 	Logger* pLogger = new Logger(strModuleName);
 	for (int i = 0; i < iArg; i++)
 	{
-		pLogger->Log(eInfo, "Arg %d : %s", i, ppcstrArgs[i]);
+		for (int j = 0; j < iArg; j++)
+		{
+			pLogger->Log(eInfo, "Arg %d : %s", i, ppcstrArgs[j]);
+			Sleep(1000);
+		}
+		Sleep(2000);
 	}
 	delete pLogger;
 	return;
@@ -29,6 +34,10 @@ int main(int iArg, char** ARGS)
 	{
 		pLogger->Log(eInfo, "Arg %d : %s", i, ARGS[i]);
 	}
+	
+	SubRoutineThread.join();
+	SubRoutineThread_1.join();
+
 	delete pLogger;
 	//system("pause");
 }

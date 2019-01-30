@@ -29,7 +29,7 @@ Logger::Logger(string strModuleName)
 
 Logger::~Logger()
 {
-	Logger::WriteToFile(m_strModuleName, true);
+	Logger::WriteToFile(m_strModuleName);
 }
 
 void Logger::Init(string strModuleName)
@@ -152,7 +152,7 @@ void Logger::WriteLogThread()
 	}
 }
 
-void Logger::WriteToFile(string strModuleName, string strBuffer, bool bFlush)
+void Logger::WriteToFile(string strModuleName, string strBuffer)
 {
 	if (strBuffer.empty())
 	{
@@ -162,24 +162,21 @@ void Logger::WriteToFile(string strModuleName, string strBuffer, bool bFlush)
 	if (m_fpLogFile)
 	{
 		fprintf(m_fpLogFile, "%s", strBuffer.c_str());
-		if(bFlush)
-		{
-			fflush(m_fpLogFile);
-		}
+		fflush(m_fpLogFile);
 		m_mapModuleBuffer[strModuleName].clear();
 		m_mapModuleBuffer[strModuleName] = "";
 	}
 	m_csmAccessFile.Unlock();
 }
 
-void Logger::WriteToFile(string strModuleName, bool bFlush)
+void Logger::WriteToFile(string strModuleName)
 {
 	m_csmgrAccessBuffer.Lock();
 	string strBuffer;
 	if (!strModuleName.empty())
 	{
 		strBuffer = m_mapModuleBuffer[strModuleName];
-		WriteToFile(strModuleName, strBuffer, bFlush);
+		WriteToFile(strModuleName, strBuffer);
 	}
 	else
 	{
@@ -187,7 +184,7 @@ void Logger::WriteToFile(string strModuleName, bool bFlush)
 		{
 			strModuleName = iterModuleBuffer->first;
 			strBuffer = iterModuleBuffer->second;
-			WriteToFile(strModuleName, strBuffer, bFlush);
+			WriteToFile(strModuleName, strBuffer);
 		}
 	}
 	m_csmgrAccessBuffer.Unlock();
