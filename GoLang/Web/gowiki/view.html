@@ -13,12 +13,12 @@
     <h1 class="jumbotron bg-dark text-white" bg-color="dark">{{.Title}}</h1>
 </head>
 
-<div>
-    <a class="btn btn-primary" href="/edit/{{.Title}}" role="button">Edit</a>
+<div class="alert alert-primary text-center col">
+    {{printf "%s" .Body}}
 </div>
 
 <br>
 
-<div class="alert alert-primary text-center">
-    {{printf "%s" .Body}}
+<div>
+    <a class="btn btn-primary" href="/edit/{{.Title}}" role="button">Edit</a>
 </div>

@@ -14,13 +14,13 @@
     </head>
 
 <form action="/save/{{.Title}}" method="POST">
-    <div class="form-group col-8" >
-        <textarea name="body" rows="20" cols="80">
+    <div class="form-group col">
+        <textarea class="form-control" name="body">
             {{printf "%s" .Body}}
         </textarea>
     </div>
     <br>
-    <div class="form-group col-8">
+    <div class="form-group col">
         <button class="btn btn-success">Save</button>
     </div>
 </form>
