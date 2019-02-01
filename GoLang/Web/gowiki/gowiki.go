@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"regexp"
+	"strings"
 )
 
 type Page struct {
@@ -17,6 +18,15 @@ type Page struct {
 
 var templates = template.Must(template.ParseFiles("./templates/edit.html", "./templates/view.html", "./templates/create.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+
+/*
+func getHTMLBody(body []byte)([]byte){
+	str_body := string(body)
+	str_body = strings.Replace(str_body,"\r\n","<br>",-1)
+	str_body = strings.Replace(str_body,"\n","<br>",-1)
+	return []byte(str_body)
+}
+*/
 
 func (page *Page) save() error {
 	filename := page.Title + ".txt"
@@ -32,7 +42,26 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
+/*
+func loadPageForWeb(title string)(*Page,error){
+	filename := title+".txt"
+	body,err := ioutil.ReadFile("./data/"+filename)
+	if err != nil{
+		return nil,err
+	}
+	htmlBody := getHTMLBody(body)
+	return &Page{Title:title,Body:htmlBody},nil
+}
+*/
+
 func renderTemplate(w http.ResponseWriter, template_name string, page *Page) {
+	safe_body := string(page.Body)
+	log.Println("renderTemplate :: safe_body before = ",safe_body)
+	safe_body = template.HTMLEscapeString(safe_body)
+	safe_body = strings.Replace(safe_body,"\r\n","<br>",-1)
+	safe_body = strings.Replace(safe_body,"\n","<br>",-1)
+	log.Println("renderTemplate :: safe_body after = ",safe_body)
+	page.Body = []byte(safe_body)
 	err := templates.ExecuteTemplate(w, template_name+".html", page)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
