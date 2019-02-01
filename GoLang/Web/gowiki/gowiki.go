@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"regexp"
-	"strings"
 )
 
 type Page struct {
@@ -55,13 +54,15 @@ func loadPageForWeb(title string)(*Page,error){
 */
 
 func renderTemplate(w http.ResponseWriter, tmpl string, page *Page) {
-	safeBody := string(page.Body)
-	log.Println("renderTemplate :: safe_body before = ", safeBody)
-	safeBody = template.HTMLEscapeString(safeBody)
-	safeBody = strings.Replace(safeBody, "\r\n", "<br>", -1)
-	safeBody = strings.Replace(safeBody, "\n", "<br>", -1)
-	log.Println("renderTemplate :: safe_body after = ", safeBody)
-	page.Body = []byte(safeBody)
+	/*
+		safeBody := string(page.Body)
+		log.Println("renderTemplate :: safe_body before = ", safeBody)
+		safeBody = template.HTMLEscapeString(safeBody)
+		safeBody = strings.Replace(safeBody, "\r\n", "<br>", -1)
+		safeBody = strings.Replace(safeBody, "\n", "<br>", -1)
+		log.Println("renderTemplate :: safe_body after = ", safeBody)
+		page.Body = []byte(safeBody)
+	*/
 	err := templates.ExecuteTemplate(w, tmpl+".html", page)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
