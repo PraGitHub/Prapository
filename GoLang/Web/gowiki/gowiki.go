@@ -54,15 +54,15 @@ func loadPageForWeb(title string)(*Page,error){
 }
 */
 
-func renderTemplate(w http.ResponseWriter, template_name string, page *Page) {
-	safe_body := string(page.Body)
-	log.Println("renderTemplate :: safe_body before = ",safe_body)
-	safe_body = template.HTMLEscapeString(safe_body)
-	safe_body = strings.Replace(safe_body,"\r\n","<br>",-1)
-	safe_body = strings.Replace(safe_body,"\n","<br>",-1)
-	log.Println("renderTemplate :: safe_body after = ",safe_body)
-	page.Body = []byte(safe_body)
-	err := templates.ExecuteTemplate(w, template_name+".html", page)
+func renderTemplate(w http.ResponseWriter, tmpl string, page *Page) {
+	safeBody := string(page.Body)
+	log.Println("renderTemplate :: safe_body before = ", safeBody)
+	safeBody = template.HTMLEscapeString(safeBody)
+	safeBody = strings.Replace(safeBody, "\r\n", "<br>", -1)
+	safeBody = strings.Replace(safeBody, "\n", "<br>", -1)
+	log.Println("renderTemplate :: safe_body after = ", safeBody)
+	page.Body = []byte(safeBody)
+	err := templates.ExecuteTemplate(w, tmpl+".html", page)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -116,8 +116,8 @@ func saveHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	body := r.FormValue("body")
 	page := &Page{Title: title, Body: []byte(body)}
-	save_err := page.save()
-	if save_err != nil {
+	err = page.save()
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
