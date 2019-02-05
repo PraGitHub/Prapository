@@ -19,6 +19,8 @@
 
 <br>
 
-<div>
-    <a class="btn btn-primary" href="/edit/{{.Title}}" role="button">Edit</a>
-</div>
+<form action="/edit/{{.Title}}" method="GET">
+    <div class="form-group col">
+        <button class="btn btn-primary">Edit</button>
+    </div>
+</form>
