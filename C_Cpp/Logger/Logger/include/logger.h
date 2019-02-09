@@ -5,12 +5,18 @@
 #include<cstdarg>
 #include<ctime>
 #include<thread>
-#include<Windows.h>
 #include<sstream>
-#include"CriticalSectionManager.h"
+#include<mutex>
+#include<atomic>
+
+#ifdef _WIN32 || WIN32
+#include<Windows.h>
+#endif
+
 using namespace std;
 
 typedef map<string, string> mapstrstr;
+typedef lock_guard<std::mutex> autoLockUnlockMutex;
 
 #define DLLEXPORT __declspec(dllexport)
 #define STDCALL __stdcall
@@ -21,16 +27,19 @@ typedef map<string, string> mapstrstr;
 #define MAX_NUM_FILES 10
 #define MAX_FILE_SIZE 5 // in MB
 
+
 enum MessageType{
-	eInfo = 0,
+	eCritical = 0,
 	eError,
-	eCritical
+	eInfo,
+	eDebug
 };
 
 map <int, string> mapMessageType = {
 	{eInfo, "INFO" },
 	{ eError, "ERROR"},
-	{ eCritical, "CRITICAL"}
+	{ eCritical, "CRITICAL"},
+	{ eDebug, "DEBUG"}
 };
 
 
@@ -46,14 +55,16 @@ class DLLEXPORT Logger{
 
 	static mapstrstr m_mapModuleBuffer;
 
-	static CriticalSectionManager m_csmgrAccessBuffer;
-	static CriticalSectionManager m_csmAccessFile;
+	static mutex m_mtxAccessBuffer;
+	static mutex m_mtxAccessFile;
 
 	static thread m_threadWriteLog;
 
 	static long double m_ldPreviousFlushTime;
 
-	static bool m_bIsFirstInstance;
+	static atomic_bool m_abIsFirstInstance;
+
+	static int m_iMaxLogLevel;
 
 	void Init(string strModule);
 	void OpenFile();

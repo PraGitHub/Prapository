@@ -1,7 +1,7 @@
 #include"logger.h"
 
-CriticalSectionManager Logger::m_csmgrAccessBuffer;
-CriticalSectionManager Logger::m_csmAccessFile;
+mutex Logger::m_mtxAccessBuffer;
+mutex Logger::m_mtxAccessFile;
 long double Logger::m_ldPreviousFlushTime;
 mapstrstr Logger::m_mapModuleBuffer;
 FILE* Logger::m_fpLogFile = NULL;
@@ -9,7 +9,8 @@ string Logger::m_strLogFileName;
 string Logger::m_strLogFilePath;
 string Logger::m_strLogFolder;
 thread Logger::m_threadWriteLog;
-bool Logger::m_bIsFirstInstance = true;
+atomic_bool Logger::m_abIsFirstInstance{ true };
+int Logger::m_iMaxLogLevel;
 
 Logger::Logger()
 {
@@ -53,14 +54,16 @@ void Logger::Init(string strModuleName)
 		m_strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName;
 	}
 	m_ldPreviousFlushTime = GetTime();
-	Logger::m_csmgrAccessBuffer.Lock();
-	Logger::m_mapModuleBuffer.insert(mapstrstr::value_type(strModuleName, (string)""));
-	if (Logger::m_bIsFirstInstance)
 	{
-		m_threadWriteLog = thread(&Logger::WriteLogThread);
-		Logger::m_bIsFirstInstance = false;
+		autoLockUnlockMutex lock_unlock(m_mtxAccessBuffer);
+		Logger::m_mapModuleBuffer.insert(mapstrstr::value_type(strModuleName, (string)""));
+		if (Logger::m_abIsFirstInstance.load(memory_order_acquire) == true)
+		{
+			m_threadWriteLog = thread(&Logger::WriteLogThread);
+			m_iMaxLogLevel = eDebug; // need to think about this. need to find a way to provide interface for apps to configure this
+			Logger::m_abIsFirstInstance.store(false, memory_order_release);
+		}
 	}
-	Logger::m_csmgrAccessBuffer.Unlock();
 }
 
 string Logger::GetFileName()
@@ -91,23 +94,21 @@ time_t Logger::GetTime()
 
 void Logger::OpenFile()
 {
-	m_csmAccessFile.Lock();
+	autoLockUnlockMutex lock_unlock(m_mtxAccessFile);
 	if (m_fpLogFile == NULL)
 	{
 		m_fpLogFile = fopen(m_strLogFilePath.c_str(), "a");
 	}
-	m_csmAccessFile.Unlock();
 }
 
 void Logger::CloseFile()
 {
-	m_csmAccessFile.Lock();
+	autoLockUnlockMutex lock_unlock(m_mtxAccessFile);
 	if (m_fpLogFile)
 	{
 		fclose(m_fpLogFile);
 		m_fpLogFile = NULL;
 	}
-	m_csmAccessFile.Unlock();
 }
 
 string Logger::GetTimeStamp()
@@ -128,6 +129,11 @@ string Logger::GetMessageType(int iMessageType)
 
 void Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 {
+	if (iMessageType > m_iMaxLogLevel)
+	{
+		return;
+	}
+
 	char pcstrBuffer[MAX_MESSAGE_LENGTH];
 	va_list arglist;
 	va_start(arglist, pcstrFormattedMessage);
@@ -138,9 +144,10 @@ void Logger::Log(int iMessageType,const char* pcstrFormattedMessage, ...)
 	string strMessageType = GetMessageType(iMessageType);
 	
 	//"%s\t%s\t%s\r\n", strTimeStamp.c_str(), strMessageType.c_str(), strMessage.c_str()
-	m_csmgrAccessBuffer.Lock();
-	Logger::m_mapModuleBuffer[m_strModuleName] = Logger::m_mapModuleBuffer[m_strModuleName] + strTimeStamp + "\t" + m_strModuleName + "\t" + m_strThreadId + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
-	m_csmgrAccessBuffer.Unlock();
+	{
+		autoLockUnlockMutex lock_unlock(m_mtxAccessBuffer);
+		Logger::m_mapModuleBuffer[m_strModuleName] = Logger::m_mapModuleBuffer[m_strModuleName] + strTimeStamp + "\t" + m_strModuleName + "\t" + m_strThreadId + "\t" + strMessageType + "\t" + strMessage + "\t\r\n";
+	}
 }
 
 void Logger::WriteLogThread()
@@ -158,20 +165,21 @@ void Logger::WriteToFile(string strModuleName, string strBuffer)
 	{
 		return;
 	}
-	m_csmAccessFile.Lock();
-	if (m_fpLogFile)
 	{
-		fprintf(m_fpLogFile, "%s", strBuffer.c_str());
-		fflush(m_fpLogFile);
-		m_mapModuleBuffer[strModuleName].clear();
-		m_mapModuleBuffer[strModuleName] = "";
+		autoLockUnlockMutex lock_unlock(m_mtxAccessFile);
+		if (m_fpLogFile)
+		{
+			fprintf(m_fpLogFile, "%s", strBuffer.c_str());
+			fflush(m_fpLogFile);
+			m_mapModuleBuffer[strModuleName].clear();
+			m_mapModuleBuffer[strModuleName] = "";
+		}
 	}
-	m_csmAccessFile.Unlock();
 }
 
 void Logger::WriteToFile(string strModuleName)
 {
-	m_csmgrAccessBuffer.Lock();
+	autoLockUnlockMutex lock_unlock(m_mtxAccessBuffer);
 	string strBuffer;
 	if (!strModuleName.empty())
 	{
@@ -187,5 +195,4 @@ void Logger::WriteToFile(string strModuleName)
 			WriteToFile(strModuleName, strBuffer);
 		}
 	}
-	m_csmgrAccessBuffer.Unlock();
 }
