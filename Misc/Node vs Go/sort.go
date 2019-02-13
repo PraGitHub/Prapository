@@ -80,7 +80,7 @@ func main() {
 	var strOutput string
 	strOutput = ""
 	for i, _ := range array {
-		strOutput = strOutput + strconv.FormatInt(int64(i),16) + " "
+		strOutput = strOutput + strconv.FormatInt(int64(i),10) + " "
 	}
 	ioutil.WriteFile("gooutput", []byte(strOutput), 0644)
 }
