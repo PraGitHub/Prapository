@@ -11,8 +11,9 @@ function quickSort(origArray) {
 		var left = [];
 		var right = [];
 		var newArray = [];
-		var pivot = origArray.pop();
-		var length = origArray.length;
+        var pivot = origArray.pop();
+        var length = origArray.length;
+        //var pivot = origArray[Math.floor(Math.random() * (length-1))];
 
 		for (var i = 0; i < length; i++) {
 			if (origArray[i] <= pivot) {
