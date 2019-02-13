@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 	"strconv"
+	"math/rand"
 )
 
 func readFile(filePath string) (array []int64) {
@@ -69,18 +70,56 @@ func bubbleSort(x []int64) []int64 {
 	return x
 }
 
+func quickSort(a []int64) []int64 {
+    if len(a) < 2 {
+        return a
+    }
+      
+    left, right := 0, len(a)-1
+      
+    pivot := rand.Int() % len(a)
+      
+    a[pivot], a[right] = a[right], a[pivot]
+      
+    for i, _ := range a {
+        if a[i] < a[right] {
+            a[left], a[i] = a[i], a[left]
+            left++
+        }
+    }
+      
+    a[left], a[right] = a[right], a[left]
+      
+    quickSort(a[:left])
+    quickSort(a[left+1:])
+      
+    return a
+}
+
 func main() {
 	array := readFile("input")
 	//fmt.Println(array)
 	fmt.Println("n = ", len(array))
+
+	fmt.Println("main :: before calling quickSort", time.Now())
+	quickSortedArray := quickSort(array)
+	fmt.Println("main :: after calling quickSort", time.Now())
+	
 	fmt.Println("main :: before calling bubbleSort", time.Now())
-	array = bubbleSort(array)
+	bubbleSortedArray := bubbleSort(array)
 	fmt.Println("main :: after calling bubbleSort", time.Now())
-	//fmt.Println(array)
+
 	var strOutput string
+
 	strOutput = ""
-	for i, _ := range array {
+	for i, _ := range quickSortedArray {
 		strOutput = strOutput + strconv.FormatInt(int64(i),10) + " "
 	}
-	ioutil.WriteFile("gooutput", []byte(strOutput), 0644)
+	ioutil.WriteFile("gooutput_quicksort", []byte(strOutput), 0644)
+
+	strOutput = ""
+	for i, _ := range bubbleSortedArray {
+		strOutput = strOutput + strconv.FormatInt(int64(i),10) + " "
+	}
+	ioutil.WriteFile("gooutput_bubblesort", []byte(strOutput), 0644)
 }
