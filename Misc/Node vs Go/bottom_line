@@ -1,0 +1,5 @@
+node took around 350 milliseconds to sort 182307 elements using quick sort
+go only took around 30 millisecods to do the same
+
+node took 3 seconds less than 4 minutes to sort 182307 elements using bubble sort
+go only took 1 minute 25 seconds to do the same

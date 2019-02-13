@@ -1,0 +1,6 @@
+E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
+n =  182307
+before calling quick sort 2019-02-13T06:33:03.341Z   1550039583341
+after calling quick sort 2019-02-13T06:33:03.691Z   1550039583691
+before calling bubble sort 2019-02-13T06:33:03.692Z   1550039583692
+after calling bubble sort 2019-02-13T06:37:00.964Z   1550039820964

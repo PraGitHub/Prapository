@@ -1,0 +1,6 @@
+E:\MyLearnings\Prapository\Misc\Node vs Go>sort.exe
+n =  182307
+main :: before calling quickSort 2019-02-13 12:00:59.6796595 +0530 IST m=+0.022213901
+main :: after calling quickSort 2019-02-13 12:00:59.7092814 +0530 IST m=+0.051835501
+main :: before calling bubbleSort 2019-02-13 12:00:59.7102845 +0530 IST m=+0.052838601
+main :: after calling bubbleSort 2019-02-13 12:01:24.5817469 +0530 IST m=+24.924134001
