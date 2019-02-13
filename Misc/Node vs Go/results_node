@@ -55,3 +55,21 @@ RangeError: Maximum call stack size exceeded
     at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
     at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
 ----------------------------------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
+n =  364613
+before calling quick sort 2019-02-13T07:32:35.918Z   1550043155918
+after calling quick sort 2019-02-13T07:32:37.278Z   1550043157278
+before calling bubble sort 2019-02-13T07:32:37.279Z   1550043157279
+after calling bubble sort 2019-02-13T07:50:54.620Z   1550044254620
+
+----------------------------------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
+n =  364613
+before calling quick sort 2019-02-13T08:07:32.806Z   1550045252806
+after calling quick sort 2019-02-13T08:07:33.923Z   1550045253923
+before calling bubble sort 2019-02-13T08:07:33.923Z   1550045253923
+after calling bubble sort 2019-02-13T08:26:30.316Z   1550046390316
+
+----------------------------------------------------------------------------------------------------

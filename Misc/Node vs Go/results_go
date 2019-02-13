@@ -15,3 +15,21 @@ main :: before calling bubbleSort 2019-02-13 12:42:38.2100468 +0530 IST m=+0.052
 main :: after calling bubbleSort 2019-02-13 12:43:08.6755217 +0530 IST m=+30.517611801
 
 ---------------------------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>sort.exe
+n =  364613
+main :: before calling quickSort 2019-02-13 13:02:26.0641733 +0530 IST m=+0.035092901
+main :: after calling quickSort 2019-02-13 13:02:26.1253809 +0530 IST m=+0.096300501
+main :: before calling bubbleSort 2019-02-13 13:02:26.1253809 +0530 IST m=+0.096300501
+main :: after calling bubbleSort 2019-02-13 13:04:30.5225129 +0530 IST m=+124.493432501
+
+---------------------------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>sort.exe
+n =  364613
+main :: before calling quickSort 2019-02-13 13:24:14.6756237 +0530 IST m=+0.115339701
+main :: after calling quickSort 2019-02-13 13:24:14.770881 +0530 IST m=+0.210597601
+main :: before calling bubbleSort 2019-02-13 13:24:14.770881 +0530 IST m=+0.210597601
+main :: after calling bubbleSort 2019-02-13 13:26:03.0613067 +0530 IST m=+108.501707901
+
+---------------------------------------------------------------------------------------------
