@@ -73,10 +73,10 @@ console.log("after calling quick sort",new Date()," ",Date.now());
 
 console.log("before calling bubble sort",new Date()," ",Date.now());
 
-//var bubbleSortedArray = bubbleSort(array);
+var bubbleSortedArray = bubbleSort(array);
 
-//console.log("after calling bubble sort",new Date()," ",Date.now());
+console.log("after calling bubble sort",new Date()," ",Date.now());
 
 fs.writeFileSync("nodeoutput_quickSort",quickSortedArray);
 
-//fs.writeFileSync("nodeoutput_bubbleSort",bubbleSortedArray);
+fs.writeFileSync("nodeoutput_bubbleSort",bubbleSortedArray);
