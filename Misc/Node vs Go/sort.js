@@ -4,6 +4,7 @@ var lines = fs.readFileSync('input').toString().split("\r\n");
 //console.log(lines);
 
 function quickSort(origArray) {
+    //console.log("quickSort :: origArray = ",origArray)
 	if (origArray.length <= 1) { 
 		return origArray;
 	} else {
@@ -11,11 +12,15 @@ function quickSort(origArray) {
 		var left = [];
 		var right = [];
 		var newArray = [];
-        var pivot = origArray.pop();
+        //var pivot = origArray.pop();
         var length = origArray.length;
-        //var pivot = origArray[Math.floor(Math.random() * (length-1))];
+        var pivot_index = Math.floor(Math.random() * (length-1));
+        var pivot = origArray[pivot_index];
 
 		for (var i = 0; i < length; i++) {
+            if(i == pivot_index){
+                continue;
+            }
 			if (origArray[i] <= pivot) {
 				left.push(origArray[i]);
 			} else {
@@ -23,7 +28,7 @@ function quickSort(origArray) {
 			}
 		}
 
-		return newArray.concat(quickSort(left), pivot, quickSort(right));
+		return newArray.concat(quickSort(left),pivot, quickSort(right));
 	}
 }
 
@@ -68,10 +73,10 @@ console.log("after calling quick sort",new Date()," ",Date.now());
 
 console.log("before calling bubble sort",new Date()," ",Date.now());
 
-var bubbleSortedArray = bubbleSort(array);
+//var bubbleSortedArray = bubbleSort(array);
 
-console.log("after calling bubble sort",new Date()," ",Date.now());
+//console.log("after calling bubble sort",new Date()," ",Date.now());
 
 fs.writeFileSync("nodeoutput_quickSort",quickSortedArray);
 
-fs.writeFileSync("nodeoutput_bubbleSort",bubbleSortedArray);
+//fs.writeFileSync("nodeoutput_bubbleSort",bubbleSortedArray);
