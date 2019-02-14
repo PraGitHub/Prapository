@@ -1,5 +1,5 @@
 What I am trying to convey through this article is that, if you are trying to build performance efficient application and if you want to choose between node and go, then go with go.
-Here is the link to a small experiment that I did with node and go to know which one is better in terms of performance
+Here is the link to a small experiment that I did with node and go to know which one is better in terms of performance - 
 https://github.com/PraGitHub/Prapository/tree/master/Misc/Node%20vs%20Go
 
 Following are my findings,
