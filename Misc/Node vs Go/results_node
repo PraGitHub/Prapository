@@ -14,46 +14,6 @@ after calling quick sort 2019-02-13T07:10:50.212Z   1550041850212
 before calling bubble sort 2019-02-13T07:10:50.212Z   1550041850212
 after calling bubble sort 2019-02-13T07:14:57.392Z   1550042097392
 
---------------------------------------------------------------------------
-with random pivot , it results in stack overflow for higher values of n
---------------------------------------------------------------------------
-E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  182307
-before calling quick sort 2019-02-13T07:07:17.559Z   1550041637559
-E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:6
-function quickSort(origArray) {
-                  ^
-
-RangeError: Maximum call stack size exceeded
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:6:19)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-
-E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  182307
-before calling quick sort 2019-02-13T07:10:34.490Z   1550041834490
-E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:6
-function quickSort(origArray) {
-                  ^
-
-RangeError: Maximum call stack size exceeded
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:6:19)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
-    at quickSort (E:\MyLearnings\Prapository\Misc\Node vs Go\sort.js:26:26)
 ----------------------------------------------------------------------------------------------------
 
 E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js

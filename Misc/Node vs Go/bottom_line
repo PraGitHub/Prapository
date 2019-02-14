@@ -7,9 +7,3 @@ node took 3 seconds less than 4 minutes to sort 182307 elements using bubble sor
 go only took 1 minute 25 seconds to do the same
 
 ---------------------------------------------------------------------------------------------
-
-with random pivot,
-=> it results in stack overflow for higher values of n in node
-=> while in go it works fine
-
----------------------------------------------------------------------------------------------
