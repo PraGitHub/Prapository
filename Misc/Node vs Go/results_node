@@ -1,35 +1,52 @@
 E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  182307
-before calling quick sort 2019-02-13T06:33:03.341Z   1550039583341
-after calling quick sort 2019-02-13T06:33:03.691Z   1550039583691
-before calling bubble sort 2019-02-13T06:33:03.692Z   1550039583692
-after calling bubble sort 2019-02-13T06:37:00.964Z   1550039820964
+n =  364613
+before calling quick sort 2019-02-14T03:04:33.529Z   1550113473529
+after calling quick sort 2019-02-14T03:04:34.603Z   1550113474603
+before calling bubble sort 2019-02-14T03:04:34.603Z   1550113474603
+after calling bubble sort 2019-02-14T03:21:03.871Z   1550114463871
 
 ---------------------------------------------------------------------------
 
 E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  182307
-before calling quick sort 2019-02-13T07:10:49.867Z   1550041849867
-after calling quick sort 2019-02-13T07:10:50.212Z   1550041850212
-before calling bubble sort 2019-02-13T07:10:50.212Z   1550041850212
-after calling bubble sort 2019-02-13T07:14:57.392Z   1550042097392
+n =  364613
+before calling quick sort 2019-02-14T03:36:52.662Z   1550115412662
+after calling quick sort 2019-02-14T03:36:53.968Z   1550115413968
+before calling bubble sort 2019-02-14T03:36:53.969Z   1550115413969
+after calling bubble sort 2019-02-14T03:53:58.807Z   1550116438807
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
 
 E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  364613
-before calling quick sort 2019-02-13T07:32:35.918Z   1550043155918
-after calling quick sort 2019-02-13T07:32:37.278Z   1550043157278
-before calling bubble sort 2019-02-13T07:32:37.279Z   1550043157279
-after calling bubble sort 2019-02-13T07:50:54.620Z   1550044254620
+n =  206134
+before calling quick sort 2019-02-14T04:13:25.607Z   1550117605607
+after calling quick sort 2019-02-14T04:13:26.043Z   1550117606043
+before calling bubble sort 2019-02-14T04:13:26.044Z   1550117606044
+after calling bubble sort 2019-02-14T04:18:56.895Z   1550117936895
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
 
 E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
-n =  364613
-before calling quick sort 2019-02-13T08:07:32.806Z   1550045252806
-after calling quick sort 2019-02-13T08:07:33.923Z   1550045253923
-before calling bubble sort 2019-02-13T08:07:33.923Z   1550045253923
-after calling bubble sort 2019-02-13T08:26:30.316Z   1550046390316
+n =  206134
+before calling quick sort 2019-02-14T04:22:46.416Z   1550118166416
+after calling quick sort 2019-02-14T04:22:46.890Z   1550118166890
+before calling bubble sort 2019-02-14T04:22:46.890Z   1550118166890
+after calling bubble sort 2019-02-14T04:28:14.198Z   1550118494198
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.js
+n =  206134
+before calling quick sort 2019-02-14T04:32:43.268Z   1550118763268
+after calling quick sort 2019-02-14T04:32:43.751Z   1550118763751
+before calling bubble sort 2019-02-14T04:32:43.752Z   1550118763752
+after calling bubble sort 2019-02-14T04:37:56.731Z   1550119076731
+
+---------------------------------------------------------------------------
+
+E:\MyLearnings\Prapository\Misc\Node vs Go>node sort.jsn =  206134
+before calling quick sort 2019-02-14T04:51:19.542Z   1550119879542
+after calling quick sort 2019-02-14T04:51:20.005Z   1550119880005
+before calling bubble sort 2019-02-14T04:51:20.005Z   1550119880005
+after calling bubble sort 2019-02-14T04:56:42.396Z   1550120202396
+
+---------------------------------------------------------------------------

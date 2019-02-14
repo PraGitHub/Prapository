@@ -1,0 +1,52 @@
+---------------------------------------------------------------------------------------------
+Node
+---------------------------------------------------------------------------------------------
+    N = 206134
+    Time taken for QuickSort:
+        436 milliseconds
+        474 milliseconds
+        483 milliseconds
+        463 milliseconds
+    Avg: 
+        464 milliseconds
+
+    Time taken for BubbleSort:
+        5 min 30 seconds
+        5 min 32 seconds
+        5 min 13 seconds
+        5 min 22 seconds
+    Avg:
+        5 min 24 seconds
+
+---------------------------------------------------------------------------------------------
+Go
+---------------------------------------------------------------------------------------------
+    N = 206134
+    Time taken for QuickSort:
+        46 milliseconds
+        29 milliseconds
+        33 milliseconds
+        32 milliseconds
+    Avg:
+        35 milliseconds
+
+
+    Time taken for BubbleSort:
+        32 seconds
+        33 seconds
+        33 seconds
+        33 seconds
+    Avg:
+        33 seconds
+
+---------------------------------------------------------------------------------------------
+
+node took an average of 464 milliseconds to sort 206134 elements using quick sort
+go only took an average of 35 milliseconds to do the same
+
+---------------------------------------------------------------------------------------------
+
+node took an average of 5 min 24 seconds to sort 206134 elements using bubble sort
+go only took an average of 33 seconds to do the same
+
+---------------------------------------------------------------------------------------------
