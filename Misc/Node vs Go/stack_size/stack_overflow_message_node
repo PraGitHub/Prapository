@@ -1,0 +1,16 @@
+E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size>node stack_overflow.js
+path.js:33
+function normalizeStringWin32(path, allowAboveRoot) {
+                             ^
+
+RangeError: Maximum call stack size exceeded
+    at normalizeStringWin32 (path.js:33:30)
+    at Object.resolve (path.js:328:20)
+    at Object._makeLong (path.js:684:32)
+    at Object.fs.openSync (fs.js:646:34)
+    at Object.fs.writeFileSync (fs.js:1299:33)
+    at stackOverflow (E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size\stack_overflow.js:6:8)
+    at stackOverflow (E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size\stack_overflow.js:7:5)
+    at stackOverflow (E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size\stack_overflow.js:7:5)
+    at stackOverflow (E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size\stack_overflow.js:7:5)
+    at stackOverflow (E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size\stack_overflow.js:7:5)

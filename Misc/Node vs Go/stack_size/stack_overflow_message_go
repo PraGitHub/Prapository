@@ -1,0 +1,214 @@
+E:\MyLearnings\Prapository\Misc\Node vs Go\stack_size>stack_overflow.exe
+runtime: goroutine stack exceeds 1000000000-byte limit
+fatal error: stack overflow
+
+runtime stack:
+runtime.throw(0x4876bd, 0xe)
+        E:/Go/src/runtime/panic.go:608 +0x79
+runtime.newstack()
+        E:/Go/src/runtime/stack.go:1008 +0x737
+runtime.morestack()
+        E:/Go/src/runtime/asm_amd64.s:429 +0x97
+
+goroutine 1 [running]:
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:10 +0x142 fp=0xc020313358 sp=0xc020313350 pc=0x4632c2
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203133a8 sp=0xc020313358 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203133f8 sp=0xc0203133a8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313448 sp=0xc0203133f8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313498 sp=0xc020313448 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203134e8 sp=0xc020313498 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313538 sp=0xc0203134e8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313588 sp=0xc020313538 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203135d8 sp=0xc020313588 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313628 sp=0xc0203135d8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313678 sp=0xc020313628 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203136c8 sp=0xc020313678 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313718 sp=0xc0203136c8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313768 sp=0xc020313718 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203137b8 sp=0xc020313768 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313808 sp=0xc0203137b8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313858 sp=0xc020313808 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203138a8 sp=0xc020313858 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203138f8 sp=0xc0203138a8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313948 sp=0xc0203138f8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313998 sp=0xc020313948 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203139e8 sp=0xc020313998 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313a38 sp=0xc0203139e8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313a88 sp=0xc020313a38 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313ad8 sp=0xc020313a88 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313b28 sp=0xc020313ad8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313b78 sp=0xc020313b28 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313bc8 sp=0xc020313b78 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313c18 sp=0xc020313bc8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313c68 sp=0xc020313c18 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313cb8 sp=0xc020313c68 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313d08 sp=0xc020313cb8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313d58 sp=0xc020313d08 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313da8 sp=0xc020313d58 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313df8 sp=0xc020313da8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313e48 sp=0xc020313df8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313e98 sp=0xc020313e48 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313ee8 sp=0xc020313e98 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313f38 sp=0xc020313ee8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313f88 sp=0xc020313f38 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020313fd8 sp=0xc020313f88 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314028 sp=0xc020313fd8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314078 sp=0xc020314028 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203140c8 sp=0xc020314078 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314118 sp=0xc0203140c8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314168 sp=0xc020314118 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203141b8 sp=0xc020314168 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314208 sp=0xc0203141b8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314258 sp=0xc020314208 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203142a8 sp=0xc020314258 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203142f8 sp=0xc0203142a8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314348 sp=0xc0203142f8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314398 sp=0xc020314348 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203143e8 sp=0xc020314398 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314438 sp=0xc0203143e8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314488 sp=0xc020314438 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203144d8 sp=0xc020314488 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314528 sp=0xc0203144d8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314578 sp=0xc020314528 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203145c8 sp=0xc020314578 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314618 sp=0xc0203145c8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314668 sp=0xc020314618 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203146b8 sp=0xc020314668 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314708 sp=0xc0203146b8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314758 sp=0xc020314708 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203147a8 sp=0xc020314758 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203147f8 sp=0xc0203147a8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314848 sp=0xc0203147f8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314898 sp=0xc020314848 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203148e8 sp=0xc020314898 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314938 sp=0xc0203148e8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314988 sp=0xc020314938 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203149d8 sp=0xc020314988 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314a28 sp=0xc0203149d8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314a78 sp=0xc020314a28 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314ac8 sp=0xc020314a78 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314b18 sp=0xc020314ac8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314b68 sp=0xc020314b18 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314bb8 sp=0xc020314b68 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314c08 sp=0xc020314bb8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314c58 sp=0xc020314c08 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314ca8 sp=0xc020314c58 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314cf8 sp=0xc020314ca8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314d48 sp=0xc020314cf8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314d98 sp=0xc020314d48 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314de8 sp=0xc020314d98 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314e38 sp=0xc020314de8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314e88 sp=0xc020314e38 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314ed8 sp=0xc020314e88 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314f28 sp=0xc020314ed8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314f78 sp=0xc020314f28 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020314fc8 sp=0xc020314f78 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020315018 sp=0xc020314fc8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020315068 sp=0xc020315018 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203150b8 sp=0xc020315068 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020315108 sp=0xc0203150b8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020315158 sp=0xc020315108 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203151a8 sp=0xc020315158 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc0203151f8 sp=0xc0203151a8 pc=0x4631e5
+main.stackOverflow()
+        E:/MyLearnings/Prapository/Misc/Node vs Go/stack_overflow.go:18 +0x65 fp=0xc020315248 sp=0xc0203151f8 pc=0x4631e5
+...additional frames elided...
