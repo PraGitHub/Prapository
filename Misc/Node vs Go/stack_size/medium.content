@@ -1,19 +1,19 @@
 Concurrency can be achieved in different ways.
 Different languages/technologies take different approaches to achive that.
-For example, C\C++, Java,etc will create os threads to achive Concurrency.
+For example, C\C++, Java,etc will create OS threads to achive Concurrency. But they have fixed stack size. Which also limits the number of threads that our application could create.
+I think the maximum stack size is configurable in java. Please de let me know if that's right or not.
 
 Node will also do the same but it gives a flexibility for developers to have a specific value for stack size.
-From many sources what I got to know is that we can have a max stack size of 1361 kB considering the safety of application.
+From many sources what I got to know is that we can have a maximum stack size of 1361 kB considering the safety of application.
 
-Coming to Go, it achieves concurrency in a different way. It doesnt create OS threads. Instead, it creates a much lighter 'go routines'.
+Coming to Go, it achieves concurrency in a different way. It does not create OS threads. Instead, it creates a much lighter 'go routines'.
 Go has its own scheduler to have multiple routines run time efficiently.
-Go routine can have stack size of as small as 5kB which can be extended till 1000000000 bytes.
+Go routine can have stack size of as small as 5kB which can be extended till 1000000000 bytes.That's cool.
 
-
-I have done a small experiment to understand this.
-Here is the link to the same - 
+I have done a small experiment to understand this better.
+Here is the link to the same - https://github.com/PraGitHub/Prapository/tree/master/Misc/Node%20vs%20Go/stack_size
 
 There is a function 'stackOverFlow()' which is called recursively.
-In node, it ran for 10450 - 11391 iterations before the stack got overflown.
-In go, it ran for 6710000+ iterations before the stack got overflown.
+In node, it is able to do 10450 to 11391 recursive calls before the stack got overflown.
+In go, it is able to do 6710000+ iterations before the stack got overflown.
 This is the beauty of golang.
