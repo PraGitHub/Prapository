@@ -5,8 +5,15 @@ For example, C\C++, Java,etc will create os threads to achive Concurrency.
 Node will also do the same but it gives a flexibility for developers to have a specific value for stack size.
 From many sources what I got to know is that we can have a max stack size of 1361 kB considering the safety of application.
 
-Coming to Go, it achieves concurrency in a different way. It doesnt create OS threads. Instead, it creates a much much lighter 'go routines'.
+Coming to Go, it achieves concurrency in a different way. It doesnt create OS threads. Instead, it creates a much lighter 'go routines'.
 Go has its own scheduler to have multiple routines run time efficiently.
 Go routine can have stack size of as small as 5kB which can be extended till 1000000000 bytes.
 
 
+I have done a small experiment to understand this.
+Here it the link to the same - 
+
+There is a function 'stackOverFlow()' which is called recursively.
+In node, it ran for 10450 - 11391 iterations before the stack got overflown.
+In go, it ran for 6710000+ iterations before the stack got overflown.
+This is the beauty of golang.
