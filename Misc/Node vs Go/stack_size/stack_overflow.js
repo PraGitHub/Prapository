@@ -3,7 +3,7 @@ var fs = require('fs');
 
 function stackOverflow(){
     count = count + 1;
-    fs.writeFileSync("stackOverflow.js.result",count);
+    fs.writeFileSync("./results/node/stackOverflow.js.result.5",count);
     stackOverflow();
 }
 

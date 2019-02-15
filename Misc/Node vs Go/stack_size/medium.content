@@ -14,6 +14,6 @@ I have done a small experiment to understand this better.
 Here is the link to the same - https://github.com/PraGitHub/Prapository/tree/master/Misc/Node%20vs%20Go/stack_size
 
 There is a function 'stackOverFlow()' which is called recursively.
-In node, it is able to do 10450 to 11391 recursive calls before the stack got overflown.
+In node, it is able to do 10449 to 11391 recursive calls before the stack got overflown. ( this is with the default stack size limit )
 In go, it is able to do 6710000+ iterations before the stack got overflown.
 This is the beauty of golang.
