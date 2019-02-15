@@ -11,7 +11,7 @@ Go routine can have stack size of as small as 5kB which can be extended till 100
 
 
 I have done a small experiment to understand this.
-Here it the link to the same - 
+Here is the link to the same - 
 
 There is a function 'stackOverFlow()' which is called recursively.
 In node, it ran for 10450 - 11391 iterations before the stack got overflown.
