@@ -40,10 +40,11 @@ void allocate_in_stack(){
 	GB objGB;
 	cout << sizeof(GB) << endl;
 	objGB.set();
-	cout << "allocated in stack" << endl;
+	cout << "allocated in stack  and this is a miracle" << endl;
 }
 
 GB* allocate_in_heap(){
+	cout << "trying to allocate in heap" << endl;
 	GB* pGB = new GB();
 	cout << "allocated in heap" << endl;
 	return pGB;
@@ -56,7 +57,7 @@ int main(int NARG, char** ARGS){
 		cout << "\"stack_size.exe 2\" for allocation in heap" << endl;
 		return 0;
 	}
-	
+
 	string strArg(ARGS[1]);
 	GB* pGB = nullptr;
 
@@ -70,6 +71,11 @@ int main(int NARG, char** ARGS){
 	system("pause");
 	if (pGB != nullptr){
 		delete pGB;
+	}
+	else{
+		if (strArg != "1"){
+			cout << "did not find continous 1GB space to allocate" << endl;
+		}
 	}
 	return 0;
 }
