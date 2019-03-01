@@ -68,7 +68,7 @@ int main(int NARG, char** ARGS){
 		pGB = allocate_in_heap();
 	}
 
-	//system("pause");
+	system("pause");
 	if (pGB != nullptr){
 		delete pGB;
 	}
