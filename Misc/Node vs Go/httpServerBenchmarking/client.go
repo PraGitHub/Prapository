@@ -28,9 +28,11 @@ func main() {
 	for {
 		count++
 		//fmt.Println("count = ", count)
-		if count > 1000000 {
+		if count > 1000 {
 			break
 		}
 		go request(count)
+	}
+	for {
 	}
 }
