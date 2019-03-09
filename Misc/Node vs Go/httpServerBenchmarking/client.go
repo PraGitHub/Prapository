@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func main() {
+func request(id int) {
 	response, err := http.Get("http://localhost:8085")
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -16,9 +16,21 @@ func main() {
 		defer response.Body.Close()
 		contents, err := ioutil.ReadAll(response.Body)
 		if err != nil {
-			fmt.Printf("%s", err)
+			fmt.Println("goRoutineId = ", id, "err = ", err)
 			os.Exit(1)
 		}
-		fmt.Printf("%s\n", string(contents))
+		fmt.Println("goRoutineId = ", id, "response = ", string(contents))
+	}
+}
+
+func main() {
+	count := 0
+	for {
+		count++
+		//fmt.Println("count = ", count)
+		if count > 1000000 {
+			break
+		}
+		go request(count)
 	}
 }
