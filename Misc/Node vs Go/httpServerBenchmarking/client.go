@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 )
 
-func request(id int) {
+func request(id int, ch chan string) {
 	response, err := http.Get("http://localhost:8085")
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -19,20 +20,29 @@ func request(id int) {
 			fmt.Println("goRoutineId = ", id, "err = ", err)
 			os.Exit(1)
 		}
-		fmt.Println("goRoutineId = ", id, "response = ", string(contents))
+		ch <- "goRoutineId = " + strconv.Itoa(id) + "response = " + string(contents)
 	}
 }
 
 func main() {
 	count := 0
+	numRequests, _ := strconv.ParseInt(os.Args[1], 10, 64)
+	ch := make(chan string)
+	fmt.Println("numRequests = ", numRequests)
 	for {
 		count++
-		//fmt.Println("count = ", count)
-		if count > 1000 {
+		if int64(count) > numRequests {
 			break
 		}
-		go request(count)
+		go request(count, ch)
 	}
+	count = 0
 	for {
+		count++
+		if int64(count) > numRequests {
+			break
+		}
+		fmt.Println("response :: ", <-ch)
 	}
+	fmt.Println("value of count at the end of the test = ", count)
 }
