@@ -11,7 +11,7 @@ import (
 func request(id int, ch chan string) {
 	response, err := http.Get("http://localhost:8085")
 	if err != nil {
-		fmt.Printf("%s", err)
+		fmt.Println("goRoutineId = ", id, "err = ", err)
 		os.Exit(1)
 	} else {
 		defer response.Body.Close()
@@ -20,7 +20,7 @@ func request(id int, ch chan string) {
 			fmt.Println("goRoutineId = ", id, "err = ", err)
 			os.Exit(1)
 		}
-		ch <- "goRoutineId = " + strconv.Itoa(id) + "response = " + string(contents)
+		ch <- "goRoutineId = " + strconv.Itoa(id) + " response = " + string(contents)
 	}
 }
 
@@ -42,7 +42,7 @@ func main() {
 		if int64(count) > numRequests {
 			break
 		}
-		fmt.Println("response :: ", <-ch)
+		fmt.Println(count, " :: response :: ", <-ch)
 	}
 	fmt.Println("value of count at the end of the test = ", count)
 }

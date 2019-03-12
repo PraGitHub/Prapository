@@ -6,8 +6,11 @@ import (
 	"net/http"
 )
 
+var count int64 = 0
+
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "This is go server")
+	count++
+	fmt.Fprintf(w, "go server :: client no %d", count)
 }
 
 func main() {
