@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 )
 
 func request() {
-	log.Println("request :: begin")
+	log.Printf("request :: begin | nano offset = %d", time.Now().Nanosecond())
 	response, err := http.Get("http://localhost:8085")
 	if err != nil {
 		log.Fatalln("err in getting response = ", err)
@@ -19,7 +20,7 @@ func request() {
 		if err != nil {
 			log.Fatalln("err in parsing response.Body = ", err)
 		}
-		log.Println("response = ", string(contents))
+		log.Printf("request :: response = %s | nano offser = %d", string(contents), time.Now().Nanosecond())
 	}
 }
 
