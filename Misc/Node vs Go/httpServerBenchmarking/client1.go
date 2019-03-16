@@ -35,5 +35,6 @@ func main() {
 	var i int64
 	for i = 0; i < numRequests; i++ {
 		request()
+		time.Sleep(100 * time.Microsecond)
 	}
 }
