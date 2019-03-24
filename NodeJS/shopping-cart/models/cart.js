@@ -18,11 +18,13 @@ module.exports = function Cart(oldCart){
     this.removeOne = function(id){
         var storedItem = this.items[id];
         if(storedItem){
-            this.totalQty--;
-            this.totalPrice -= storedItem.item.price;
             if(storedItem.qty == 1){
                 this.remove(id);
+                return;
             }
+            this.totalQty--;
+            this.totalPrice -= storedItem.item.price;
+
         }
     }
 
