@@ -1,0 +1,48 @@
+{{#if products}}
+{{#each products}}
+<div class="row">
+    <div class="col">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>{{this.item.title}}  </strong>
+                <span class="badge badge-dark"> Qty </span>
+                <span class="badge badge-success">{{this.qty}}</span>
+                <span class="badge badge-dark"> Net Price </span>
+                <span class="badge badge-success"><i class="fas fa-rupee-sign"></i> {{this.price}}</span>
+                <a href="#" data-toggle="tooltip" title="Reduce by 1" class="btn btn-outline-danger "><i class="far fa-minus-square"></i></a>
+                <a href="#" data-toggle="tooltip" title="Remove all" class="btn btn-outline-danger "> <i class="far fa-trash-alt"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+{{/each}}
+
+<br><br>
+<div class="row">
+    <div class="col">
+        <alert class="alert alert-success">
+            <strong>Total Amount :  <i class="fas fa-rupee-sign"></i> {{totalPrice}}</strong>
+        </alert>
+    </div>
+</div>
+<br><br>
+
+<div class="row">
+    <div class="col">
+        <a href="/checkout" class="btn btn-success" role="button">Checkout</a>
+    </div>
+</div>
+
+{{else}}
+
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <strong>No items in cart</strong>
+    </div>
+</div>
+{{/if}}
+
+
+
+
+
