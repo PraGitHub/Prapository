@@ -10,11 +10,12 @@
     <div class="col">
         <ul class="list-group">
             <li class="list-group-item">
-                <strong>{{this.item.title}}  </strong>
+                <h3>{{this.item.title}}  </h3>
                 <span class="badge badge-info"> Qty </span>
                 <span class="badge badge-success">{{this.qty}}</span>
                 <span class="badge badge-info"> Net Price </span>
                 <span class="badge badge-success"><i class="fas fa-rupee-sign"></i> {{this.price}}</span>
+                <a href="/add-one/{{this.item._id}}" data-toggle="tooltip" title="Add 1" class="btn btn-outline-success "><i class="far fa-plus-square"></i></a>
                 <a href="/remove-one/{{this.item._id}}" data-toggle="tooltip" title="Reduce by 1" class="btn btn-outline-danger "><i class="far fa-minus-square"></i></a>
                 <a href="/remove/{{this.item._id}}" data-toggle="tooltip" title="Remove all" class="btn btn-outline-danger "> <i class="far fa-trash-alt"></i></a>
             </li>

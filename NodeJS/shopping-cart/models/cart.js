@@ -24,7 +24,8 @@ module.exports = function Cart(oldCart){
             }
             this.totalQty--;
             this.totalPrice -= storedItem.item.price;
-
+            storedItem.qty--;
+            storedItem.price = storedItem.item.price * storedItem.qty;
         }
     }
 
@@ -33,7 +34,7 @@ module.exports = function Cart(oldCart){
         if(storedItem){
             this.totalQty -= storedItem.qty;
             this.totalPrice -= storedItem.item.price*storedItem.qty;
-            this.items[id] = null;
+            delete this.items[id];
         }
     }
 
