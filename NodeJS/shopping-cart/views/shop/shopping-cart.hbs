@@ -1,3 +1,9 @@
+<br>
+<div>
+    <span class="badge badge-dark"><h1> <i class="fas fa-shopping-cart"></i> </h1></span>
+    <span class="badge badge-dark"> <h1> My Cart  </h1></span>
+</div>
+<br>
 {{#if products}}
 {{#each products}}
 <div class="row">
@@ -5,12 +11,12 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <strong>{{this.item.title}}  </strong>
-                <span class="badge badge-dark"> Qty </span>
+                <span class="badge badge-info"> Qty </span>
                 <span class="badge badge-success">{{this.qty}}</span>
-                <span class="badge badge-dark"> Net Price </span>
+                <span class="badge badge-info"> Net Price </span>
                 <span class="badge badge-success"><i class="fas fa-rupee-sign"></i> {{this.price}}</span>
-                <a href="#" data-toggle="tooltip" title="Reduce by 1" class="btn btn-outline-danger "><i class="far fa-minus-square"></i></a>
-                <a href="#" data-toggle="tooltip" title="Remove all" class="btn btn-outline-danger "> <i class="far fa-trash-alt"></i></a>
+                <a href="/remove-one/{{this.item._id}}" data-toggle="tooltip" title="Reduce by 1" class="btn btn-outline-danger "><i class="far fa-minus-square"></i></a>
+                <a href="/remove/{{this.item._id}}" data-toggle="tooltip" title="Remove all" class="btn btn-outline-danger "> <i class="far fa-trash-alt"></i></a>
             </li>
         </ul>
     </div>
@@ -37,7 +43,9 @@
 
 <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-        <strong>No items in cart</strong>
+        <alert class="alert alert-warning">
+            <strong>No items in cart</strong>
+        </alert>
     </div>
 </div>
 {{/if}}

@@ -1,10 +1,18 @@
 <div class="row">
     <div class="col">
-        <h1>Checkout</h1>
-        <h4>Your Total: <i class="fas fa-rupee-sign"></i>  {{total}}</h4>
+        <div>
+            <span class="badge badge-dark"><h1><i class="far fa-credit-card"></i></h1></span>
+            <span class="badge badge-dark"><h1>Checkout</h1></span>
+        </div>
+        <br>
+        <div>
+            <span class="badge badge-pill badge-info"><h4>Your Total: <i class="fas fa-rupee-sign"></i>  {{total}}</h4></span>
+        </div>
+        <br>
         <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
             {{errMsg}}
         </div>
+        <br>
         <form action="/checkout" method="post" id="checkout-form">
 
             <div class="form-group">
