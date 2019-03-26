@@ -3,16 +3,36 @@
 <!--Embed the header.html template at this location-->
 {{ template "header.html" .}}
 
-  <h1>Articles Home !</h1>
+  <h1>Latest Articles</h1>
 
   {{range .payload }}
   <!--Create the link for the article based on its ID-->
-  <a href="/article/view/{{.ID}}">
-    <!--Display the title of the article -->
-    <h2>{{.Title}}</h2>
-  </a>
-  <!--Display the content of the article-->
-  <p>{{.Content}}</p>
+  
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="/article/view/{{.ID}}">
+        <!--Display the title of the article -->
+          <h2>{{.Title}}</h2>
+      </a>
+    </li>
+      <li class="list-group-item">
+        <span class="badge badge-pill badge-dark">
+          about
+        </span>
+        <span class="badge  badge-info">
+              {{.Genre}}
+        </span>
+        <span class="badge  badge-pill  badge-dark">
+            by
+          </span>
+        <span class="badge badge-success">
+            {{.Author}}
+        </span>
+      </li>
+  </ul>
+
+  <br>
+  <br>
 {{end}}
 
 <!--Embed the footer.html template at this location-->

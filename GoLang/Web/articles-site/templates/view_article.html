@@ -1,0 +1,42 @@
+<!--view_article.html-->
+
+<!--Embed the header.html template at this location-->
+{{ template "header.html" .}}
+
+{{if .found}}
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="/article/view/{{.ID}}">
+                <!--Display the title of the article -->
+                <h2>{{.payload.Title}}</h2>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <span class="badge badge-pill badge-dark">
+                about
+            </span>
+            <span class="badge  badge-info">
+                    {{.payload.Genre}}
+            </span>
+            <span class="badge badge-pill  badge-dark">
+                by
+                </span>
+            <span class="badge badge-success">
+                {{.payload.Author}}
+            </span>
+        </li>
+    </ul>
+    <br>
+    <div class="container">
+        {{.payload.Content}}
+    </div>
+   
+{{else}}
+    <alert class="alert alert-danger">
+       <a>
+            Article not found
+       </a> 
+    </alert>
+{{end}}  
+<!--Embed the footer.html template at this location-->
+{{ template "footer.html" .}}
