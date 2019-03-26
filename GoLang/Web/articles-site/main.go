@@ -25,6 +25,7 @@ func main() {
 	router = gin.Default()
 	router.LoadHTMLGlob("templates/*")
 	gin.SetMode(gin.ReleaseMode)
+	router.Use(gin.Logger())
 	initializeRoutes()
 	router.Run()
 }
