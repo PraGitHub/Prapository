@@ -2,11 +2,11 @@
 
 <!--Embed the header.html template at this location-->
 {{ template "header.html" .}}
-
+<br><br>
 {{if .found}}
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="/article/view/{{.ID}}">
+            <a style="text-decoration: none;" href="/article/view/{{.payload.ID}}">
                 <!--Display the title of the article -->
                 <h2>{{.payload.Title}}</h2>
             </a>

@@ -14,7 +14,7 @@ type article struct {
 var articleList = []article{
 	article{ID: "1", Author: "Prashanth_1", Title: "Article 1", Genre: "Politics", Content: "Article 1 body"},
 	article{ID: "2", Author: "Prashanth_2", Title: "Article 2", Genre: "Tech", Content: "Article 2 body"},
-	article{ID: "3", Author: "Prashanth_3", Title: "Article 4", Genre: "Movies", Content: "Article 3 body"},
+	article{ID: "3", Author: "Prashanth_3", Title: "Article 3", Genre: "Movies", Content: "Article 3 body"},
 	article{ID: "4", Author: "Prashanth_4", Title: "Article 4", Genre: "Philosophy", Content: "Article 4 body"},
 }
 

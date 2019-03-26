@@ -25,3 +25,20 @@ func TestGetAllArticles(t *testing.T) {
 		}
 	}
 }
+
+func TestGetArticleById(t *testing.T) {
+	alist := getAllArticles()
+	a := alist[0]
+	found, aFromFunc := getArticleById(a.ID)
+	if found {
+		if a != aFromFunc {
+			t.Fail()
+		}
+	} else {
+		t.Fail()
+	}
+	found,aFromFunc = getArticleById("0")
+	if(found){
+		t.Fail()
+	}
+}

@@ -2,7 +2,7 @@
 
 <!--Embed the header.html template at this location-->
 {{ template "header.html" .}}
-
+<br><br>
   <h1>Latest Articles</h1>
 
   {{range .payload }}
@@ -10,7 +10,7 @@
   
   <ul class="list-group">
     <li class="list-group-item">
-      <a href="/article/view/{{.ID}}">
+      <a style="text-decoration: none;" href="/article/view/{{.ID}}">
         <!--Display the title of the article -->
           <h2>{{.Title}}</h2>
       </a>
