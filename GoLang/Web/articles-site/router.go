@@ -18,7 +18,20 @@ func homePage(c *gin.Context) {
 	)
 }
 
+func aboutPage(c *gin.Context) {
+	render(
+		c,
+		http.StatusOK,
+		gin.H{
+			"title": "About Us",
+		},
+		"about.html",
+	)
+}
+
 func initializeRoutes() {
 	router.GET("/", homePage)
+	router.GET("/about", aboutPage)
 	initArticleRoutes()
+	initUserRoutes()
 }
