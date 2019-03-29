@@ -32,11 +32,12 @@
     </div>
    
 {{else}}
-    <alert class="alert alert-danger">
-       <a>
-            Article not found
-       </a> 
-    </alert>
+<div class="jumbotron">
+    <h1 class="display-4">Article not found !</h1>
+    <hr class="my-4">
+    <br>
+    <a class="btn btn-primary btn-lg" href="/" role="button">Go Home</a>
+</div>
 {{end}}  
 <!--Embed the footer.html template at this location-->
 {{ template "footer.html" .}}
