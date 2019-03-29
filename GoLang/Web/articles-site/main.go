@@ -21,8 +21,20 @@ func render(c *gin.Context, statusCode int, data gin.H, templateName string) {
 	}
 }
 
+func noRouteHandler(c *gin.Context) {
+	render(
+		c,
+		404,
+		gin.H{
+			"title": "Page not found",
+		},
+		"page_not_found.html",
+	)
+}
+
 func main() {
 	router = gin.Default()
+	router.NoRoute(noRouteHandler)
 	router.LoadHTMLGlob("templates/*")
 	gin.SetMode(gin.ReleaseMode)
 	router.Use(gin.Logger())
