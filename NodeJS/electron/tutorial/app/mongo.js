@@ -1,28 +1,6 @@
-let $ = require('jquery')  // jQuery now loaded and assigned to $
-
-let count = 0
-$('#click-counter').text(count.toString())
-$('#plusButton').on('click', () => {
-   count ++ 
-   $('#click-counter').text(count)
-}) 
-$('#minusButton').on('click', () => {
-    count --
-    $('#click-counter').text(count)
- }) 
-
- /*
-
- $('#loadDb').on('click', () => {
-    // $('#status').text("calling getData");
-     getData(); 
-     //$('#status').text("called getData");
-  }) 
-
- //////////////////////////////////////////////////////////////////////////////
-
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/";
+let $ = require('jquery')  
 
 function getData(){
     MongoClient.connect(url,  {useNewUrlParser: true}, function(err, db) {
@@ -40,6 +18,12 @@ function getData(){
     }); 
 }
 
+$('#loadDb').on('click', () => {
+    // $('#status').text("calling getData");
+     getData(); 
+     //$('#status').text("called getData");
+  }) 
+
 //to test
 function addUserToList1(name){
     console.log(name)
@@ -50,4 +34,3 @@ function addUserToList(userName) {
     $('#listOfUsers').append('<li><div><alert class="alert alert-info">'+userName +'</alert></div></li><br>')
 }
 
-*/

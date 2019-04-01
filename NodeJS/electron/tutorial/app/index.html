@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta charset = "UTF-8">
-      <title>Hello World!</title>
+      <title>Sample Electron App</title>
       <link rel = "stylesheet" 
          href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
    </head>
@@ -27,8 +27,25 @@
             <div class="col col col-sm-2">
                <button class = "btn btn-danger" id = "minusButton">-</button>
             </div>
-         </div>    
-         <script src = "./view.js" ></script>
+         </div> 
+         
+         <br><br>
+
+         <div class="row">
+            <div class="col">
+               <button class="btn btn-success" id="loadDb">Load DB</button>
+            </div>
+            <div class="col">
+               <a id="status"></a>
+            </div>
+         </div>
+         
+         <br>
+         
+         <ul id="listOfUsers">
+         </ul>
       </div>
+      <script src = "./view.js" ></script>
+      <script src = "./mongo.js"></script>
    </body>
 </html>
