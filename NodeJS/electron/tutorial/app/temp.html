@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset = "UTF-8">
   <title>Bootstrap Example</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel = "stylesheet"  href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
   <script src="./jquery.js"></script>
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src = "./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+    <div class="jumbotron">
+        <h2>Mongo Database</h2>
+     </div>
+     
 <div class="container">
   <h2>Simple Collapsible</h2>
   <ul class="list-group">
-  <li class="list-group-item">
-  <div>
-  <a href="#demo" class="btn btn-primary btn-block" data-toggle="collapse">Simple collapsible</a>
-  <br>
-  <div id="demo" class="collapse">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </div>
-  </div>
-  </li>
+    <!--
+      <li class="list-group-item"> 
+        <div> 
+          <a href="#db_name" class="btn btn-info btn-block" data-toggle="collapse">name</a>
+          <br> 
+          <div id="db_name" class="collapse">
+             <span class="badge badge-pill badge-dark">
+               size
+              </span>
+             </div> 
+            </div> 
+          </li> 
+          <br>
+        -->
+        <li class="list-group-item"> <div> <a href="#db_shopping" data-toggle="collapse" class="btn btn-info btn-block">shopping</a><br> <div id="db_shopping" class="collapse"> <span class="badge badge-pill badge-dark">180224 bytes</span> </div> </div> </li> <br> 
+        <li class="list-group-item"> <div> <a href="#db_name" data-toggle="collapse" class="btn btn-info btn-block">name</a><br> <div id="db_name" class="collapse"> <span class="badge badge-pill badge-dark">size</span> </div> </div> </li> <br> 
   </ul>
   
 </div>
-
+<script src = "./view.js" ></script>  
 </body>
 </html>

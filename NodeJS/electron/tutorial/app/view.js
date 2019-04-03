@@ -7,19 +7,23 @@ function dummy(){
     $('#status').text("dummy");
 }
 
+let content = '';
+
 function addDbNamesToList(db) {
-    name = db.name;
-    size = db.sizeOnDisk +' bytes';
-        $('#listOfDbs').append(`<li class="list-group-item">
-        <div>
-            <a href="#db_`+name+`" data-toggle="collapse" class="btn btn-info btn-block">`+name+`</a>`+
-            `<br>
-            <div id="db_`+name+`" class="collapse">
-                <span class="badge badge-pill badge-dark">`+size+`</span>`+`
-            </div>
+    let name = db.name;
+    let size = db.sizeOnDisk +' bytes';
+    let content = `<li class="list-group-item">
+    <div>
+        <a href="#db_`+name+`" data-toggle="collapse" class="btn btn-info btn-block">`+name+`</a>`+
+        `<br>
+        <div id="db_`+name+`" class="collapse">
+            <span class="badge badge-pill badge-dark">`+size+`</span>`+`
         </div>
-    </li>
-    <br>`)
+    </div>
+</li>
+<br>`;
+        $('#listOfDbs').append(content);
+        $('#status').text(content);
 }
 
 function temp(){
@@ -56,11 +60,11 @@ function mongooseData(){
             for(let i=0;i<allDatabases.length;i++){
                 var dbName = allDatabases[i].name;
                 addDbNamesToList(allDatabases[i]);
-                 $('#status').text("fetching databases")
+                 //$('#status').text("fetching databases")
                 //listCollections(dbName);
             }
-            $('#status').text("done fetching databases")
-            temp();
+            //$('#status').text("done fetching databases")
+            //temp();
         });
     });
 }
@@ -72,7 +76,7 @@ function listCollections(dbName){
             for(var i=0;i<collections.length;i++){
                 $('#status').text("fetching collections")
             }
-            $('#status').text("done fetching collections")
+           $('#status').text("done fetching collections")
         });
     });
 }
