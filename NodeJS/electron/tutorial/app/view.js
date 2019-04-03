@@ -1,68 +1,80 @@
 let $ = require('jquery')  // jQuery now loaded and assigned to $
+let mongoose = require('mongoose')
+let Admin = mongoose.mongo.Admin;
+let baseUrl = 'mongodb://localhost:27017/';
 
-let count = 0
-$('#click-counter').text(count.toString())
-$('#plusButton').on('click', () => {
-   count ++ 
-   $('#click-counter').text(count)
-}) 
-$('#minusButton').on('click', () => {
-    count --
-    $('#click-counter').text(count)
- }) 
+function dummy(){
+    $('#status').text("dummy");
+}
 
- mongooseData();
-
-
- $('#loadCollection').on('click', () => {
-    // $('#status').text("calling getData");
-    
-     //$('#status').text("called getData");
-  }) 
-
- //////////////////////////////////////////////////////////////////////////////
-
- function getDbDetails(dbName){
-
- }
-
- function addDbNamesToList(db) {
+function addDbNamesToList(db) {
     name = db.name;
     size = db.sizeOnDisk +' bytes';
         $('#listOfDbs').append(`<li class="list-group-item">
-            <div class="row">
-                <div class = "col">
-                    <button onclick="getDbDetails(`+name+`)" class="btn btn-info">`+name+`</button>`+
-                `</div>`+
-                `<div class = "col">
-                    <span class="badge badge-pill badge-dark">`+size+`</span>`+
-                `</div>
+        <div>
+            <a href="#db_`+name+`" data-toggle="collapse" class="btn btn-info btn-block">`+name+`</a>`+
+            `<br>
+            <div id="db_`+name+`" class="collapse">
+                <span class="badge badge-pill badge-dark">`+size+`</span>`+`
             </div>
-        </li>
+        </div>
+    </li>
     <br>`)
 }
 
-function mongooseData(){
-    var mongoose = require('mongoose')
-    , Admin = mongoose.mongo.Admin;
+function temp(){
+    let name = "name";
+    let size = "size";
+    x = `<li class="list-group-item">
+    <div>
+        <a href="#db_`+name+`" data-toggle="collapse" class="btn btn-info btn-block">`+name+`</a>`+
+        `<br>
+        <div id="db_`+name+`" class="collapse">
+            <span class="badge badge-pill badge-dark">`+size+`</span>`+`
+        </div>
+    </div>
+</li>
+<br>`
+$('#status').text(x)
 
-    /// create a connection to the DB    
-    var connection = mongoose.createConnection(
-        'mongodb://localhost:27017/admin',{useNewUrlParser: true});
-    connection.on('open', function() {
-        // connection established
-        var adminDb = new Admin(connection.db);
+}
+
+function addCollectionNamesToList(dbName, collection){
+
+}
+
+function mongooseData(){ 
+   $('#status').text("getting data");
+    var connadminDb = mongoose.createConnection( baseUrl+'admin',{useNewUrlParser: true});
+    //$('#status').text(connadminDb);
+    connadminDb.on('open', function() {
+        $('#status').text("connection established");
+        var adminDb = new Admin(connadminDb.db);
         adminDb.listDatabases(function(err, result) {
-            console.log('listDatabases succeeded');
-            // database list stored in result.databases
+            $('#status').text("database list stored in result.databases");
             var allDatabases = result.databases;    
-            //console.log(allDatabases); to test
-            for (var i=0;i<allDatabases.length;i++){
+            for(let i=0;i<allDatabases.length;i++){
+                var dbName = allDatabases[i].name;
                 addDbNamesToList(allDatabases[i]);
-                $('#status').text("fetching")
+                 $('#status').text("fetching databases")
+                //listCollections(dbName);
             }
-            $('#status').text("done fetching")
+            $('#status').text("done fetching databases")
+            temp();
         });
     });
 }
 
+function listCollections(dbName){
+    var connDb = mongoose.createConnection( baseUrl+dbName,{useNewUrlParser: true});
+    connDb.on('open',function(){
+        connDb.db.listCollections().toArray(function(err,collections){
+            for(var i=0;i<collections.length;i++){
+                $('#status').text("fetching collections")
+            }
+            $('#status').text("done fetching collections")
+        });
+    });
+}
+
+mongooseData();

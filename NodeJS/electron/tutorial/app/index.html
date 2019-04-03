@@ -3,20 +3,26 @@
    <head>
       <meta charset = "UTF-8">
       <title>Mongo Navigator</title>
-      <link rel = "stylesheet" 
-         href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel = "stylesheet"  href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+      <script src="./jquery.js"></script>
+      <script src = "./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
    </head>
    
    <body>
       <div class="jumbotron">
          <h2>Mongo Database</h2>
       </div>
-
-      <br>
       
+      <a id="status"></a>
+      <br>
       <ul id="listOfDbs" class="list-group">
       </ul>
-      </div>
-      <script src = "./view.js" ></script>
+
+      <script>
+            $(document).ready(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
+      <script src = "./view.js" ></script>  
    </body>
 </html>
