@@ -2,37 +2,20 @@
 <html>
    <head>
       <meta charset = "UTF-8">
-      <title>Sample Electron App</title>
+      <title>Mongo Navigator</title>
       <link rel = "stylesheet" 
          href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
    </head>
    
    <body>
-      <div class = "container">
-         <br>
-         <div class="row">
-            <div class="col col-sm-6">
-               <span class="badge badge-pill badge-info">
-                  <h3>Add or Subtract</h3>
-               </span>
-            </div>
-            <div class="col col col-sm-2">
-               <button class = "btn btn-success" id = "plusButton">+</button>
-            </div>
-            <div class="col col col-sm-2">
-               <alert class="alert alert-info">
-                  <strong><a id="click-counter"></a></strong>
-               </alert>
-            </div>
-            <div class="col col col-sm-2">
-               <button class = "btn btn-danger" id = "minusButton">-</button>
-            </div>
-         </div> 
-         
-         <br><br>
-         
-         <ul id="listOfDbs" class="list-group">
-         </ul>
+      <div class="jumbotron">
+         <h2>Mongo Database</h2>
+      </div>
+
+      <br>
+      
+      <ul id="listOfDbs" class="list-group">
+      </ul>
       </div>
       <script src = "./view.js" ></script>
    </body>
