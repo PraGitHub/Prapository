@@ -20,6 +20,7 @@ void Service::AddFlight(Flight* pFlight)
 	if (pFlight)
 	{
 		m_Flights.push_back(pFlight);
+		cout << "Service :: AddFlight :: Added Flight = " << pFlight->GetName().c_str() << endl;
 	}
 }
 
@@ -34,6 +35,7 @@ void Service::RemoveFlight(Flight* pFlight)
 		if ((*iter)->GetName() == pFlight->GetName())
 		{
 			m_Flights.erase(iter);
+			cout << "Service :: RemoveFlight :: Removed Flight " << pFlight->GetName().c_str() << endl;
 			break;
 		}
 	}
