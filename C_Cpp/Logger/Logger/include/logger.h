@@ -68,7 +68,7 @@ class DLLEXPORT Logger{
 
 	static int m_iMaxLogLevel;
 
-	void Init(string strModule);
+	void Init(string strModule, int iLogLevel);
 	void OpenFile();
 	void CloseFile();
 
@@ -79,7 +79,7 @@ class DLLEXPORT Logger{
 	static void WriteLogThread();
 public:
 	Logger();
-	Logger(string strModule);
+	Logger(string strModule, int iLogLevel = eInfo);
 	~Logger();
 
 	void Log(int iMessageType, const char* pcstrMessage, ...);

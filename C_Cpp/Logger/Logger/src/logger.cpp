@@ -14,17 +14,17 @@ int Logger::m_iMaxLogLevel;
 
 Logger::Logger()
 {
-	Init(DEFAULT_NAME);
+	Init(DEFAULT_NAME, eInfo);
 	OpenFile();
 }
 
-Logger::Logger(string strModuleName)
+Logger::Logger(string strModuleName, int iLogLevel)
 {
 	if (strModuleName.empty())
 	{
 		strModuleName = DEFAULT_NAME;
 	}
-	Init(strModuleName);
+	Init(strModuleName, iLogLevel);
 	OpenFile();
 }
 
@@ -33,7 +33,7 @@ Logger::~Logger()
 	Logger::WriteToFile(m_strModuleName);
 }
 
-void Logger::Init(string strModuleName)
+void Logger::Init(string strModuleName, int iLogLevel)
 {
 	m_strModuleName = strModuleName;
 	thread::id tidThisThread = this_thread::get_id();
@@ -60,7 +60,7 @@ void Logger::Init(string strModuleName)
 		if (Logger::m_abIsFirstInstance.load(memory_order_acquire) == true)
 		{
 			m_threadWriteLog = thread(&Logger::WriteLogThread);
-			m_iMaxLogLevel = eVerbose; // need to think about this. need to find a way to provide interface for apps to configure this
+			m_iMaxLogLevel = iLogLevel; 
 			Logger::m_abIsFirstInstance.store(false, memory_order_release);
 		}
 	}
