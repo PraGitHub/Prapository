@@ -33,6 +33,8 @@ int main(int iArg, char** ARGS)
 	for (int i = 0; i < iArg; i++)
 	{
 		pLogger->Log(eDebug, "Arg %d : %s", i, ARGS[i]);
+		pLogger->Log(eVerbose, "Arg %d : %s", i, ARGS[i]);
+
 	}
 	
 	SubRoutineThread.join();

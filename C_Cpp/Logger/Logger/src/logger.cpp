@@ -60,7 +60,7 @@ void Logger::Init(string strModuleName)
 		if (Logger::m_abIsFirstInstance.load(memory_order_acquire) == true)
 		{
 			m_threadWriteLog = thread(&Logger::WriteLogThread);
-			m_iMaxLogLevel = eDebug; // need to think about this. need to find a way to provide interface for apps to configure this
+			m_iMaxLogLevel = eVerbose; // need to think about this. need to find a way to provide interface for apps to configure this
 			Logger::m_abIsFirstInstance.store(false, memory_order_release);
 		}
 	}

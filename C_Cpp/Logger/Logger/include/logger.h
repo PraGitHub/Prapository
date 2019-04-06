@@ -32,14 +32,16 @@ enum MessageType{
 	eCritical = 0,
 	eError,
 	eInfo,
-	eDebug
+	eDebug,
+	eVerbose,
 };
 
 map <int, string> mapMessageType = {
-	{eInfo, "INFO" },
-	{ eError, "ERROR"},
 	{ eCritical, "CRITICAL"},
-	{ eDebug, "DEBUG"}
+	{ eError, "ERROR"},
+	{ eInfo, "INFO" },
+	{ eDebug, "DEBUG"},
+	{ eVerbose, "VERBOSE"},
 };
 
 
