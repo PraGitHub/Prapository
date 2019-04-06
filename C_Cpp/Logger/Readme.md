@@ -8,4 +8,13 @@ The log file will be reopened when the object of logger is destroyed if the proc
 LoggerTest.exe is a sample app which uses this library. It shows how to use this library.
 Take a look into \LoggerTestExe\src\main.cpp which tells the usage of this library.
 
+There are various logging levels.
+      Critical
+      Error
+      Info
+      Debug
+      Verbose
+
+Whenever an object of "Logger" is created, required logging level has to be passed. By default, it will be Info i.e., all log statements with labels "Critical", "Error" and "Info" will be logged and "Debug" and "Verbose" will be ignored.
+
 Debug build has a problem as of 26 Jan 2019. Need to fix it. 
