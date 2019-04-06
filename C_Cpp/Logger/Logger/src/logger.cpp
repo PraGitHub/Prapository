@@ -11,20 +11,21 @@ string Logger::m_strLogFolder;
 thread Logger::m_threadWriteLog;
 atomic_bool Logger::m_abIsFirstInstance{ true };
 int Logger::m_iMaxLogLevel;
+DWORD Logger::m_dwLoggingInterval;
 
 Logger::Logger()
 {
-	Init(DEFAULT_NAME, eInfo);
+	Init(DEFAULT_NAME, eInfo, LOGGING_INTERVAL);
 	OpenFile();
 }
 
-Logger::Logger(string strModuleName, int iLogLevel)
+Logger::Logger(string strModuleName, int iLogLevel, DWORD dwLoggingInterval)
 {
 	if (strModuleName.empty())
 	{
 		strModuleName = DEFAULT_NAME;
 	}
-	Init(strModuleName, iLogLevel);
+	Init(strModuleName, iLogLevel, dwLoggingInterval);
 	OpenFile();
 }
 
@@ -33,7 +34,7 @@ Logger::~Logger()
 	Logger::WriteToFile(m_strModuleName);
 }
 
-void Logger::Init(string strModuleName, int iLogLevel)
+void Logger::Init(string strModuleName, int iLogLevel, DWORD dwLoggingInterval)
 {
 	m_strModuleName = strModuleName;
 	thread::id tidThisThread = this_thread::get_id();
@@ -61,6 +62,7 @@ void Logger::Init(string strModuleName, int iLogLevel)
 		{
 			m_threadWriteLog = thread(&Logger::WriteLogThread);
 			m_iMaxLogLevel = iLogLevel; 
+			m_dwLoggingInterval = dwLoggingInterval;
 			Logger::m_abIsFirstInstance.store(false, memory_order_release);
 		}
 	}
@@ -155,7 +157,7 @@ void Logger::WriteLogThread()
 	while (true) 
 	{
 		Logger::WriteToFile("");
-		Sleep((DWORD)LOGGING_INTERVAL);
+		Sleep(m_dwLoggingInterval);
 	}
 }
 

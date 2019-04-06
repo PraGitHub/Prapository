@@ -67,8 +67,9 @@ class DLLEXPORT Logger{
 	static atomic_bool m_abIsFirstInstance;
 
 	static int m_iMaxLogLevel;
+	static DWORD m_dwLoggingInterval; // in milliseconds
 
-	void Init(string strModule, int iLogLevel);
+	void Init(string strModule, int iLogLevel, DWORD dwLoggingInterval);
 	void OpenFile();
 	void CloseFile();
 
@@ -79,7 +80,7 @@ class DLLEXPORT Logger{
 	static void WriteLogThread();
 public:
 	Logger();
-	Logger(string strModule, int iLogLevel = eInfo);
+	Logger(string strModule, int iLogLevel = eInfo, DWORD dwLoggingInterval = LOGGING_INTERVAL);
 	~Logger();
 
 	void Log(int iMessageType, const char* pcstrMessage, ...);
