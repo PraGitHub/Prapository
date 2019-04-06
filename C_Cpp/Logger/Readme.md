@@ -9,10 +9,10 @@ LoggerTest.exe is a sample app which uses this library. It shows how to use this
 Take a look into \LoggerTestExe\src\main.cpp which tells the usage of this library.
 
 There are various logging levels.
-      Critical
-      Error
-      Info
-      Debug
+      Critical, 
+      Error, 
+      Info, 
+      Debug, and 
       Verbose
 
 Whenever an object of "Logger" is created, required logging level has to be passed. By default, it will be Info i.e., all log statements with labels "Critical", "Error" and "Info" will be logged and "Debug" and "Verbose" will be ignored.
