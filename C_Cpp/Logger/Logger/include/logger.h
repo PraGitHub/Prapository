@@ -1,7 +1,9 @@
 #pragma once
 
 #include<iostream>
+#include<string>
 #include<map>
+#include<vector>
 #include<cstdarg>
 #include<ctime>
 #include<thread>
@@ -16,6 +18,7 @@
 using namespace std;
 
 typedef map<string, string> mapstrstr;
+typedef vector<string> strings;
 typedef lock_guard<std::mutex> autoLockUnlockMutex;
 
 #define DLLEXPORT __declspec(dllexport)
@@ -24,8 +27,8 @@ typedef lock_guard<std::mutex> autoLockUnlockMutex;
 #define DISABLE_LOG_FILE "DisableLog"
 #define MAX_MESSAGE_LENGTH 1024
 #define LOGGING_INTERVAL 6000 //in milliseconds
-#define MAX_NUM_FILES 10
-#define MAX_FILE_SIZE 5 // in MB
+#define MAX_NUM_FILES 5
+#define MAX_FILE_SIZE 5242880 // in MB
 
 
 enum MessageType{
@@ -61,13 +64,17 @@ class DLLEXPORT Logger{
 	static mutex m_mtxAccessFile;
 
 	static thread m_threadWriteLog;
-	static thread m_threadMonitorFileSize;
 
 	static long double m_ldPreviousFlushTime;
 
 	static atomic_bool m_abIsFirstInstance;
 
+	static strings vecLogFilePaths;
+
 	static int m_iMaxLogLevel;
+	static int m_iMaxFileCount;
+	static int m_iFilePos;
+	static long m_lMaxFileSize;
 	static DWORD m_dwLoggingInterval; // in milliseconds
 
 	void Init(string strModule, int iLogLevel, DWORD dwLoggingInterval);
@@ -79,7 +86,8 @@ class DLLEXPORT Logger{
 	static void WriteToFile(string strModuleName, string strBuffer);
 	static void WriteToFile(string strModuleName);
 	static void WriteLogThread();
-	static void MonitorFileSizeThread();
+	static void CheckFileSize();
+	static void FillFilePathVector();
 public:
 	Logger();
 	Logger(string strModule, int iLogLevel = eInfo, DWORD dwLoggingInterval = LOGGING_INTERVAL);

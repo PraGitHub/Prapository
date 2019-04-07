@@ -9,10 +9,12 @@ string Logger::m_strLogFileName;
 string Logger::m_strLogFilePath;
 string Logger::m_strLogFolder;
 thread Logger::m_threadWriteLog;
-thread Logger::m_threadMonitorFileSize;
 atomic_bool Logger::m_abIsFirstInstance{ true };
 int Logger::m_iMaxLogLevel;
+int Logger::m_iMaxFileCount;
+long Logger::m_lMaxFileSize;
 DWORD Logger::m_dwLoggingInterval;
+strings Logger::vecLogFilePaths;
 
 Logger::Logger()
 {
@@ -62,9 +64,11 @@ void Logger::Init(string strModuleName, int iLogLevel, DWORD dwLoggingInterval)
 		if (Logger::m_abIsFirstInstance.load(memory_order_acquire) == true)
 		{
 			m_threadWriteLog = thread(&Logger::WriteLogThread);
-			m_threadMonitorFileSize = thread(&Logger::MonitorFileSizeThread);
 			m_iMaxLogLevel = iLogLevel; 
 			m_dwLoggingInterval = dwLoggingInterval;
+			m_lMaxFileSize = (long)MAX_FILE_SIZE;
+			m_iMaxFileCount = (int)MAX_NUM_FILES;
+			FillFilePathVector();
 			Logger::m_abIsFirstInstance.store(false, memory_order_release);
 		}
 	}
@@ -94,6 +98,17 @@ time_t Logger::GetTime()
 {
 	long double ldTime = time(NULL);
 	return ldTime;
+}
+
+void Logger::FillFilePathVector()
+{
+	int iCount = 0;
+	while (iCount < m_iMaxFileCount)
+	{
+		string strLogFilePath = m_strLogFolder + "\\" + m_strLogFileName + to_string(iCount);
+		vecLogFilePaths.push_back(strLogFilePath);
+		iCount++;
+	}
 }
 
 void Logger::OpenFile()
@@ -163,11 +178,15 @@ void Logger::WriteLogThread()
 	}
 }
 
-void Logger::MonitorFileSizeThread()
+void Logger::CheckFileSize()
 {
-	autoLockUnlockMutex lock_unlock(m_mtxAccessFile);
-
-
+	// this is a part of critical section and for sure m_fpLogFile is a valid pointer.
+	// this function is called only if m_fpLogFile is valid pointer. 
+	long lFileSize = ftell(m_fpLogFile);
+	if (lFileSize >= m_lMaxFileSize)
+	{
+		// need to work out the logic
+	}
 }
 
 void Logger::WriteToFile(string strModuleName, string strBuffer)
@@ -184,6 +203,7 @@ void Logger::WriteToFile(string strModuleName, string strBuffer)
 			fflush(m_fpLogFile);
 			m_mapModuleBuffer[strModuleName].clear();
 			m_mapModuleBuffer[strModuleName] = "";
+			CheckFileSize();
 		}
 	}
 }
