@@ -9,6 +9,7 @@ string Logger::m_strLogFileName;
 string Logger::m_strLogFilePath;
 string Logger::m_strLogFolder;
 thread Logger::m_threadWriteLog;
+thread Logger::m_threadMonitorFileSize;
 atomic_bool Logger::m_abIsFirstInstance{ true };
 int Logger::m_iMaxLogLevel;
 DWORD Logger::m_dwLoggingInterval;
@@ -61,6 +62,7 @@ void Logger::Init(string strModuleName, int iLogLevel, DWORD dwLoggingInterval)
 		if (Logger::m_abIsFirstInstance.load(memory_order_acquire) == true)
 		{
 			m_threadWriteLog = thread(&Logger::WriteLogThread);
+			m_threadMonitorFileSize = thread(&Logger::MonitorFileSizeThread);
 			m_iMaxLogLevel = iLogLevel; 
 			m_dwLoggingInterval = dwLoggingInterval;
 			Logger::m_abIsFirstInstance.store(false, memory_order_release);
@@ -159,6 +161,13 @@ void Logger::WriteLogThread()
 		Logger::WriteToFile("");
 		Sleep(m_dwLoggingInterval);
 	}
+}
+
+void Logger::MonitorFileSizeThread()
+{
+	autoLockUnlockMutex lock_unlock(m_mtxAccessFile);
+
+
 }
 
 void Logger::WriteToFile(string strModuleName, string strBuffer)

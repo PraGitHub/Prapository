@@ -61,6 +61,7 @@ class DLLEXPORT Logger{
 	static mutex m_mtxAccessFile;
 
 	static thread m_threadWriteLog;
+	static thread m_threadMonitorFileSize;
 
 	static long double m_ldPreviousFlushTime;
 
@@ -78,6 +79,7 @@ class DLLEXPORT Logger{
 	static void WriteToFile(string strModuleName, string strBuffer);
 	static void WriteToFile(string strModuleName);
 	static void WriteLogThread();
+	static void MonitorFileSizeThread();
 public:
 	Logger();
 	Logger(string strModule, int iLogLevel = eInfo, DWORD dwLoggingInterval = LOGGING_INTERVAL);
