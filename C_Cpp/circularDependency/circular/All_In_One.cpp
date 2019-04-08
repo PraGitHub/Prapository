@@ -69,7 +69,7 @@ int main()
 	cout << "Calling A's print " << endl;
 	pA->print();
 
-	cout << "Calling A's print " << endl;
+	cout << "Calling B's print " << endl;
 	pB->print();
 
 	return 0;
