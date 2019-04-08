@@ -2,7 +2,8 @@
 using namespace std;
 
 /*
-this approach leads to run time error => Segmentation fault
+Compilation warning => warning C4717: 'A::print' : recursive on all control paths, function will cause runtime stack overflow
+run time error => Segmentation fault
 */
 
 class A;
