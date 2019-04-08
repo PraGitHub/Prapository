@@ -45,3 +45,8 @@ int main()
     
     return 0;
 }
+
+
+/*
+This code will give this error => Line 22:19: error: invalid use of incomplete type ‘class B’
+*/
