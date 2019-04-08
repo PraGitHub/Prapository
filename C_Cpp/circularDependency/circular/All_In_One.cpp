@@ -1,120 +1,76 @@
-/*
-This code will give this compile time error => Line 22:19: error: invalid use of incomplete type ‘class B’
-*/
-
-/*
-#include <iostream>
-
+#include<iostream>
 using namespace std;
 
-class A;
+class A; // not required
 class B;
 
 class A{
-    string name;
-    B* b;
-    public:
-    A(){
-        name = "Class A";
-        b = new B();
-    }
-    void print(){
-        cout<<name.c_str()<<endl;
-        b->print();
-    }
+	string name;
+	B* b;
+public:
+	A();
+	void set(B* pB);
+	string get();
+	void print();
+
+};
+class B{
+	string name;
+	A* a;
+public:
+	B();
+	void set(A* pA);
+	string get();
+	void print();
 };
 
-class B{
-    string name;
-    A* a;
-    B(){
-        name = "Class B";
-        a = new A();
-    }
-    void print(){
-        cout<<name.c_str()<<endl;
-        a->print();
-    }
+A::A(){
+	name = "Class A";
+}
+
+void A::set(B* pB){
+	b = pB;
+}
+
+void A::print(){
+	cout << name.c_str() << endl;
+	cout << b->get().c_str() << endl;
+}
+
+string A::get(){
+	return name;
+}
+
+B::B(){
+	name = "Class B";
+	a = new A();
+}
+void B::set(A* pA){
+	a = pA;
+}
+
+void B::print(){
+	cout << name.c_str() << endl;
+	cout << a->get().c_str() << endl;
+}
+
+string B::get(){
+	return name;
 }
 
 int main()
 {
-    A* pA = new A();
-    B* pB = new B();
-    
-    cout<<"Calling A's print "<<endl;
-    pA->print();
-    
-    cout<<"Calling A's print "<<endl;
-    pB->print();
-    
-    return 0;
+	A* pA = new A();
+	B* pB = new B();
+
+	pA->set(pB);
+	pB->set(pA);
+
+	cout << "Calling A's print " << endl;
+	pA->print();
+
+	cout << "Calling A's print " << endl;
+	pB->print();
+
+	return 0;
 }
-*/
-
-/*---------------------------------------------------------------------------------------------------------------------------*/
-
-/*
-this code will give this run time error => Segmentation fault (core dumped)
-*/
-/*
-#include <iostream>
-
-using namespace std;
-
-class A;
-class B;
-
-class A{
-    string name;
-    B* b;
-    public:
-    A();
-    void print();
-    
-};
-
-class B{
-    string name;
-    A* a;
-    public:
-    B();
-    void print();
-};
-
-
-A :: A(){
-        name = "Class A";
-        b = new B();
-    }
-    
-void A :: print(){
-        cout<<name.c_str()<<endl;
-        b->print();
-    }
-
-
- B :: B(){
-        name = "Class B";
-        a = new A();
-    }
-void B :: print(){
-        cout<<name.c_str()<<endl;
-        a->print();
-    }
-
-int main()
-{
-    A* pA = new A();
-    B* pB = new B();
-    
-    cout<<"Calling A's print "<<endl;
-    pA->print();
-    
-    cout<<"Calling A's print "<<endl;
-    pB->print();
-    
-    return 0;
-}
-*/
-
