@@ -30,7 +30,7 @@ void Service::RemoveFlight(Flight* pFlight)
 	{
 		return;
 	}
-	for (vector<Flight*>::iterator iter = m_Flights.begin(); iter != m_Flights.end(); ++iter)
+	for (vector<Flight*>::iterator iter = m_Flights.begin(); iter != m_Flights.end(); iter++ )
 	{
 		if ((*iter)->GetName() == pFlight->GetName())
 		{

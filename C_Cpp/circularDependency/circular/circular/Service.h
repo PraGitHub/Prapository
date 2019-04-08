@@ -3,6 +3,8 @@
 #include "main.h"
 #include "Flight.h"
 
+class Flight;
+
 class Service
 {
 	string m_strName;
