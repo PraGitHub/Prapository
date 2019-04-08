@@ -1,8 +1,12 @@
+/*
+This code will give this compile time error => Line 22:19: error: invalid use of incomplete type ‘class B’
+*/
+
+/*
 #include <iostream>
 
 using namespace std;
 
-/*
 class A;
 class B;
 
@@ -48,6 +52,12 @@ int main()
 }
 */
 
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+/*
+this code will give this run time error => Segmentation fault (core dumped)
+*/
+/*
 #include <iostream>
 
 using namespace std;
@@ -106,8 +116,5 @@ int main()
     
     return 0;
 }
-
-
-/*
-This code will give this error => Line 22:19: error: invalid use of incomplete type ‘class B’
 */
+
