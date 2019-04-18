@@ -40,7 +40,7 @@ void printTime()
 		<< seconds.count() << ":"
 		<< milliseconds.count() << ":"
 		<< microseconds.count() << ":"
-		<< nanoseconds.count()<<"\t"
+		<< nanoseconds.count()<<"\t";
 }
 
 void findUsingVector(intvec &arr, int sum)
