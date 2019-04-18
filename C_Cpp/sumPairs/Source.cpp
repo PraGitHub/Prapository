@@ -5,6 +5,7 @@
 #include<cstdlib>
 #include<algorithm>
 #include<ctime>
+#include<chrono>
 
 using namespace std;
 
@@ -12,6 +13,35 @@ using namespace std;
 
 typedef vector<int> intvec;
 typedef unordered_set<int> inthash; //unordered_set is actaully unordered_map which is basicaly a hash table. for unordered_set key and values are same
+
+void printTime()
+{
+	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+	auto duration = now.time_since_epoch();
+
+	typedef std::chrono::duration<int, std::ratio_multiply<std::chrono::hours::period, std::ratio<8>>::type> Days; /* UTC: +8:00 */
+
+	Days days = std::chrono::duration_cast<Days>(duration);
+	duration -= days;
+	auto hours = std::chrono::duration_cast<std::chrono::hours>(duration);
+	duration -= hours;
+	auto minutes = std::chrono::duration_cast<std::chrono::minutes>(duration);
+	duration -= minutes;
+	auto seconds = std::chrono::duration_cast<std::chrono::seconds>(duration);
+	duration -= seconds;
+	auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+	duration -= milliseconds;
+	auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(duration);
+	duration -= microseconds;
+	auto nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
+
+	std::cout << hours.count() << ":"
+		<< minutes.count() << ":"
+		<< seconds.count() << ":"
+		<< milliseconds.count() << ":"
+		<< microseconds.count() << ":"
+		<< nanoseconds.count()<<"\t"
+}
 
 void findUsingVector(intvec &arr, int sum)
 {
@@ -35,6 +65,8 @@ void findUsingVector(intvec &arr, int sum)
 		else
 		{
 			cout << arr[start] << "\t" << arr[end] << endl;
+			start++;
+			end--;
 		}
 	}
 }
@@ -65,8 +97,8 @@ int main(int NARG, char** ARGS)
 	int sum = rand();
 	int num = NumOfInt;
 
-	int temp[] = { -1,3,4,0,2,10,1,5,6,-3 };
-	sum = 0;
+	//int temp[] = { -1,3,4,0,2,10,1,5,6,-3,3,3,-4,1,2,1,2,0,0,0 };
+	//sum = 0;
 
 	if (NARG == 2)
 	{
@@ -85,15 +117,19 @@ int main(int NARG, char** ARGS)
 
 	for (int i = 0; i < num; i++)
 	{
-		//arr.push_back(rand());
-		arr.push_back(temp[i]);
+		arr.push_back(rand());
+		//arr.push_back(temp[i]);
 	}
 
-	cout << __TIMESTAMP__ << "before findUsingVector" << endl;
-	findUsingVector(arr, sum);
-	cout << __TIMESTAMP__ << "after findUsingVector" << endl;
-
-	cout << __TIMESTAMP__ << "before findUsingHash" << endl;
+	printTime();
+	cout << "before findUsingHash" << endl;
 	findUsingHash(arr, sum);
-	cout << __TIMESTAMP__ << "after findUsingHash" << endl;
+	printTime();
+	cout << "after findUsingHash" << endl;
+
+	printTime();
+	cout << "before findUsingVector" << endl;
+	findUsingVector(arr, sum);
+	printTime();
+	cout << "after findUsingVector" << endl;
 }
