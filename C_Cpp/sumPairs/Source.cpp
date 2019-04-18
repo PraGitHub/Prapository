@@ -113,6 +113,8 @@ int main(int NARG, char** ARGS)
 	}
 
 	cout << "num = " << num << endl;
+	cout << "sum = " << sum << endl;
+	
 	//exit(0);
 
 	for (int i = 0; i < num; i++)
