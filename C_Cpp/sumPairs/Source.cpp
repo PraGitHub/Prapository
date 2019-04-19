@@ -6,6 +6,7 @@
 #include<algorithm>
 #include<ctime>
 #include<chrono>
+#include<sstream>
 
 using namespace std;
 
@@ -43,11 +44,13 @@ void printTime()
 		<< nanoseconds.count()<<"\t";
 }
 
-void findUsingVector(intvec &arr, int sum)
+ostringstream* findUsingVector(intvec &arr, int sum)
 {
 	int start = 0;
 	int end = arr.size() - 1;
 	sort(arr.begin(), arr.end());
+	ostringstream* poss = new ostringstream();
+	*poss<<"";
 	while (true)
 	{
 		if (start >= end)
@@ -64,16 +67,20 @@ void findUsingVector(intvec &arr, int sum)
 		}
 		else
 		{
-			cout << arr[start] << "\t" << arr[end] << endl;
+			//cout << arr[start] << "\t" << arr[end] << endl;
+			*poss << arr[start] << "\t" << arr[end] << endl;
 			start++;
 			end--;
 		}
 	}
+	return poss;
 }
 
-void findUsingHash(intvec &arr, int sum)
+ostringstream* findUsingHash(intvec &arr, int sum)
 {
 	inthash hash;
+	ostringstream* poss = new ostringstream();
+	*poss<<"";
 	for (int i = 0; i < arr.size(); i++)
 	{
 		if (i == 0)
@@ -84,11 +91,13 @@ void findUsingHash(intvec &arr, int sum)
 
 		if (hash.find(sum - arr[i]) != hash.end())
 		{
-			cout << arr[i] << "\t" << sum - arr[i] << endl;
+			//cout << arr[i] << "\t" << sum - arr[i] << endl;
+			*poss << arr[i] << "\t" << sum - arr[i] << endl;
 		}
 
 		hash.insert(arr[i]);
 	}
+	return poss;
 }
 
 int main(int NARG, char** ARGS)
@@ -125,13 +134,17 @@ int main(int NARG, char** ARGS)
 
 	printTime();
 	cout << "before findUsingHash" << endl;
-	findUsingHash(arr, sum);
+	ostringstream* poss1 = findUsingHash(arr, sum);
 	printTime();
 	cout << "after findUsingHash" << endl;
+	cout<<"findUsingHash results : "<<endl;
+	cout<<poss1->str()<<endl;
 
 	printTime();
 	cout << "before findUsingVector" << endl;
-	findUsingVector(arr, sum);
+	ostringstream* poss2 = findUsingVector(arr, sum);
 	printTime();
 	cout << "after findUsingVector" << endl;
+	cout<<"findUsingVector results : "<<endl;
+	cout<<poss2->str()<<endl;
 }
