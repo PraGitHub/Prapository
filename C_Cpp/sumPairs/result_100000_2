@@ -1,0 +1,16 @@
+num = 100000
+sum = 1804289383
+0:26:5:464:940:879	before findUsingHash
+0:26:5:567:159:614	after findUsingHash
+findUsingHash results : 
+261729799	1542559584
+949790010	854499373
+
+0:26:5:570:420:886	before findUsingVector
+0:26:5:616:343:475	after findUsingVector
+findUsingVector results : 
+261729799	1542559584
+854499373	949790010
+
+
+
