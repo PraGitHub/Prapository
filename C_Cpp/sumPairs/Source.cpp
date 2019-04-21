@@ -12,6 +12,8 @@ using namespace std;
 
 #define NumOfInt 1000
 
+int num;
+
 typedef vector<int> intvec;
 typedef unordered_set<int> inthash; //unordered_set is actaully unordered_map which is basicaly a hash table. for unordered_set key and values are same
 
@@ -100,11 +102,32 @@ ostringstream* findUsingHash(intvec &arr, int sum)
 	return poss;
 }
 
+int getRandNum()
+{
+	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+	auto duration = now.time_since_epoch();
+
+	typedef std::chrono::duration<int, std::ratio_multiply<std::chrono::nanoseconds::period, std::ratio<8>>::type> Nanosecs; /* UTC: +8:00 */
+
+	Nanosecs nanosec = std::chrono::duration_cast<Nanosecs>(duration);
+	auto nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
+	int n = nanoseconds.count();
+	if (n < 0){
+		n = -n;
+	}
+
+	int r = n%num;
+	n = n%r;
+
+	//cout << n << endl;
+
+	return n;
+}
+
 int main(int NARG, char** ARGS)
 {
 	intvec arr;
-	int sum = rand();
-	int num = NumOfInt;
+	num = NumOfInt;
 
 	//int temp[] = { -1,3,4,0,2,10,1,5,6,-3,3,3,-4,1,2,1,2,0,0,0 };
 	//sum = 0;
@@ -121,6 +144,8 @@ int main(int NARG, char** ARGS)
 		}
 	}
 
+	int sum = getRandNum();
+
 	cout << "num = " << num << endl;
 	cout << "sum = " << sum << endl;
 	
@@ -128,7 +153,7 @@ int main(int NARG, char** ARGS)
 
 	for (int i = 0; i < num; i++)
 	{
-		arr.push_back(rand());
+		arr.push_back(getRandNum());
 		//arr.push_back(temp[i]);
 	}
 
