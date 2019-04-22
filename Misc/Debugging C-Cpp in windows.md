@@ -3,7 +3,6 @@ Windbg related:
     http://www.debuginfo.com/articles/easywindbg.html
 
 
-
 Deadlock detection :
 
     https://confluence.efi.com/display/FX/DeadLock+Detection
@@ -15,7 +14,7 @@ Deadlock detection :
 Useful commands (WinDbg related):
 
 
-.sympath c:\MyRegularSymbols;srv*c:\MyServerSymbols*https://msdl.microsoft.com/download/symbols
+.sympath c:\MyRegularSymbols;srv * c:\MyServerSymbols * https://msdl.microsoft.com/download/symbols
 
 .reload
 
