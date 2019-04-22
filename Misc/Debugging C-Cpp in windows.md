@@ -6,7 +6,7 @@ Windbg related:
 
 Deadlock detection :
 
-    *https://confluence.efi.com/display/FX/DeadLock+Detection
+    *https://confluence.efi.com/display/FX/DeadLock+Detection*
     https://stackoverflow.com/questions/26573238/windbg-how-to-read-the-locks-output
     http://www.dbgtech.net/windbghelp/hh/debugger/t13_advanced_cc933b2b-4388-4b51-9950-d62953991b10.xml.htm
 
