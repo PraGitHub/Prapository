@@ -1,6 +1,6 @@
 Windbg related:
 
-    http://www.debuginfo.com/articles/easywindbg.html
+    *http://www.debuginfo.com/articles/easywindbg.html
 
 
 
@@ -16,11 +16,15 @@ Useful commands (WinDbg related):
 
 
 .sympath c:\MyRegularSymbols;srv*c:\MyServerSymbols*https://msdl.microsoft.com/download/symbols
+
 .reload
+
 ~* kp   //show all threads
+
 lm   // all the loaded dlls
 
 .symfix
+
 .symopt+ 0x40
 
 dv  // to see the value of all local variable.
