@@ -11,11 +11,22 @@
 using namespace std;
 
 #define NumOfInt 1000
+#define rand_helper 129
 
 int num;
+static int rand_count = 0;
 
 typedef vector<int> intvec;
 typedef unordered_set<int> inthash; //unordered_set is actaully unordered_map which is basicaly a hash table. for unordered_set key and values are same
+
+void printLine()
+{
+	for (int i = 0; i < (rand_helper/2); i++)
+	{
+		cout << "-";
+	}
+	cout << endl;
+}
 
 void printTime()
 {
@@ -48,6 +59,7 @@ void printTime()
 
 ostringstream* findUsingVector(intvec &arr, int sum)
 {
+	int count = 0;
 	int start = 0;
 	int end = arr.size() - 1;
 	sort(arr.begin(), arr.end());
@@ -71,15 +83,18 @@ ostringstream* findUsingVector(intvec &arr, int sum)
 		{
 			//cout << arr[start] << "\t" << arr[end] << endl;
 			*poss << arr[start] << "\t" << arr[end] << endl;
+			count++;
 			start++;
 			end--;
 		}
 	}
+	cout << "findUsingVector :: found " << count << " no. of pairs" << endl;
 	return poss;
 }
 
 ostringstream* findUsingHash(intvec &arr, int sum)
 {
+	int count = 0;
 	inthash hash;
 	ostringstream* poss = new ostringstream();
 	*poss<<"";
@@ -95,10 +110,12 @@ ostringstream* findUsingHash(intvec &arr, int sum)
 		{
 			//cout << arr[i] << "\t" << sum - arr[i] << endl;
 			*poss << arr[i] << "\t" << sum - arr[i] << endl;
+			count++;
 		}
 
 		hash.insert(arr[i]);
 	}
+	cout << "findUsingHash :: found " << count << " no. of pairs" << endl;
 	return poss;
 }
 
@@ -108,11 +125,28 @@ int getRandNum()
 	auto duration = now.time_since_epoch();
 
 	typedef std::chrono::duration<int, std::ratio_multiply<std::chrono::nanoseconds::period, std::ratio<8>>::type> Nanosecs; /* UTC: +8:00 */
-
+	
 	Nanosecs nanosec = std::chrono::duration_cast<Nanosecs>(duration);
 	auto nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
 	int n = nanoseconds.count();
-	if (n < 0){
+	if (rand_count == 0)
+	{
+		rand_count++;
+	}
+	else
+	{
+		if (n < 0)
+		{
+			n = n + (rand_count % rand_helper)*(rand_helper);
+		}
+		else
+		{
+			n = n - (rand_count % rand_helper)*(rand_helper);
+		}
+		rand_count++;
+	}
+	if (n < 0)
+	{
 		n = -n;
 	}
 
@@ -146,8 +180,11 @@ int main(int NARG, char** ARGS)
 
 	int sum = getRandNum();
 
+	printLine();
 	cout << "num = " << num << endl;
+	printLine();
 	cout << "sum = " << sum << endl;
+	printLine();
 	
 	//exit(0);
 
@@ -162,14 +199,16 @@ int main(int NARG, char** ARGS)
 	ostringstream* poss1 = findUsingHash(arr, sum);
 	printTime();
 	cout << "after findUsingHash" << endl;
-	cout<<"findUsingHash results : "<<endl;
-	cout<<poss1->str()<<endl;
+	//cout<<"findUsingHash results : "<<endl;
+	//cout<<poss1->str()<<endl;
+	printLine();
 
 	printTime();
 	cout << "before findUsingVector" << endl;
 	ostringstream* poss2 = findUsingVector(arr, sum);
 	printTime();
 	cout << "after findUsingVector" << endl;
-	cout<<"findUsingVector results : "<<endl;
-	cout<<poss2->str()<<endl;
+	//cout<<"findUsingVector results : "<<endl;
+	//cout<<poss2->str()<<endl;
+	printLine();
 }
