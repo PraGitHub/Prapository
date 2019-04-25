@@ -1,0 +1,299 @@
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 999999
+----------------------------------------------------------------
+num = 999999
+----------------------------------------------------------------
+sum = 167177
+----------------------------------------------------------------
+4:0:6:559:732:700       before findUsingHash
+findUsingHash :: found 4339 no. of pairs
+4:0:6:993:494:300       after findUsingHash
+----------------------------------------------------------------
+4:0:7:3:513:800 before findUsingVector
+findUsingVector :: found 3296 no. of pairs
+4:0:7:259:231:100       after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 9999999
+----------------------------------------------------------------
+num = 9999999
+----------------------------------------------------------------
+sum = 2227586
+----------------------------------------------------------------
+4:0:17:582:675:100      before findUsingHash
+findUsingHash :: found 93233 no. of pairs
+4:0:21:745:144:500      after findUsingHash
+----------------------------------------------------------------
+4:0:21:754:80:400       before findUsingVector
+findUsingVector :: found 74176 no. of pairs
+4:0:24:494:726:700      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 123456
+----------------------------------------------------------------
+num = 123456
+----------------------------------------------------------------
+sum = 102600
+----------------------------------------------------------------
+4:0:35:642:411:300      before findUsingHash
+findUsingHash :: found 1014 no. of pairs
+4:0:35:701:526:800      after findUsingHash
+----------------------------------------------------------------
+4:0:35:709:554:100      before findUsingVector
+findUsingVector :: found 590 no. of pairs
+4:0:35:740:640:700      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 1234567
+----------------------------------------------------------------
+num = 1234567
+----------------------------------------------------------------
+sum = 199399
+----------------------------------------------------------------
+4:0:38:375:767:900      before findUsingHash
+findUsingHash :: found 11631 no. of pairs
+4:0:38:883:590:300      after findUsingHash
+----------------------------------------------------------------
+4:0:38:892:615:400      before findUsingVector
+findUsingVector :: found 9981 no. of pairs
+4:0:39:213:126:600      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 987654
+----------------------------------------------------------------
+num = 987654
+----------------------------------------------------------------
+sum = 1192
+----------------------------------------------------------------
+4:0:44:27:932:100       before findUsingHash
+findUsingHash :: found 247 no. of pairs
+4:0:44:415:913:200      after findUsingHash
+----------------------------------------------------------------
+4:0:44:423:934:100      before findUsingVector
+findUsingVector :: found 145 no. of pairs
+4:0:44:685:721:200      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 9876543
+----------------------------------------------------------------
+num = 9876543
+----------------------------------------------------------------
+sum = 6938541
+----------------------------------------------------------------
+4:0:47:390:399:800      before findUsingHash
+findUsingHash :: found 70621 no. of pairs
+4:0:51:495:427:100      after findUsingHash
+----------------------------------------------------------------
+4:0:51:508:471:700      before findUsingVector
+findUsingVector :: found 55552 no. of pairs
+4:0:54:237:825:800      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 1234
+----------------------------------------------------------------
+num = 1234
+----------------------------------------------------------------
+sum = 12
+----------------------------------------------------------------
+4:0:59:718:725:400      before findUsingHash
+findUsingHash :: found 90 no. of pairs
+4:0:59:729:748:200      after findUsingHash
+----------------------------------------------------------------
+4:0:59:737:767:500      before findUsingVector
+findUsingVector :: found 41 no. of pairs
+4:0:59:747:805:500      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 9876
+----------------------------------------------------------------
+num = 9876
+----------------------------------------------------------------
+sum = 1896
+----------------------------------------------------------------
+4:1:6:180:71:600        before findUsingHash
+findUsingHash :: found 445 no. of pairs
+4:1:6:190:162:500       after findUsingHash
+----------------------------------------------------------------
+4:1:6:202:937:300       before findUsingVector
+findUsingVector :: found 268 no. of pairs
+4:1:6:214:977:800       after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 112358
+----------------------------------------------------------------
+num = 112358
+----------------------------------------------------------------
+sum = 16508
+----------------------------------------------------------------
+4:1:19:238:372:500      before findUsingHash
+findUsingHash :: found 1752 no. of pairs
+4:1:19:295:62:100       after findUsingHash
+----------------------------------------------------------------
+4:1:19:303:441:0        before findUsingVector
+findUsingVector :: found 1542 no. of pairs
+4:1:19:338:523:400      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 853211
+----------------------------------------------------------------
+num = 853211
+----------------------------------------------------------------
+sum = 109883
+----------------------------------------------------------------
+4:1:27:913:869:800      before findUsingHash
+findUsingHash :: found 6981 no. of pairs
+4:1:28:291:438:400      after findUsingHash
+----------------------------------------------------------------
+4:1:28:304:949:600      before findUsingVector
+findUsingVector :: found 6207 no. of pairs
+4:1:28:534:653:900      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 8532110
+----------------------------------------------------------------
+num = 8532110
+----------------------------------------------------------------
+sum = 2245376
+----------------------------------------------------------------
+4:1:31:300:731:400      before findUsingHash
+findUsingHash :: found 112277 no. of pairs
+4:1:34:916:847:600      after findUsingHash
+----------------------------------------------------------------
+4:1:34:927:371:500      before findUsingVector
+findUsingVector :: found 91272 no. of pairs
+4:1:37:428:820:0        after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app.exe 1928374
+----------------------------------------------------------------
+num = 1928374
+----------------------------------------------------------------
+sum = 194970
+----------------------------------------------------------------
+4:1:57:577:69:900       before findUsingHash
+findUsingHash :: found 18824 no. of pairs
+4:1:58:372:549:900      after findUsingHash
+----------------------------------------------------------------
+4:1:58:383:578:700      before findUsingVector
+findUsingVector :: found 15219 no. of pairs
+4:1:58:920:689:0        after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>250995
+'250995' is not recognized as an internal or external command,
+operable program or batch file.
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 250995
+----------------------------------------------------------------
+num = 250995
+----------------------------------------------------------------
+sum = 46893
+----------------------------------------------------------------
+4:2:7:432:382:400       before findUsingHash
+findUsingHash :: found 737 no. of pairs
+4:2:7:544:968:0 after findUsingHash
+----------------------------------------------------------------
+4:2:7:550:984:900       before findUsingVector
+findUsingVector :: found 629 no. of pairs
+4:2:7:614:154:800       after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 950925
+----------------------------------------------------------------
+num = 950925
+----------------------------------------------------------------
+sum = 519570
+----------------------------------------------------------------
+4:2:14:499:665:900      before findUsingHash
+findUsingHash :: found 9234 no. of pairs
+4:2:14:893:120:700      after findUsingHash
+----------------------------------------------------------------
+4:2:14:906:626:700      before findUsingVector
+findUsingVector :: found 8103 no. of pairs
+4:2:15:160:851:200      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 11110112
+----------------------------------------------------------------
+num = 11110112
+----------------------------------------------------------------
+sum = 1198560
+----------------------------------------------------------------
+4:2:30:520:873:700      before findUsingHash
+findUsingHash :: found 122650 no. of pairs
+4:2:35:122:6:400        after findUsingHash
+----------------------------------------------------------------
+4:2:35:133:35:200       before findUsingVector
+findUsingVector :: found 95178 no. of pairs
+4:2:38:303:441:800      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 11141114
+----------------------------------------------------------------
+num = 11141114
+----------------------------------------------------------------
+sum = 2013204
+----------------------------------------------------------------
+4:3:24:968:182:100      before findUsingHash
+findUsingHash :: found 125780 no. of pairs
+4:3:29:623:239:100      after findUsingHash
+----------------------------------------------------------------
+4:3:29:631:272:300      before findUsingVector
+findUsingVector :: found 100716 no. of pairs
+4:3:32:908:655:300      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>110014
+'110014' is not recognized as an internal or external command,
+operable program or batch file.
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 110014
+----------------------------------------------------------------
+num = 110014
+----------------------------------------------------------------
+sum = 20
+----------------------------------------------------------------
+4:3:38:865:833:200      before findUsingHash
+findUsingHash :: found 0 no. of pairs
+4:3:38:916:889:500      after findUsingHash
+----------------------------------------------------------------
+4:3:38:923:905:500      before findUsingVector
+findUsingVector :: found 0 no. of pairs
+4:3:38:959:598:600      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 1100014
+----------------------------------------------------------------
+num = 1100014
+----------------------------------------------------------------
+sum = 813144
+----------------------------------------------------------------
+4:3:42:186:375:600      before findUsingHash
+findUsingHash :: found 8691 no. of pairs
+4:3:42:644:274:700      after findUsingHash
+----------------------------------------------------------------
+4:3:42:653:801:900      before findUsingVector
+findUsingVector :: found 7054 no. of pairs
+4:3:42:935:44:400       after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>1400011
+'1400011' is not recognized as an internal or external command,
+operable program or batch file.
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>app 1400011
+----------------------------------------------------------------
+num = 1400011
+----------------------------------------------------------------
+sum = 306022
+----------------------------------------------------------------
+4:3:48:878:515:200      before findUsingHash
+findUsingHash :: found 14056 no. of pairs
+4:3:49:463:354:500      after findUsingHash
+----------------------------------------------------------------
+4:3:49:469:369:800      before findUsingVector
+findUsingVector :: found 11081 no. of pairs
+4:3:49:850:257:900      after findUsingVector
+----------------------------------------------------------------
+
+E:\MyLearnings\Prapository\C_Cpp\sumPairs>
