@@ -151,7 +151,11 @@ int getRandNum()
 	}
 
 	int r = n%num;
-	n = n%r;
+
+	if (r != 0)
+	{
+
+	}
 
 	//cout << n << endl;
 
