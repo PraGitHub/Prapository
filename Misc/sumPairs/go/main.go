@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"strconv"
@@ -76,6 +75,7 @@ func usingHash() {
 
 func usingArr() {
 	arr = quickSort(arr)
+	//fmt.Println("arr after sort = ", arr)
 	start := 0
 	end := len(arr) - 1
 
@@ -90,6 +90,7 @@ func usingArr() {
 		} else {
 			pairs = append(pairs, pair{arr[start], arr[end]})
 			count++
+			start++
 			end--
 		}
 	}
@@ -100,9 +101,7 @@ func printLine() {
 }
 
 func main() {
-	log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
 	var i int64
-
 	arr = make([]int64, 0)
 	count = 0
 	max, _ = strconv.ParseInt(os.Args[1], 10, 64)
@@ -113,24 +112,24 @@ func main() {
 	}
 
 	printLine()
-	log.Println("num = ", max)
+	fmt.Println(time.Now(), " :: ", "num = ", max)
 	printLine()
-	log.Println("sum = ", sum)
+	fmt.Println(time.Now(), " :: ", "sum = ", sum)
 	printLine()
 
 	pairs = make([]pair, 0)
 	printLine()
-	log.Println("before usingHash")
+	fmt.Println(time.Now(), " :: ", "before usingHash")
 	usingHash()
-	log.Println("after usingHash")
-	log.Println("usingHash returned ", len(pairs), " number of pairs")
+	fmt.Println(time.Now(), " :: ", "after usingHash")
+	fmt.Println(time.Now(), " :: ", "usingHash returned ", len(pairs), " number of pairs")
 	printLine()
 
 	pairs = make([]pair, 0)
 	printLine()
-	log.Println("before usingArr")
+	fmt.Println(time.Now(), " :: ", "before usingArr")
 	usingArr()
-	log.Println("after usingArr")
-	log.Println("usingHash returned ", len(pairs), " number of pairs")
+	fmt.Println(time.Now(), " :: ", "after usingArr")
+	fmt.Println(time.Now(), " :: ", "usingHash returned ", len(pairs), " number of pairs")
 	printLine()
 }
