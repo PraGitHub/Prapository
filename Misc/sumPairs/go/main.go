@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"strconv"
@@ -51,7 +52,13 @@ func quickSort(a []int64) []int64 {
 	return a
 }
 
+func printElapsedTime(name string, now time.Time) {
+	log.Println(name, " took ", time.Since(now))
+}
+
 func usingHash() {
+	startTime := time.Now()
+	defer printElapsedTime("usingHash", startTime)
 	hashTable := make(map[int64]int64, 0)
 	first := true
 	found := false
@@ -74,8 +81,10 @@ func usingHash() {
 }
 
 func usingArr() {
+	startTime := time.Now()
+	defer printElapsedTime("usingArr", startTime)
 	arr = quickSort(arr)
-	//fmt.Println("arr after sort = ", arr)
+	//log.Println("arr after sort = ", arr)
 	start := 0
 	end := len(arr) - 1
 
@@ -97,10 +106,11 @@ func usingArr() {
 }
 
 func printLine() {
-	fmt.Println("------------------------------------------------------------")
+	fmt.Println("-------------------------------------------------------------------------------------------------------")
 }
 
 func main() {
+	log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
 	var i int64
 	arr = make([]int64, 0)
 	count = 0
@@ -109,27 +119,39 @@ func main() {
 
 	for i = 0; i < max; i++ {
 		arr = append(arr, getRandNum())
+		if i == max/4 {
+			//log.Println("max/4")
+		}
+		if i == max/2 {
+			//log.Println("max/2")
+		}
+		if i == 3*max/4 {
+			//log.Println("3*max/4")
+		}
+		if i == max-1 {
+			//log.Println("max")
+		}
 	}
 
 	printLine()
-	fmt.Println(time.Now(), " :: ", "num = ", max)
+	log.Println("num = ", max)
 	printLine()
-	fmt.Println(time.Now(), " :: ", "sum = ", sum)
+	log.Println("sum = ", sum)
 	printLine()
 
 	pairs = make([]pair, 0)
 	printLine()
-	fmt.Println(time.Now(), " :: ", "before usingHash")
+	log.Println("before usingHash")
 	usingHash()
-	fmt.Println(time.Now(), " :: ", "after usingHash")
-	fmt.Println(time.Now(), " :: ", "usingHash returned ", len(pairs), " number of pairs")
+	log.Println("after usingHash")
+	log.Println("usingHash returned ", len(pairs), " number of pairs")
 	printLine()
 
 	pairs = make([]pair, 0)
 	printLine()
-	fmt.Println(time.Now(), " :: ", "before usingArr")
+	log.Println("before usingArr")
 	usingArr()
-	fmt.Println(time.Now(), " :: ", "after usingArr")
-	fmt.Println(time.Now(), " :: ", "usingHash returned ", len(pairs), " number of pairs")
+	log.Println("after usingArr")
+	log.Println("usingHash returned ", len(pairs), " number of pairs")
 	printLine()
 }
