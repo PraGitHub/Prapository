@@ -23,7 +23,7 @@ func parseIntFromString(s string) int64 {
 	n, err := strconv.ParseInt(s, 10, 64)
 	if err != nil {
 		printLine()
-		log.Println("prseIntFromString :: err = ", err)
+		log.Println("parseIntFromString :: err = ", err)
 		log.Println("Given input = ", s, " is not a number")
 		printLine()
 		log.Fatalln("Please try again with right inputs")
@@ -32,7 +32,15 @@ func parseIntFromString(s string) int64 {
 }
 
 func parseFloatFromStirng(s string) float64 {
-
+	n, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		printLine()
+		log.Println("parseFromString :: err = ", err)
+		log.Println("Given input = ", s, " is not a number")
+		printLine()
+		log.Fatalln("Please try again with right inputs")
+	}
+	return n
 }
 
 func invalidOptions() {
@@ -170,4 +178,5 @@ func main() {
 	printLine()
 
 	parseInput(inputFilePath)
+	log.Println("batsmenData = ",batsmenData)
 }
