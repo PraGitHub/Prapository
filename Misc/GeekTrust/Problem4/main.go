@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
+	"io"
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Batsman struct {
@@ -28,6 +31,10 @@ func parseIntFromString(s string) int64 {
 	return n
 }
 
+func parseFloatFromStirng(s string) float64 {
+
+}
+
 func invalidOptions() {
 	log.Println("Usage : ")
 	log.Println("main.exe [input file path] [runs remaining] [overs remaining] [wickets in hand]")
@@ -41,7 +48,7 @@ func invalidOptions() {
 			Kirat Boli,5,30,25,10,15,1,9,5
 			N.S Nodhi,10,40,20,5,10,1,4,10
 			R Rumrah,20,30,15,5,5,1,4,20
-			Shshi Henra,30,25,5,0,5,1,4,30`)
+			Shashi Henra,30,25,5,0,5,1,4,30`)
 	printLine()
 	log.Println("40 is the number of runs remaining to  chase")
 	printLine()
@@ -52,8 +59,97 @@ func invalidOptions() {
 	log.Fatalln("Please try again with right parameters")
 }
 
-func parseInput(inputFilePath string) {
+func addToBatsmenData(keys, values []string) {
+	name := ""
+	var batsman Batsman
+	for index, key := range keys {
+		if key == "name" {
+			name = values[index]
+			if name == "" {
+				printLine()
+				log.Println("addToBatsmenData :: Batsman name is empty")
+				printLine()
+				log.Fatalln("Please try again with right inputs")
+			}
+			continue
+		}
 
+		value := parseFloatFromStirng(values[index])
+		if key == "dots" {
+			batsman.dots = value
+		}
+		if key == "ones" {
+			batsman.ones = value
+		}
+		if key == "twos" {
+			batsman.twos = value
+		}
+		if key == "threes" {
+			batsman.threes = value
+		}
+		if key == "fours" {
+			batsman.fours = value
+		}
+		if key == "fives" {
+			batsman.fives = value
+		}
+		if key == "sixes" {
+			batsman.sixes = value
+		}
+		if key == "out" {
+			batsman.out = value
+		}
+	}
+	batsmenData[name] = batsman
+}
+
+func parseInput(inputFilePath string) {
+	inFile, err := os.Open(inputFilePath)
+	keys := make([]string, 0)
+	values := make([]string, 0)
+	if err != nil {
+		printLine()
+		log.Println("parseInput :: err while opening input file")
+		log.Println("err = ", err)
+		printLine()
+		log.Fatalln("Please make sure the given file exists")
+	}
+	defer inFile.Close()
+
+	reader := bufio.NewReader(inFile)
+	firstLine := true
+	length := 0
+	for {
+		bytes, _, err := reader.ReadLine()
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			printLine()
+			log.Println("parseInput :: err while reading input file")
+			log.Println("err = ", err)
+			printLine()
+			log.Fatalln("Please try again")
+		}
+		line := string(bytes)
+		values = make([]string, 0)
+		if firstLine {
+			keys = strings.Split(line, ",")
+			log.Println("keys = ", keys)
+			firstLine = false
+			length = len(keys)
+			continue
+		}
+		values = strings.Split(line, ",")
+		if length != len(values) {
+			printLine()
+			log.Println("parseInput :: Invalid inputs ! Check input file")
+			printLine()
+			log.Fatalln("Please try again with right input file")
+		}
+		log.Println("values = ", values)
+		addToBatsmenData(keys, values)
+	}
 }
 
 func main() {
