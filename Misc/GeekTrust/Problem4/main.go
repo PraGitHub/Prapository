@@ -11,9 +11,11 @@ import (
 
 type Batsman struct {
 	dots, ones, twos, threes, fours, fives, sixes, out float64
+	score                                              int64
 }
 
 var batsmenData = map[string]Batsman{}
+var striker, nonStriker string
 
 func printLine() {
 	log.Println("--------------------------------------------------------------------------------")
@@ -83,9 +85,10 @@ func addToBatsmenData(keys, values []string) {
 			continue
 		}
 
-		value := parseFloatFromStirng(values[index]) / float64(100)
+		value := parseFloatFromStirng(values[index])
 		sum = sum + value
-		log.Println(name, " :: value = ", value, " sum = ", sum)
+		//log.Println(name, " :: value = ", value, " sum = ", sum)
+		value = value / float64(100)
 		if key == "dots" {
 			batsman.dots = value
 		}
@@ -111,13 +114,14 @@ func addToBatsmenData(keys, values []string) {
 			batsman.out = value
 		}
 	}
-	printLine()
-	if sum != float64(1) {
+	//printLine()
+	if sum != float64(100) {
 		printLine()
 		log.Println("sum of probability of batsman = ", name, " is not equal to 1, sum = ", sum)
 		printLine()
 		log.Fatalln("Please try again with right values of probabilities")
 	}
+	batsman.score = 0
 	batsmenData[name] = batsman
 }
 
@@ -170,6 +174,10 @@ func parseInput(inputFilePath string) {
 	}
 }
 
+func simulateInnings() {
+	log.Println("striker = ", striker, " nonStriker = ", nonStriker)
+}
+
 func main() {
 	if len(os.Args) != 5 {
 		invalidOptions()
@@ -188,5 +196,24 @@ func main() {
 	printLine()
 
 	parseInput(inputFilePath)
-	log.Println("batsmenData = ", batsmenData)
+	//log.Println("batsmenData = ", batsmenData)
+	if len(batsmenData) <= 1 {
+		printLine()
+		log.Fatalln("All out !!!")
+		printLine()
+	}
+	tempCount := 0
+	for key := range batsmenData {
+		tempCount++
+		if tempCount == 1 {
+			striker = key
+		}
+		if tempCount == 2 {
+			nonStriker = key
+		}
+		if tempCount >= 2 {
+			break
+		}
+	}
+	simulateInnings()
 }
