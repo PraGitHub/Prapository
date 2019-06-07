@@ -10,11 +10,12 @@ import (
 )
 
 type Batsman struct {
+	name                                               string
 	dots, ones, twos, threes, fours, fives, sixes, out float64
 	score                                              int64
 }
 
-var batsmenData = map[string]Batsman{}
+var batsmenData = []Batsman{}
 var striker, nonStriker string
 
 func printLine() {
@@ -45,6 +46,16 @@ func parseFloatFromStirng(s string) float64 {
 	return n
 }
 
+func getBatsman(name string) (batsman Batsman) {
+	for i := range batsmenData {
+		batsman = batsmenData[i]
+		if batsman.name == name {
+			break
+		}
+	}
+	return
+}
+
 func invalidOptions() {
 	log.Println("Usage : ")
 	log.Println("main.exe [input file path] [runs remaining] [overs remaining] [wickets in hand]")
@@ -70,13 +81,12 @@ func invalidOptions() {
 }
 
 func addToBatsmenData(keys, values []string) {
-	name := ""
 	sum := float64(0)
 	var batsman Batsman
 	for index, key := range keys {
 		if key == "name" {
-			name = values[index]
-			if name == "" {
+			batsman.name = values[index]
+			if batsman.name == "" {
 				printLine()
 				log.Println("addToBatsmenData :: Batsman name is empty")
 				printLine()
@@ -117,12 +127,12 @@ func addToBatsmenData(keys, values []string) {
 	//printLine()
 	if sum != float64(100) {
 		printLine()
-		log.Println("sum of probability of batsman = ", name, " is not equal to 1, sum = ", sum)
+		log.Println("sum of probability of batsman = ", batsman.name, " is not equal to 1, sum = ", sum)
 		printLine()
 		log.Fatalln("Please try again with right values of probabilities")
 	}
 	batsman.score = 0
-	batsmenData[name] = batsman
+	batsmenData = append(batsmenData, batsman)
 }
 
 func parseInput(inputFilePath string) {
@@ -196,24 +206,13 @@ func main() {
 	printLine()
 
 	parseInput(inputFilePath)
-	//log.Println("batsmenData = ", batsmenData)
+	log.Println("batsmenData = ", batsmenData)
 	if len(batsmenData) <= 1 {
 		printLine()
 		log.Fatalln("All out !!!")
 		printLine()
 	}
-	tempCount := 0
-	for key := range batsmenData {
-		tempCount++
-		if tempCount == 1 {
-			striker = key
-		}
-		if tempCount == 2 {
-			nonStriker = key
-		}
-		if tempCount >= 2 {
-			break
-		}
-	}
+	striker = batsmenData[0].name
+	nonStriker = batsmenData[1].name
 	simulateInnings()
 }
