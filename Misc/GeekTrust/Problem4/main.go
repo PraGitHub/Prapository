@@ -69,6 +69,7 @@ func invalidOptions() {
 
 func addToBatsmenData(keys, values []string) {
 	name := ""
+	sum := float64(0)
 	var batsman Batsman
 	for index, key := range keys {
 		if key == "name" {
@@ -82,7 +83,9 @@ func addToBatsmenData(keys, values []string) {
 			continue
 		}
 
-		value := parseFloatFromStirng(values[index])
+		value := parseFloatFromStirng(values[index]) / float64(100)
+		sum = sum + value
+		log.Println(name, " :: value = ", value, " sum = ", sum)
 		if key == "dots" {
 			batsman.dots = value
 		}
@@ -107,6 +110,13 @@ func addToBatsmenData(keys, values []string) {
 		if key == "out" {
 			batsman.out = value
 		}
+	}
+	printLine()
+	if sum != float64(1) {
+		printLine()
+		log.Println("sum of probability of batsman = ", name, " is not equal to 1, sum = ", sum)
+		printLine()
+		log.Fatalln("Please try again with right values of probabilities")
 	}
 	batsmenData[name] = batsman
 }
@@ -143,7 +153,7 @@ func parseInput(inputFilePath string) {
 		values = make([]string, 0)
 		if firstLine {
 			keys = strings.Split(line, ",")
-			log.Println("keys = ", keys)
+			//log.Println("keys = ", keys)
 			firstLine = false
 			length = len(keys)
 			continue
@@ -155,7 +165,7 @@ func parseInput(inputFilePath string) {
 			printLine()
 			log.Fatalln("Please try again with right input file")
 		}
-		log.Println("values = ", values)
+		//log.Println("values = ", values)
 		addToBatsmenData(keys, values)
 	}
 }
@@ -178,5 +188,5 @@ func main() {
 	printLine()
 
 	parseInput(inputFilePath)
-	log.Println("batsmenData = ",batsmenData)
+	log.Println("batsmenData = ", batsmenData)
 }
