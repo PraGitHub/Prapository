@@ -18,18 +18,22 @@ const users = [
 function findUser(id, password){
 	for(var i in users){
 		if(users[i].id === id && users[i].password === password){
+			console.log('findUser :: user found, id = ', id);
 			return {result: true, data: users[i]};
 		}
 	}
+	console.log('findUser :: user not found, id = ', id);
 	return {result: false, data: {}};
 }
 
 function findUserById(id){
 	for(var i in users){
 	        if(users[i].id === id){
-	                return {result: true, data: users[i]};
+				console.log('findUserById :: user found, id = ', id);
+	            return {result: true, data: users[i]};
 	        }
 	}
+	console.log('findUserById :: user not found, id = ', id);
 	return {result: false, data: {}};
 }
 
@@ -122,7 +126,14 @@ app.post('/login', function(req, res, next){
 			console.log('req.login callback begin');
 			console.log('req.session.passport = ', req.session.passport);
 			console.log('req.user = ', req.user);
+			console.log('err = ', err);
 			console.log('req.login callback end');
+			if(err){
+				return res.json({
+					server: 'authTut Server',
+					message: 'Invalid User !'
+				});
+			}
 			return res.json({
 				server: 'authTut Server',
 				message: 'Logged in !'
