@@ -3,8 +3,6 @@
 #include<cstdint>
 using namespace std;
 
-//http://cpp.sh/7cehe
-
 static char ten_chars[] = { "ilrawjoagk" };
 static char five_chars[] = {"sptde"}; // s = sapta, p = pancha, t = threya, d = dwe, e = eka
 

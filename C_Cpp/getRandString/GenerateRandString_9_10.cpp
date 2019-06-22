@@ -14,6 +14,40 @@ string getRandString()
 	uint64_t uiTemp = uiTime;
 	while (uiTemp)
 	{
+		int iPos = uiTemp % 9;
+		char c = ten_chars[iPos];
+		string strChar(1,c);
+		strRandString = strRandString + strChar;
+
+		if (uiTemp % 7 == 0)
+        {
+            strRandString = strRandString + string(1,five_chars[0]);
+        }
+        else if (uiTemp % 5 == 0)
+        {
+            strRandString = strRandString + string(1,five_chars[1]);
+        }
+        else if (uiTemp % 3 == 0)
+        {
+            strRandString = strRandString + string(1,five_chars[2]);
+        }
+        else if (uiTemp % 2 == 0)
+        {
+            strRandString = strRandString + string(1,five_chars[3]);
+        }
+        else
+        {
+            strRandString = strRandString + string(1,five_chars[4]);
+        }
+
+		uiTemp = uiTemp / 9; 
+	}
+	
+	strRandString = strRandString.substr(0,20);
+	
+    uiTemp = uiTime;
+	while (uiTemp)
+	{
 		int iPos = uiTemp % 10;
 		char c = ten_chars[iPos];
 		string strChar(1,c);
@@ -42,13 +76,17 @@ string getRandString()
 
 		uiTemp = uiTemp / 10; 
 	}
-	cout<<"strRandString = "<<strRandString<<endl;
+	strRandString = strRandString.substr(0,40);
+	//cout<<"strRandString = "<<strRandString<<endl;
 	cout<<strRandString.length()<<endl;
 	return strRandString;
 }
 
 int main()
 {
-    cout<<getRandString()<<endl;
+    for(int i=0;i<20;i++)
+    {
+       cout<<getRandString()<<endl; 
+    }
     return 0;
 }

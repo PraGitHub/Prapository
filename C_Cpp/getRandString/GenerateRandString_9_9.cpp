@@ -14,7 +14,7 @@ string getRandString()
 	uint64_t uiTemp = uiTime;
 	while (uiTemp)
 	{
-		int iPos = uiTemp % 10;
+		int iPos = uiTemp % 9;
 		char c = ten_chars[iPos];
 		string strChar(1,c);
 		strRandString = strRandString + strChar;
@@ -40,7 +40,7 @@ string getRandString()
             strRandString = strRandString + string(1,five_chars[4]);
         }
 
-		uiTemp = uiTemp / 10; 
+		uiTemp = uiTemp / 9; 
 	}
 	cout<<"strRandString = "<<strRandString<<endl;
 	cout<<strRandString.length()<<endl;
