@@ -81,7 +81,7 @@ string getRandString()
 	}
 	strRandString = strRandString.substr(0,40);
 	//cout<<"strRandString = "<<strRandString<<endl;
-	cout<<strRandString.length()<<" "<<strRandString<<endl;
+//	cout<<strRandString.length()<<" "<<strRandString<<endl;
 	return strRandString;
 }
 
@@ -89,7 +89,10 @@ int main()
 {
     map<string,bool> mapstr;
     string strTemp;
-    for(int i=0;i<50000;i++)
+    int iMax = 0;
+    cout<<"Enter number of tries"<<endl;
+    cin>>iMax;
+    for(int i=0;i<iMax;i++)
     {
        strTemp = getRandString();
        if(mapstr.find(strTemp)!=mapstr.end())
@@ -97,12 +100,13 @@ int main()
            cout<<"string found"<<endl;
            cout<<"strTemp = "<<strTemp<<endl;
            cout<<"i = "<<i<<endl;
-           return 0;
+           break;
        }
        else
        {
            mapstr.insert(make_pair(strTemp,true));
        }
     }
+    cout<<"map size = "<<mapstr.size()<<endl;
     return 0;
 }
