@@ -17,7 +17,7 @@ string getRandString()
 	{
 		int iPos = uiTemp % 10;
 		char c = ten_chars[iPos];
-		string strChar((const char*)&c);
+		string strChar(1,c);
 		strRandString = strRandString + strChar;
 		if (uiTemp % 7 == 0)
 		{
