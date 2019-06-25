@@ -1,4 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+void printArray(int* arr, int n)
+{
+        int i = 0;
+        while(i<n)
+        {
+                printf("%d\n",arr[i++]);
+        }
+        printf("\n");
+}
 
 int* getIntArr(char* pcstrIn, int* count)
 {
@@ -7,8 +18,9 @@ int* getIntArr(char* pcstrIn, int* count)
         *count = 0;
         return 0;
     }
-    int* digits = malloc(sizeof(int));
-    int* dollarPos = malloc(sizeof(int));
+    
+    int* digits = (int*) malloc(sizeof(int));
+    int* dollarPos = (int*) malloc(sizeof(int));
     int digitCount = 0;
     int dollarCount = 0;
     char c = pcstrIn[digitCount + dollarCount]; // (digitCount + dollarCount) acts as iterator
@@ -17,19 +29,19 @@ int* getIntArr(char* pcstrIn, int* count)
         if(c == '$')
         {
             dollarPos[dollarCount] = dollarCount + digitCount; 
-            dollarPos++;
-            dollarPos = realloc(dollarPos, (dollarCount+1)*sizeof(int));
+            dollarCount++;
+            dollarPos = (int*) realloc(dollarPos, (dollarCount+1)*sizeof(int));
         }
         else // it will be a digit
         {
             digits[digitCount] = c - '0';
             digitCount++;
-            digits = realloc(digits, (digitCount+1)*sizeof(int));
+            digits = (int*) realloc(digits, (digitCount+1)*sizeof(int));
         }
         c = pcstrIn[digitCount + dollarCount];
     }
     // by now we will have all digits in 'digits' and all positions of '$'s in 'dollarPos'
-    
+    printArray(digits, digitCount);
 }
 
 int main()
@@ -38,8 +50,8 @@ int main()
     printf("Enter the length of string : ");
     scanf("%d", &size);
     
-    char* pcstrInput = malloc((size+1)*sizeof(char));
-    printf("Enter the string : ")
+    char* pcstrInput = (char*) malloc((size+1)*sizeof(char));
+    printf("Enter the string : ");
     scanf("%s", pcstrInput);
     int count = 0;
     int* arr = getIntArr(pcstrInput,&count);
