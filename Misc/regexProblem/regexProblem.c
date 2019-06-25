@@ -1,15 +1,34 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <stdio.h>
 
 int* getIntArr(char* pcstrIn, int* count)
 {
+    if(pcstrIn == 0)
+    {
+        *count = 0;
+        return 0;
+    }
+    int* digits = malloc(sizeof(int));
+    int* dollarPos = malloc(sizeof(int));
+    int digitCount = 0;
+    int dollarCount = 0;
+    char c = pcstrIn[digitCount + dollarCount]; // (digitCount + dollarCount) acts as iterator
+    while(c != 0)
+    {
+        if(c == '$')
+        {
+            dollarPos[dollarCount] = dollarCount + digitCount; 
+            dollarPos++;
+            dollarPos = realloc(dollarPos, (dollarCount+1)*sizeof(int));
+        }
+        else // it will be a digit
+        {
+            digits[digitCount] = c - '0';
+            digitCount++;
+            digits = realloc(digits, (digitCount+1)*sizeof(int));
+        }
+        c = pcstrIn[digitCount + dollarCount];
+    }
+    // by now we will have all digits in 'digits' and all positions of '$'s in 'dollarPos'
     
 }
 
