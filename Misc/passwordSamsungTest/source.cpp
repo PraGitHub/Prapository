@@ -3,9 +3,17 @@
 #include<vector>
 using namespace std;
 
-typedef vector<string> strvec;
+typedef vector<string> STRVEC;
 
-void determineTheBestAndTheWorst(int n, int k, strvec passwords)
+void printStrVec(STRVEC strvec)
+{
+    for(STRVEC::iterator iter = strvec.begin(); iter != strvec.end(); ++iter)
+    {
+        cout<<*iter<<endl;
+    }
+}
+
+void determineTheBestAndTheWorst(int n, int k, STRVEC passwords)
 {
     string password = passwords[n];
     /*
@@ -18,13 +26,14 @@ void determineTheBestAndTheWorst(int n, int k, strvec passwords)
     N3 = N1+N2-1
     WorstCasetime = (N3- (floor(N3/K))) + (floor(N3/K))*5 + 1
     */
+
 }
 
 int main()
 {
     int n;
     int k;
-    strvec passwords;
+    STRVEC passwords;
 
     cin>>n;
     cin>>k;
@@ -33,8 +42,10 @@ int main()
     {
         string strTemp;
         cin>>strTemp;
-        passwords.push_back(n, k, strTemp);
+        passwords.push_back(strTemp);
     }
 
-    determineTheBestAndTheWorst(passwords);
+    printStrVec(passwords);
+
+    determineTheBestAndTheWorst(n, k, passwords);
 }
