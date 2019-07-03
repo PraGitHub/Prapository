@@ -17,3 +17,25 @@ password<br/>
 Inputs Explaination => first line will have N and K <br/>
 Next 'N' lines will have all passwords<br />
 'N+1'th line will have actual password<br />
+
+Example : <br />
+<br />
+Inputs :<br />
+10 2<br />
+apple<br />
+orange<br />
+banana<br />
+mango<br />
+gkgkgk<br />
+rose<br />
+jasmine<br />
+hibiscus<br />
+marigold<br />
+prashanth<br />
+gkgkgk<br />
+<br />
+Output :<br />
+<br />
+8<br />
+14
+
