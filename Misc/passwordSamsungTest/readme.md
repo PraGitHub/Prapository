@@ -1,8 +1,8 @@
 Problem statement : find the best and worst possible cases in time for Mr.X in logging in to his account successfully<br/>
 Given : <br/>
 Mr.X will always try to enter passwords in non-decreasing order of their lengths<br/>
-For 5 consecutive unsuccessful tries => time = 5s<br/>
-For every try => time = 'K's<br/>
+For 'K' consecutive unsuccessful tries => time = 5 s<br/>
+For every try => time = 1 s<br/>
 <br/>
 Inputs<br/>
 N K<br/>
