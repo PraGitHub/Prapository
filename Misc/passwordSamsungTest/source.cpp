@@ -13,6 +13,11 @@ void printStrVec(STRVEC strvec)
     }
 }
 
+bool compareElements(string a, string b) //bool compareElements(const string& a, const string& b) // this also works
+{
+    return (a.length() < b.length());
+}
+
 void determineTheBestAndTheWorst(int n, int k, STRVEC passwords)
 {
     string password = passwords[n];
@@ -26,7 +31,8 @@ void determineTheBestAndTheWorst(int n, int k, STRVEC passwords)
     N3 = N1+N2-1
     WorstCasetime = (N3- (floor(N3/K))) + (floor(N3/K))*5 + 1
     */
-
+    sort(passwords.begin(), (passwords.begin() + n), compareElements);
+    printStrVec(passwords);
 }
 
 int main()
