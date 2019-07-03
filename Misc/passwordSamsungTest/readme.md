@@ -36,7 +36,6 @@ prashanth<br />
 gkgkgk<br />
 <br />
 Output :<br />
-<br />
 8<br />
 14<br />
 <br />
