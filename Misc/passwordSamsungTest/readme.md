@@ -17,7 +17,8 @@ password<br/>
 Inputs Explaination => first line will have N and K <br/>
 Next 'N' lines will have all passwords<br />
 'N+1'th line will have actual password<br />
-
+It is for sure that the actual password will be in one of the first 'N' lines<br />
+<br />
 Example : <br />
 <br />
 Inputs :<br />
@@ -37,5 +38,11 @@ gkgkgk<br />
 Output :<br />
 <br />
 8<br />
-14
+14<br />
+<br />
+Explaination :<br />
+Best Case : rose apple mango gkgkgk<br />
+1 5 1 1 = 8<br />
+Worst Case : rose apple mango banana orange gkgkgk<br />
+1 5 1 5 1 1 = 14<br />
 
