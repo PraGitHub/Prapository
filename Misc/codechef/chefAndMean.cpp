@@ -23,11 +23,13 @@ int main() {
 	        coins[i] = coin;
 	        sum += coin;
 	    }
+	    /*
 	    if(n == 1)
 	    {
 	        cout<<"Impossible"<<endl;
 	        continue;
 	    }
+	    */
 	    if(sum%n != 0)
 	    {
 	        cout<<"Impossible"<<endl;
