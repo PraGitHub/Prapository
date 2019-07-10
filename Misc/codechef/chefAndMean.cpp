@@ -6,10 +6,10 @@ int main() {
 	// your code goes here
 	int t;
 	int n;
-	int sum = 0;
-	int mean = 0;
-	int coin = 0;
-	vector<int> coins;
+	long int sum = 0;
+	long int mean = 0;
+	long int coin = 0;
+	vector<long int> coins;
 	cin>>t;
 	while(t != 0)
 	{
