@@ -1,11 +1,42 @@
 
  #include<algorithm>
- 
- /*
- This input should expect -1 but it is expecting 1
-  8 4 -9 8 5 -1 7 5 3 
-  */
 
+//this does not check of the integers grearter than the given integer are unique
+// this is the one which is expected in interviewbit
+int Solution::solve(vector<int>& A) {
+    int n = A.size();
+    
+    if(n == 0) return -1;
+    
+    if(n == 1)
+    {
+        if(A[0] == 0) return 1;
+        return -1;
+    }
+    
+    sort(A.begin(),A.end());
+    for(int i=0; i<n; i++)
+    {
+        if(i == (n-1))
+        {
+            if(A[i] == 0) return 1;
+            return -1;
+        }
+        
+        if(A[i] <= 0) continue;
+        
+        if(A[i] == A[i+1]) continue;
+        
+        if(A[i] == (n-i-1)) return 1;
+    }
+    return -1;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ #include<algorithm>
+ 
+// this will make sure that the integers greater than the given integer are unique
 int Solution::solve(vector<int>& A) {
     int n = A.size();
     
@@ -41,3 +72,4 @@ int Solution::solve(vector<int>& A) {
     }
     return -1;
 }
+
