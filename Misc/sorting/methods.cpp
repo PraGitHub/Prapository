@@ -10,6 +10,7 @@ void swap(int& a, int& b){
 }
 
 void displayArray(vector<int>& arr, string message){
+  /*
   int n = arr.size();
   cout<<"-----------------------------------------------------------------------"<<endl;
   cout<<message<<endl;
@@ -18,6 +19,7 @@ void displayArray(vector<int>& arr, string message){
   }
   cout<<endl;
   cout<<"-----------------------------------------------------------------------"<<endl;
+  */
   return;
 }
 
@@ -43,6 +45,33 @@ void selectionSort(vector<int>& arr){
       }
     }
     swap(arr[i], arr[smallestIndex]);
+  }
+  //displayArray(arr, "selectionSort :: array after sorting : ");
+  return;
+}
+
+void selectionSort2(vector<int>& arr){
+  //first element of a sorted array is always gonna be the smallest and last element will be the largest
+  int n = arr.size();
+  if(n <= 1) return;
+
+  int start = 0;
+  int end = n-1;
+  while(start<end){
+    int smallestIndex = start;
+    int largestIndex = end;
+    for(int i=start+1; i<=end; i++){
+      if(arr[i]<arr[smallestIndex]){
+        smallestIndex = i;
+      }else{
+        largestIndex = i;
+      }
+    }
+    swap(arr[start], arr[smallestIndex]);
+    swap(arr[end], arr[largestIndex]);
+    //displayArray(arr, "selectionSort2 :: ");
+    start++;
+    end--;
   }
   //displayArray(arr, "selectionSort :: array after sorting : ");
   return;
@@ -164,12 +193,88 @@ void mergeSort(vector<int>& arr){
   return;
 }
 
+/*
 int partition(vector<int>& arr, int start, int end){
-  int pivot = arr[(end+start)/2];
-  int partitionIndex = start;
-  for(int i=start; i<=end; i++){
-    
+  if(start == end) return 0;
+
+  int pivotIndex = (end+start)/2;
+  int pivot = arr[pivotIndex];
+  swap(arr[pivotIndex], arr[end]); // put pivot at the last
+
+  cout<<"partition :: start = "<<start<<" end = "<<end<<endl;
+  cout<<"partition :: pivot = "<<pivot<<endl;
+
+
+  int tempStart = start;
+  int tempEnd = end-1;
+
+  //cout<<"tempStart = "<<tempStart<<" tempEnd = "<<tempEnd<<endl;
+
+  while(tempStart<tempEnd){
+    if(arr[tempStart] > pivot){
+      swap(arr[tempStart], arr[tempEnd]);
+      tempEnd--;
+    }else{
+      tempStart++;
+    }
+  //  cout<<"tempStart = "<<tempStart<<" tempEnd = "<<tempEnd<<endl;
+    //displayArray(arr);
   }
+  //by now tempStart = tempEnd = index of the first element which is greater than pivot | index of last element which is less than pivot
+  pivotIndex = tempStart;
+  if(pivotIndex < end && arr[pivotIndex] >= arr[end]){
+    swap(arr[pivotIndex], arr[end]); // the last element is pivot and will will put it at the index where it should supposed to be at
+  }
+  pivotIndex = tempStart+1;
+  if(pivotIndex < end && arr[pivotIndex] >= arr[end]){
+    swap(arr[pivotIndex], arr[end]);
+  }
+
+  cout<<"partition :: pivotIndex = "<<pivotIndex<<endl;
+  displayArray(arr, "after partition :: ");
+  return pivotIndex;
+}
+
+void quick_sort(vector<int>& arr, int start, int end){
+  if(start == end) return;
+
+  int pivotIndex = partition(arr, start, end);
+
+  if(pivotIndex > start) quick_sort(arr, start, pivotIndex-1);
+
+  if(pivotIndex < end) quick_sort(arr, pivotIndex+1, end);
+
+  return;
+}
+*/
+
+int partition(vector<int>& arr, int start, int end){
+  int pivotIndex = (start+end)/2;
+  int pivot = arr[pivotIndex];
+  swap(arr[pivotIndex], arr[end]);
+
+  int left = start;
+  int right = end-1;
+
+  while(left < right){
+    if(arr[left] >= pivot){
+      swap(arr[left], arr[right]);
+      right--;
+    }else{
+      left++;
+    }
+  }
+
+  //by now left = right and arr[left] will either be the last element among the smaller ones or first element among the larger ones
+  if(arr[left] >= pivot){
+    swap(arr[left], arr[end]);
+    pivotIndex = left;
+  }else{
+    swap(arr[left+1], arr[end]);
+    pivotIndex = left+1;
+  }
+
+  return pivotIndex;
 }
 
 void quick_sort(vector<int>& arr, int start, int end){
@@ -177,9 +282,9 @@ void quick_sort(vector<int>& arr, int start, int end){
 
   int partitionIndex = partition(arr, start, end);
 
-  quick_sort(arr, start, partitionIndex-1);
+  if(partitionIndex > start) quick_sort(arr, start, partitionIndex-1);
 
-  quick_sort(arr, partitionIndex+1, end);
+  if(partitionIndex < end) quick_sort(arr, partitionIndex+1, end);
 
   return;
 }
