@@ -16,7 +16,7 @@ const initHtml = `
         <title>
             HX Machine
         </title>
-        <link rel="icon" href="https://www.fireeye.com/solutions/hx-endpoint-security-products/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1544558182059.png" type = "image/x-icon"> 
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HP-HP9000-C110-Workstation_10.jpg/440px-HP-HP9000-C110-Workstation_10.jpg" type = "image/x-icon"> 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
