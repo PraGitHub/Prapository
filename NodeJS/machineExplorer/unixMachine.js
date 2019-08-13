@@ -299,7 +299,7 @@ server.on('request', (req, res) => {
                 res.write(getNavBar(path));
                 exec(command, {cwd: path}, (err, stdout, stderr) => {
                     if(err){
-                        res.write(getCard(err.stack), 'Error');
+                        res.write(getCard(err.stack, 'Error'));
                     }
                     if(stderr){
                         res.write(getCard(convertToHtml(stderr), 'STDERR'));
