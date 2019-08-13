@@ -1,8 +1,11 @@
 const fs = require('fs');
 const http = require('http');
+const {hostname} = require('os');
+const {exec} = require('child_process');
 const {parse} = require('querystring');
 
 const port = 8085;
+const title = hostname() || 'HX Machine';
 
 const server = http.createServer();
 
@@ -14,9 +17,9 @@ const initHtml = `
 <html>
     <head>
         <title>
-            HX Machine
+            ${title}
         </title>
-        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HP-HP9000-C110-Workstation_10.jpg/440px-HP-HP9000-C110-Workstation_10.jpg" type = "image/x-icon"> 
+        <link rel="icon" href="https://www.fireeye.com/solutions/hx-endpoint-security-products/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1544558182059.png" type = "image/x-icon"> 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -40,13 +43,15 @@ const convertToHtml = (data) => {
     return data;
 }
 
-const getCard = (data) => {
+const getCard = (body, header='') => {
     return `
     <div class="card">
+        <div class="card-header">
+            ${header}
+        </div>
         <div class="card-body">
             <pre>
-
-${data}
+${body}
             </pre>
         </div>
     </div>
@@ -54,11 +59,37 @@ ${data}
 }
 
 const getNavBar = (dir) => {
+    let backDir = dir;
+    let li = backDir.lastIndexOf('/');
+    if(li == 0){
+        backDir = '/';
+    }else{
+        backDir = backDir.substr(0, li);
+    }
     return `
     <header>
         <ul><li></li></ul><br>
         <nav class="navbar navbar-dark bg-dark fixed-top">
-            <span class="navbar-brand mb-0 h1"><i class="fa fa-folder-open"></i> ${dir}</span>
+            <form class="form-inline" action="/getdir" method="post">
+                <input class="form-control mr-sm-2" name="dirpath" type="text" value="${backDir}" hidden />
+                <button class="btn btn-light mr-sm-4" data-toggle="tooltip" data-placement="top" title="Open Previous Directory" type="submit">
+                    <i class="fa fa-chevron-circle-left"></i>
+                </button>
+            </form>
+            <form class="form-inline" action="/getdir" method="post">
+                <input class="form-control mr-sm-2" name="dirpath" type="text" value="${dir}" hidden />
+                <button class="btn btn-light mr-sm-4" data-toggle="tooltip" data-placement="top" title="Open Current Directory" type="submit">
+                    <i class="fa fa-folder-open"></i>
+                </button>
+                <span class="navbar-brand mb-0 h1"> ${dir}</span>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action="/execute" method="post">
+                <input class="form-control mr-sm-2" name="dirpath" type="text" value="${dir}" hidden />
+                <input class="form-control mr-sm-2" name="command" placeholder="Command" type="text" value="" />
+                <button class="btn btn-outline-light" type="submit" data-toggle="tooltip" data-placement="top" title="Open">
+                    Execute
+                </button>
+            </form>
         </nav>
     </header>
     `;
@@ -68,20 +99,20 @@ const getFilePathFormNew = (path, size) => {
     return `
     <div class="form-group">
         <form action="/getfile" method="post">
-            <label>
+            <label class="mr-sm-2">
                 <span class="badge badge-light">
                     <i class="fa fa-file-text"></i>
                 </span>
             </label>
-            <label>
+            <label class="mr-sm-2">
                 <input class="btn btn-dark" value="${path.substr(path.lastIndexOf('/')+1)}" readonly/>
             </label>
-            <label>
+            <label class="mr-sm-2">
                 <span class="badge badge-light">
                     ${size} bytes
                 </span>
             </label>
-            <input class="form-control" name="filepath" type="text" value="${path}" hidden />
+            <input class="form-control mr-sm-2" name="filepath" type="text" value="${path}" hidden />
             <button class="btn btn-light" data-toggle="tooltip" data-placement="top" title="View" type="submit">
                 <i class="fa fa-eye"></i>
             </button>
@@ -121,14 +152,14 @@ const getFilePathForm = (path, size) => {
 const getDirPathForm = (path) => {
     return `
     <div class="form-group">
-        <form action="/getdir" method="post">
-            <label>
+        <form class="form-inline my-2 my-lg-0" action="/getdir" method="post">
+            <label class="mr-sm-2">
                 <span class="badge badge-light">
                     <i class="fa fa-folder"></i>
                 </span>
             </label>
-            <input class="form-control" name="dirpath" type="text" value="${path}" hidden />
-            <button class="btn btn-dark" type="submit" data-toggle="tooltip" data-placement="top" title="Open">
+            <input class="form-control mr-sm-2" name="dirpath" type="text" value="${path}" hidden />
+            <button class="btn btn-dark mr-sm-2" type="submit" data-toggle="tooltip" data-placement="top" title="Open">
                 ${path.substr(path.lastIndexOf('/')+1)}
             </button>
             <!--<input class="btn btn-dark" type="submit" data-toggle="tooltip" data-placement="top" title="Open" value="${path.substr(path.lastIndexOf('/')+1)}" />-->
@@ -220,13 +251,13 @@ server.on('request', (req, res) => {
                 //console.log('filepath = ', path);
                 res.writeHeader(200, {'Content-Type' : 'text/html'});
                 res.write(initHtml);
-                res.write(getNavBar(path));
+                res.write(getNavBar(path.substr(0, path.lastIndexOf('/'))));
                 fs.readFile(path, (err, data) => {
                     if(err){
                         res.write('<section>' + getCard(err.stack) + '</section>');
                         //res.write(err.stack);
                     }else{
-                        res.write('<section>' + getCard(convertToHtml(data.toString())) + '</section>');
+                        res.write('<section>' + getCard(convertToHtml(data.toString()), path) + '</section>');
                     }
                     res.write(endHtml);
                     res.end();
@@ -253,6 +284,31 @@ server.on('request', (req, res) => {
                 let path = parse(formData)['filepath'];
                 res.setHeader('Content-Disposition', 'attachment; filename=' + path.substr(path.lastIndexOf('/')+1));
                 fs.createReadStream(path).pipe(res);
+            });
+        }else if(url == '/execute'){
+            let formData = '';
+            req.on('data', (chunk) => {
+                formData = formData + chunk.toString();
+            });
+            req.on('end', () => {
+                let body = parse(formData);
+                let command = body['command'];
+                let path = body['dirpath'];
+                res.writeHeader(200, {'Content-Type' : 'text/html'});
+                res.write(initHtml);
+                res.write(getNavBar(path));
+                exec(command, {cwd: path}, (err, stdout, stderr) => {
+                    if(err){
+                        res.write(getCard(err.stack), 'Error');
+                    }
+                    if(stderr){
+                        res.write(getCard(convertToHtml(stderr), 'STDERR'));
+                    }
+                    if(stdout){
+                        res.write(getCard(convertToHtml(stdout), 'STDOUT'));
+                    }
+                    res.end();
+                });
             });
         }else{
             res.writeHeader(200, {'Content-Type' : 'text/html'});
