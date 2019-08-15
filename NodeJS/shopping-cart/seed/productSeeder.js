@@ -1,6 +1,6 @@
 var productModel = require('../models/product');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/shopping', {useNewUrlParser:true});
 
 var products = [
     new productModel({
@@ -46,11 +46,12 @@ var done = 0;
 for (var i=0;i<products.length;i++){
     products[i].save(function(err,res){
         if(err){
-            console.log('Erroe while saving :: ');
+            console.log('Error while saving :: ');
             throw err;
         }
         done++;
         if(done === products.length){
+            console.log("Done seeding products data.");
            disconnect();
         }
     });
