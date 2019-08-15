@@ -4,5 +4,5 @@
    cd shopping-cart
    run => npm install
    run => npm start
-   The sevrer will be running on port 3000
+   The sevrer will be running on port 8085
 </pre>
