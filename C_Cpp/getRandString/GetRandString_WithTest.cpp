@@ -80,7 +80,7 @@ string getRandString()
 		uiTemp = uiTemp / 10; 
 	}
 	strRandString = strRandString.substr(0,40);
-	//cout<<"strRandString = "<<strRandString<<endl;
+	cout<<"strRandString = "<<strRandString<<endl;
 //	cout<<strRandString.length()<<" "<<strRandString<<endl;
 	return strRandString;
 }
