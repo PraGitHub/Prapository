@@ -17,7 +17,7 @@ string getRandString(int len = 40)
 	uint64_t nanoTime = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
     uint tenPos = nanoTime % 10;
     uint64_t start = nanoTime/magical_ten_chars[tenPos];
-    for(uint64_t i=start; i <= start + len; i++)
+    for(uint64_t i=start; i < start + len; i++)
     {
         uint64_t num = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count() + i;
         if(num % 7 == 0)
