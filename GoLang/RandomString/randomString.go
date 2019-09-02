@@ -34,7 +34,8 @@ func GetRandString(slen int64) (str string) {
 	str = ""
 	start := time.Now().UnixNano()
 	tenCharPos := start % 10
-	start = start * (int64(byte(magical_ten_chars[tenCharPos])) + shift())
+	sValue := shift()
+	start = start * (int64(byte(magical_ten_chars[tenCharPos])) + sValue)
 	end := start + slen - 1
 
 	for i := start; i <= end; i++ {
@@ -54,7 +55,7 @@ func GetRandString(slen int64) (str string) {
 		}
 		num = num * int64(byte(magical_five_chars[fiveCharPos]))
 		num = makePositive(num)
-		charPos := num % 62
+		charPos := (num / (sValue + 1)) % 62
 		str = str + string(chars[(charPos)])
 	}
 	return
