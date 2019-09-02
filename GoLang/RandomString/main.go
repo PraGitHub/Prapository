@@ -41,7 +41,8 @@ func main() {
 	}
 
 	if numStrings != 0 {
-		log.Println("After generating ", strCount, " unique strings, String = ", str, " is repeated :(. Count of existing string is = ", strMap[str])
+		log.Println("After generating ", strCount, " unique strings, String = ", str, " is repeated :(")
+		log.Println(str, " is the ", strMap[str], "th string that I generated")
 	} else {
 		log.Println("All strings are unique :)")
 	}
