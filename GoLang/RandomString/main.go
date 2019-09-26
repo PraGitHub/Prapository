@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -36,14 +37,17 @@ func main() {
 		}
 	}
 
-	for key, _ := range strMap {
-		log.Println(key)
-	}
-
 	if numStrings != 0 {
 		log.Println("After generating ", strCount, " unique strings, String = ", str, " is repeated :(")
 		log.Println(str, " is the ", strMap[str], "th string that I generated")
 	} else {
 		log.Println("All strings are unique :)")
+	}
+
+	fmt.Println("Press Enter to print all strings or CTRL+c to exit ...")
+	fmt.Scanln()
+
+	for key, _ := range strMap {
+		log.Println(key)
 	}
 }
