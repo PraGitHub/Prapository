@@ -16,9 +16,11 @@ const taskQueue = async.queue((task, callback) => {
     }, taskExecTime, task.id);
 }, concurrency);
 
-taskQueue.drain = () => {
+taskQueue.drain(() => {
     console.log('All tasks are completed');
-}
+    console.log('Exiting...');
+    process.exit(0);
+});
 
 var taskList = [];
 
