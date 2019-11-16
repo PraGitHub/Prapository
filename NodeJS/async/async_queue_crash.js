@@ -18,7 +18,7 @@ const taskQueue = async.queue((task, callback) => {
     const timeTaken = endTime - startTime;
     //console.log(`Task ${task.id} completed, took ${timeTaken} msec, calling callback`);
     //console.log(`taskQueue.length = ${taskQueue.length()}`);
-    callback();
+    callback(); // this way of propagation to next task leads to stack overflow with async v2.0.1
 }, concurrency);
 
 taskQueue.drain(() => {
