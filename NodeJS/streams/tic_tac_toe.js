@@ -50,12 +50,8 @@ function checkIfSame (i1, i2, i3) {
 }
 
 function checkGame () {
-    if (game_tracker > 9) {
-        console.log('=========GAME OVER=========');
-        printBoard();
-        initBoard();
-        console.log('=========NEW GAME=========');
-        printBoard();
+    if (game_tracker < 5) {
+        return;
     }
     var winner = EMPTY;
     if (checkIfSame(0, 1, 2)) {
@@ -81,6 +77,13 @@ function checkGame () {
         printBoard();
         initBoard();
         console.log('=========NEW GAME=========');
+    }
+    if (game_tracker > 9) {
+        console.log('=========GAME OVER=========');
+        printBoard();
+        initBoard();
+        console.log('=========NEW GAME=========');
+        printBoard();
     }
 }
 
