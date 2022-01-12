@@ -1,41 +1,37 @@
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin);
 
-const states = {
-    EMPTY: ' ',
-    P_1: 'O',
-    P_2: 'X' 
-};
+const EMPTY = ' ', P_1 = 'O', P_2 = 'X';
 
-var board = new Array(9).fill(states.EMPTY);
+var board = new Array(9).fill(EMPTY);
 
 var game_tracker = 1;
 
 var player = true;
 
 function initBoard () {
-    board = new Array(9).fill(states.EMPTY);
+    board = new Array(9).fill(EMPTY);
     game_tracker = 1;
 }
 
 function printBoard () {
-    var line = '';
+    var line = '|';
     for (let i in board) {
         line = `${line} ${board[i]} |`;
         if ((i+1) % 3 == 0) {
             console.log(line);
-            line = '';
+            line = '|';
         }
     }
 }
 
 function updateBoard (pos) {
-    if (board[pos - 1] != states.EMPTY) {
+    if (board[pos - 1] != EMPTY) {
         return false;
     }
-    var state = states.P_2;
+    var state = P_2;
     if (player) {
-        state = states.P_1;
+        state = P_1;
     }
     board[pos - 1] = state;
     return true;
@@ -43,9 +39,9 @@ function updateBoard (pos) {
 
 function checkIfSame (i1, i2, i3) {
     // console.log(i1, i2, i3, board[i1], board[i2], board[i3]);
-    // console.log(board[i1] != states.EMPTY);
+    // console.log(board[i1] != EMPTY);
     // console.log(board[i1] == board[i2] && board[i2] == board[i3]);
-    if (board[i1] != states.EMPTY) {
+    if (board[i1] != EMPTY) {
         if (board[i1] == board[i2] && board[i2] == board[i3]) {
             return true;
         }
@@ -61,7 +57,7 @@ function checkGame () {
         console.log('=========NEW GAME=========');
         printBoard();
     }
-    var winner = states.EMPTY;
+    var winner = EMPTY;
     if (checkIfSame(0, 1, 2)) {
         winner = board[0];
     } else if(checkIfSame(3, 4, 5)) {
@@ -79,7 +75,7 @@ function checkGame () {
     } else if(checkIfSame(2, 4, 6)) {
         winner = board[2];
     }
-    if (winner != states.EMPTY) {
+    if (winner != EMPTY) {
         console.log('=========GAME OVER=========');
         console.log(`=========PLAYER ${winner} Won!=========`)
         printBoard();
