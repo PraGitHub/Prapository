@@ -1,16 +1,17 @@
 const readline = require('readline');
 const request = require('request');
-const URL = 'http://gobooksonline.herokuapp.com/search';
+const URL = 'http://gobooksonline.herokuapp.com/search?query=';
 
 const rl = readline.createInterface(process.stdin);
 
+function getURL (param) {
+    return `${URL}${encodeURIComponent(param)}`;
+}
+
 function requestBook (bookName) {
     return new Promise((resolve, reject) => {
-        request.post(URL, {
-            form: {
-                queryString: bookName
-            }
-        }, (err, res, body) => {
+        let url = getURL(bookName);
+        request.get(url, (err, res, body) => {
             if (err) {
                 reject(err);
             } else {
@@ -22,6 +23,11 @@ function requestBook (bookName) {
 
 rl.on('line', (line) => {
     console.log('Input line:', line);
+    if (!line) {
+        console.log('Search query cannot be null');
+        console.log('Enter the search query below:');
+        return;
+    }
     requestBook(line)
     .then((result) => {
         console.log('Search results:');
