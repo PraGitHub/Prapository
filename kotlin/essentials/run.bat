@@ -1,0 +1,25 @@
+call mkdir bin
+
+echo ============================================================================
+call echo Running types
+echo ============================================================================
+call kotlinc types.kt -include-runtime -d bin\types.jar && java -jar bin\types.jar
+
+echo ============================================================================
+call echo Running strings
+echo ============================================================================
+call kotlinc strings.kt -include-runtime -d bin\strings.jar && java -jar bin\strings.jar
+
+echo ============================================================================
+call echo Running control_flow
+echo ============================================================================
+call kotlinc control_flow.kt -include-runtime -d bin\control_flow.jar && java -jar bin\control_flow.jar
+
+echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc collections_sequences.kt -include-runtime -d bin\collections_sequences.jar && java -jar bin\collections_sequences.jar
+
+echo ============================================================================
+call echo Done!
+echo ============================================================================
