@@ -26,5 +26,10 @@ echo ===========================================================================
 call kotlinc io_files.kt -include-runtime -d bin\io_files.jar && java -jar bin\io_files.jar
 
 echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc functions.kt -include-runtime -d bin\functions.jar && java -jar bin\functions.jar
+
+echo ============================================================================
 call echo Done!
 echo ============================================================================
