@@ -31,5 +31,10 @@ echo ===========================================================================
 call kotlinc functions.kt -include-runtime -d bin\functions.jar && java -jar bin\functions.jar
 
 echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc classes.kt -include-runtime -d bin\classes.jar && java -jar bin\classes.jar
+
+echo ============================================================================
 call echo Done!
 echo ============================================================================
