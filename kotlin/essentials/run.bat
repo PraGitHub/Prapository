@@ -36,5 +36,20 @@ echo ===========================================================================
 call kotlinc classes.kt -include-runtime -d bin\classes.jar && java -jar bin\classes.jar
 
 echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc interfaces.kt -include-runtime -d bin\interfaces.jar && java -jar bin\interfaces.jar
+
+echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc challenge.kt -include-runtime -d bin\challenge.jar && java -jar bin\challenge.jar
+
+echo ============================================================================
+call echo Running collections_sequences
+echo ============================================================================
+call kotlinc coroutines.kt -Xbuild-file=build.xml -include-runtime -d bin\coroutines.jar && java -jar bin\coroutines.jar
+
+echo ============================================================================
 call echo Done!
 echo ============================================================================

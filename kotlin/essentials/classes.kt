@@ -145,8 +145,100 @@ private fun data_classes () {
     separate()
 }
 
+private fun composition_and_interfaces () {
+   abstract class Person(val firstName: String, val lastName: String) {
+       abstract fun getName (): String
+   }
+
+   // open is to say that the class is open to extend i.e, it is extensible
+   // final is the opposite of open. By default, classes are final in kotlin
+   open class Employee(
+       val fn: String,
+       val ln: String,
+       val jobTitle: String,
+       val hourlyRate: Double
+   ) : Person(fn, ln) {
+       var totalHours = 0.0
+
+       override fun getName (): String {
+           return "${fn} ${ln}"
+       }
+
+       open fun trackHours (hours: Double) {
+           totalHours += hours
+       }
+
+       open fun doWork () {
+           println("Doing ${this.jobTitle} work")
+       }
+   }
+
+   open class Engineer(
+       fn: String,
+       ln: String,
+       jobTitle: String,
+       val company: String
+   ) : Employee(fn, ln, jobTitle, 0.0) {
+
+       override fun trackHours (hours: Double) {
+           return
+       }
+
+       override fun doWork () {
+           println("Doing ${this.jobTitle} @ ${this.company}")
+       }
+   }
+
+   val emp = Employee(
+       "Virat",
+       "Kohli",
+       "Batsman",
+       10.0
+   )
+   val eng = Engineer(
+       "Rob",
+       "Pike",
+       "Software Development Engineer",
+       "Google"
+   )
+
+   println("${emp.fn} ${emp.ln} ${emp.jobTitle} ${emp.hourlyRate}")
+   emp.doWork()
+   println("${eng.fn} ${eng.ln} ${eng.jobTitle}")
+   eng.doWork()
+
+   separate()
+}
+
+class CantCreate private constructor (val name: String) {
+    fun show () {
+        println("${name}")
+    }
+
+    companion object {
+        const val SomeValue = "This is a part of companion object accessing via CantCreate"
+        // const and val both are used to say that an entity is a constant
+        // However, those with const are compile time constants i.e., thier values are initialized as we compile the code
+        // Those with val alone are run time constants. They get initialized during runtime but they are constants anyways
+        fun initialize (name: String): CantCreate {
+            return CantCreate(name)
+        }
+    }
+}
+
+private fun companion_objects () {
+    // val cc = CantCreate("Ross Geller") => this will throw => error: cannot access '<init>': it is private in 'CantCreate'
+    val cc = CantCreate.initialize("Ross Geller") // This works
+    cc.show()
+    println("CantCreate.SomeValue: ${CantCreate.SomeValue}")
+    // println("cc.SomeValue: ${cc.SomeValue}") => This won't work
+    separate()
+}
+
 fun main () {
     basics()
     constructors_and_init()
     data_classes()
+    composition_and_interfaces()
+    companion_objects()
 }
