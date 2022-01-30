@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="bin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/interfaces.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/io_files.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/types.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/control_flow.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/functions.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/misc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/strings.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/challenge.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/collections_sequences.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

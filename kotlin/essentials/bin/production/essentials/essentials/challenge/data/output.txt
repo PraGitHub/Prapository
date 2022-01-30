@@ -1,0 +1,72 @@
+Command: call
+Parameters: mkdir bin
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Running types
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: kotlinc types.kt -include-runtime -d bin\types.jar && java -jar bin\types.jar
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Running strings
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: kotlinc strings.kt -include-runtime -d bin\strings.jar && java -jar bin\strings.jar
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Running control_flow
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: kotlinc control_flow.kt -include-runtime -d bin\control_flow.jar && java -jar bin\control_flow.jar
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Running collections_sequences
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: kotlinc collections_sequences.kt -include-runtime -d bin\collections_sequences.jar && java -jar bin\collections_sequences.jar
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Running collections_sequences
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: kotlinc io_files.kt -include-runtime -d bin\io_files.jar && java -jar bin\io_files.jar
+
+Command: echo
+Parameters: ============================================================================
+
+Command: call
+Parameters: echo Done!
+
+Command: echo
+Parameters: ============================================================================
+
