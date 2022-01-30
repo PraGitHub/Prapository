@@ -6,6 +6,14 @@ import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
 
+import kotlinx.serialization.*
+
+@Serializable
+data class Car(
+    val name: String,
+    val country: String
+)
+
 // This function configureRouting belongs to the class Application and hence it can be used directly in the Application.kt file
 fun Application.configureRouting() {
     val cars = mapOf(
@@ -37,6 +45,11 @@ fun Application.configureRouting() {
                 res = res + "<form action=\"/home\"> <input type=\"submit\" value=\"Home\"> </form>"
                 call.respondText(res, ContentType.Text.Html)
             }
+        }
+
+        post("/home/car") {
+            println(call.receive<Car>())
+            call.respondText("OK")
         }
     }
 }
